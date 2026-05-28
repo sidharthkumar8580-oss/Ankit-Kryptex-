@@ -1,4 +1,42 @@
-<h1>hey friends ye website mere duwara banai gyi hai
+<!-- Search Bar -->
+<div style="padding:20px; text-align:center;">
+  <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Photo/Video search karo..."
+  style="padding:10px; width:80%; max-width:400px; border:2px solid #00ff88; border-radius:8px; background:#111; color:#fff;">
+</div>
+
+<!-- Gallery -->
+<div id="gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:15px; padding:20px;">
+
+  <div class="item">
+    <img src="photo1.jpg" alt="Photo 1" style="width:100%; border-radius:8px;">
+    <p>Photo 1</p>
+  </div>
+
+  <div class="item">
+    <video src="video1.mp4" controls style="width:100%; border-radius:8px;"></video>
+    <p>Video 1</p>
+  </div>
+
+</div>
+
+<script>
+function searchFunction() {
+  let input = document.getElementById('searchInput').value.toLowerCase();
+  let items = document.getElementsByClassName('item');
+  for (let i = 0; i < items.length; i++) {
+    let text = items[i].innerText.toLowerCase();
+    if (text.includes(input)) {
+      items[i].style.display = "block";
+    } else {
+      items[i].style.display = "none";
+    }
+  }
+}
+</script>   
+
+
+
+ <h1>hey friends ye website mere duwara banai gyi hai
 Mera naam Ankit hai and I am 16 years old iss 
 website me mera channel ka link hai to waha pr click
 kroge to mera youtube channel page khulega and 
@@ -81,41 +119,6 @@ website banwana hai to comment me website likh dena </h1>
             <p><b>Today's Code:</b> FF2026DIAMONDS</p>
         </div>
     </div>
-<!-- Search Bar -->
-<div style="padding:20px; text-align:center;">
-  <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Photo/Video search karo..."
-  style="padding:10px; width:80%; max-width:400px; border:2px solid #00ff88; border-radius:8px; background:#111; color:#fff;">
-</div>
-
-<!-- Gallery -->
-<div id="gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:15px; padding:20px;">
-
-  <div class="item">
-    <img src="photo1.jpg" alt="Photo 1" style="width:100%; border-radius:8px;">
-    <p>Photo 1</p>
-  </div>
-
-  <div class="item">
-    <video src="video1.mp4" controls style="width:100%; border-radius:8px;"></video>
-    <p>Video 1</p>
-  </div>
-
-</div>
-
-<script>
-function searchFunction() {
-  let input = document.getElementById('searchInput').value.toLowerCase();
-  let items = document.getElementsByClassName('item');
-  for (let i = 0; i < items.length; i++) {
-    let text = items[i].innerText.toLowerCase();
-    if (text.includes(input)) {
-      items[i].style.display = "block";
-    } else {
-      items[i].style.display = "none";
-    }
-  }
-}
-</script>
 </body>
 </html>
 
