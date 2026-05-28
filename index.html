@@ -1,9 +1,15 @@
-<body>
-<div style="position:absolute; top:10px; right:15px; background:#00000080; color:white; padding:5px 10px; border-radius:20px; font-size:14px;">
-  👁️ <img src="https://api.countapi.xyz/hit/sidharth8580-ankit-site-2026/visits" height="16">
+
+<div style="position:fixed; top:10px; right:15px; background:#000000CC; color:white; padding:6px 12px; border-radius:20px; font-size:14px; z-index:9999;">
+  👁️ <span id="viewCount">0</span>
 </div>
 
-<!-- Baaki tera content -->
+<script>
+fetch('https://api.counterapi.dev/v1/ankit-kryptex-2026/up')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('viewCount').innerText = data.count;
+  })
+</script>
 
 <!-- Search Bar -->
 <div style="padding:20px; text-align:center;">
