@@ -84,33 +84,59 @@ website banwana hai to comment me website likh dena </h1>
 </body>
 </html>
 
-<!-- Image Popup Fix -->
-<div id="imgModal" style="display:none; position:fixed; inset:0; background:#000; z-index:2147483647;">
-  <button onclick="closeModal()" style="position:fixed; top:20px; right:20px; width:50px; height:50px; border:none; border-radius:50%; background:#ff0000; color:#fff; font-size:30px; cursor:pointer; z-index:2147483647; box-shadow:0 0 20px black;">×</button>
+<!-- Image Popup Modal -->
+<div id="imgModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:999999;">
   
-  <div style="display:flex; justify-content:center; align-items:center; width:100%; height:100vh;">
-    <img id="modalImg" style="max-width:95%; max-height:95vh; object-fit:contain;">
+  <!-- Close Button -->
+  <span onclick="closeModal()" 
+        style="position:absolute; top:15px; right:25px; color:white; font-size:45px; font-weight:bold; cursor:pointer; z-index:1000000;">
+    &times;
+  </span>
+
+  <!-- Center Image -->
+  <div style="display:flex; justify-content:center; align-items:center; height:100%;">
+    <img id="modalImg" 
+         style="max-width:95%; max-height:95%; object-fit:contain;">
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('img').forEach(function(img) {
-    img.style.cursor = 'pointer';
-    img.onclick = function() {
-      document.getElementById('modalImg').src = this.src;
-      document.getElementById('imgModal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Sirf normal images select karo
+  const images = document.querySelectorAll("img:not(#modalImg)");
+
+  images.forEach(function(img) {
+
+    img.style.cursor = "pointer";
+
+    img.addEventListener("click", function () {
+
+      document.getElementById("modalImg").src = this.src;
+
+      document.getElementById("imgModal").style.display = "block";
+
+      document.body.style.overflow = "hidden";
+    });
   });
 });
 
 function closeModal() {
-  document.getElementById('imgModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
+  document.getElementById("imgModal").style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') closeModal();
+// ESC key support
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
+});
+
+// Background click se bhi close
+document.getElementById("imgModal").addEventListener("click", function(e) {
+  if (e.target.id === "imgModal") {
+    closeModal();
+  }
 });
 </script>
