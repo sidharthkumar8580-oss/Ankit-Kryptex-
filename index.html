@@ -1,10 +1,9 @@
-<h1>hey guy me 16 sal ka ladka hu
-    or ye meri phali websiye hai
-          jo me banaya hu
-    to guy mera youtube channel hai
-       jiska name @Ankitkryptex 
-    hai to jali jae mera channel ko
-           subscribe kro </h1>
+<h1>hey friends ye website mere duwara banai gyi hai
+Mera naam Ankit hai and I am 16 years old iss 
+website me mera channel ka link hai to waha pr click
+kroge gw to mera youtube channel page khulega and 
+mere channel ko subscribe kr dena and aapko aisa 
+website banwana hai to comment me website lunk dena </h1>
 <h2>Freefire ka diamond le lo re baba:</h2>
 <a href="Ankit.jpg">
 <img src="Ankit.jpg" width="300">
@@ -84,3 +83,35 @@
     </div>
 </body>
 </html>
+
+<!-- Universal Photo Modal for ALL Images -->
+<div id="imgModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+  <span onclick="closeModal()" style="position:absolute; top:20px; right:35px; color:#fff; font-size:50px; font-weight:bold; cursor:pointer; user-select:none;">&times;</span>
+  <img id="modalImg" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 0 30px rgba(255,255,255,0.2);">
+</div>
+
+<script>
+  // Page ki sab image ko pakdo
+  document.querySelectorAll('img').forEach(img => {
+    img.style.cursor = 'pointer'; // Cursor hand wala dikhega
+    img.onclick = function() {
+      document.getElementById('imgModal').style.display = 'flex';
+      document.getElementById('modalImg').src = this.src;
+    }
+  });
+  
+  // X pe click karne pe band karo
+  function closeModal() {
+    document.getElementById('imgModal').style.display = 'none';
+  }
+  
+  // Background pe click karne pe bhi band ho jaye
+  document.getElementById('imgModal').onclick = function(e) {
+    if(e.target.id === 'imgModal') closeModal();
+  }
+  
+  // Esc key dabane pe bhi band ho jaye
+  document.addEventListener('keydown', function(e) {
+    if(e.key === 'Escape') closeModal();
+  });
+</script>
