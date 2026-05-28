@@ -1,0 +1,13 @@
+{
+  "name": "Ankit Kryptex - Free Fire Tips",
+  "short_name": "Ankit Kryptex",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}
