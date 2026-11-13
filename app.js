@@ -91,7 +91,7 @@ const toolCatalog=[
 ['csv','CSV Table Viewer','Extra','Preview a CSV file as a table in your browser.','▦'],
 ['calculator','Scientific Calculator','Extra','Perform everyday arithmetic calculations.','∑'],
 ['notes','Notes & Task Manager','Extra','Save notes and tasks on this device.','▤'],
-['timer','Countdown Timer','Extra','Run a simple countdown timer.','⏱'],
+
 ['textcase','Text Formatter','Extra','Change case, clean whitespace and count text.','Aa']
 ];
 const gameCatalog=[
@@ -128,6 +128,9 @@ else if(t[0]==='mp3video'||t[0]==='background'||t[0]==='restore'||t[0]==='object
 else extra=select('outputStyle','Output style',['Simple and clear','Detailed','Exam-ready','Professional','Creative'])+input+'<button class="btn btn-primary" id="generateBtn">Generate with Kryptex AI ✦</button><p class="form-hint">Requires a live AI backend. Keep private or sensitive information out of prompts.</p>';
 f.innerHTML=extra;
 const action=document.getElementById('localAction');if(action)action.onclick=()=>localToolAction(t[0]);
+const ocrRun=document.getElementById('ocrRun');if(ocrRun)ocrRun.onclick=async()=>{const file=document.getElementById('ocrFile').files[0];if(!file)return toast('Choose an image first');ocrRun.disabled=true;ocrRun.textContent='Loading OCR…';try{if(!window.Tesseract){await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=reject;document.head.appendChild(sc)})}ocrRun.textContent='Reading image…';const res=await Tesseract.recognize(file,'eng');const text=res.data.text.trim();document.getElementById('catalogInput').value=text;if(!text)throw Error('No readable text found. Try a clearer image.');if(t[0]==='mathphoto'){requestAI('Solve this math problem from the photo step by step.\\n'+text,ocrRun)}else{document.getElementById('toolResult').textContent=text;window.kxLastResult=text}}catch(e){document.getElementById('toolResult').textContent='OCR failed: '+e.message}finally{ocrRun.disabled=false;ocrRun.textContent=t[0]==='mathphoto'?'Read photo & solve':'Convert photo to text'}};
+const ocrAI=document.getElementById('ocrAI');if(ocrAI)ocrAI.onclick=()=>{const text=document.getElementById('catalogInput').value.trim();if(!text)return toast('Add text first');requestAI((t[0]==='mathphoto'?'Solve step by step: ':'Clean and format these notes: ')+text,ocrAI)};
+
 const gen=document.getElementById('generateBtn');if(gen)gen.onclick=()=>{const val=document.getElementById('catalogInput')?.value.trim()||'';if(!val)return toast('Please enter your input first.');const promptMap={
 longanswer:'Convert this long answer into a concise, accurate, exam-ready answer. Preserve all important points and use simple language.',
 mathphoto:'Solve the following math problem step by step. Explain each step and verify the answer.',
