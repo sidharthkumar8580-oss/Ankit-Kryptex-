@@ -1,18 +1,1 @@
-{
-  "name": "Kryptex Workspace",
-  "short_name": "Kryptex",
-  "description": "Useful tools for students, shops, businesses and everyday work.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#090b16",
-  "theme_color": "#090b16",
-  "icons": [
-    {
-      "src": "./icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
-}
+{"name":"Kryptex Studio","short_name":"Kryptex","description":"AI tools and everyday workspace","start_url":"./","scope":"./","display":"standalone","orientation":"portrait-primary","background_color":"#090b12","theme_color":"#090b12","icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
