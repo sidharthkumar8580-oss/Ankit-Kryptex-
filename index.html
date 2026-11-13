@@ -1,213 +1,94 @@
-
-<div style="position:fixed; top:10px; right:15px; background:#000000CC; color:white; padding:6px 12px; border-radius:20px; font-size:14px; z-index:9999;">
-  👁️ <span id="viewCount">0</span>
-</div>
-
-<script>
-fetch('https://api.counterapi.dev/v1/ankit-kryptex-2026/up')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById('viewCount').innerText = data.count;
-  })
-</script>
-
-<!-- Search Bar -->
-<div style="padding:20px; text-align:center;">
-  <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Photo/Video search karo..."
-  style="padding:10px; width:80%; max-width:400px; border:2px solid #00ff88; border-radius:8px; background:#111; color:#fff;">
-</div>
-
-<div style="margin-top:50px; display:flex; gap:5px;">
-  <input id="searchBox" type="text" placeholder="Search..." style="flex:1; padding:8px; border:2px solid #00ff00; border-radius:5px;">
-  <button onclick="doSearch()" style="padding:8px 15px; background:#00ff00; border:none; border-radius:5px; font-weight:bold;">Enter</button>
-</div>
-
-<script>
-function doSearch(){
-  let q = document.getElementById('searchBox').value;
-  if(q) window.open('https://www.google.com/search?q=' + q, '_blank');
-}
-document.getElementById('searchBox').addEventListener('keypress', function(e){
-  if(e.key === 'Enter') doSearch();
-});
-</script>
-<!-- Gallery -->
-<div id="gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:15px; padding:20px;">
-
-  <div class="item">
-    <img src="photo1.jpg" alt="Photo 1" style="width:100%; border-radius:8px;">
-    <p>Photo 1</p>
-  </div>
-
-  <div class="item">
-    <video src="video1.mp4" controls style="width:100%; border-radius:8px;"></video>
-    <p>Video 1</p>
-  </div>
-
-</div>
-
-<script>
-function searchFunction() {
-  let input = document.getElementById('searchInput').value.toLowerCase();
-  let items = document.getElementsByClassName('item');
-  for (let i = 0; i < items.length; i++) {
-    let text = items[i].innerText.toLowerCase();
-    if (text.includes(input)) {
-      items[i].style.display = "block";
-    } else {
-      items[i].style.display = "none";
-    }
-  }
-}
-</script>   
-
-
-
- <h1>hey friends ye website mere duwara banai gyi hai
-Mera naam Ankit hai and I am 16 years old iss 
-website me mera channel ka link hai to waha pr click
-kroge to mera youtube channel page khulega and 
-mere channel ko subscribe kr dena and aapko aisa 
-website banwana hai to comment me website likh dena </h1>
-<h2>Freefire ka diamond le lo re baba:</h2>
-<a href="Ankit">
-<img src="Ankit" width="300">
-</a>
-
-<!DOCTYPE html>
-<html lang="hi">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit Kryptex - Free Fire Tips & YouTube</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            padding: 30px 0;
-        }
-        h1 {
-            font-size: 32px;
-            color: #22d3ee;
-            margin-bottom: 10px;
-        }
-        .card {
-            background: #1e293b;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .btn {
-            background: #ef4444;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        img {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🔥 Ankit Kryptex</h1>
-            <p>Hey guys, me 16 saal ka hu aur ye meri official website hai</p>
-        </div>
-
-        <div class="card">
-            <h2>📺 Mera YouTube Channel</h2>
-            <p>Free Fire tips, gameplay aur diamond tricks ke liye subscribe karo!</p>
-            <a href="https://youtube.com/@Ankitkryptex" class="btn">Subscribe @Ankitkryptex</a>
-        </div>
-
-        <div class="card">
-            <h2>💎 Free Fire MAX Redeem Codes</h2>
-            <p>Yaha roz naye redeem codes update honge. Free diamonds, skins, aur loot!</p>
-            <img src="ankitt.jpg" alt="Free Fire MAX">
-            <p><b>Today's Code:</b> FF2026DIAMONDS</p>
-        </div>
-    </div>
-</body>
-</html>
-
-<!-- Image Popup Modal -->
-<div id="imgModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:999999;">
-  
-  <!-- Close Button -->
-  <span onclick="closeModal()" 
-        style="position:absolute; top:15px; right:25px; color:white; font-size:45px; font-weight:bold; cursor:pointer; z-index:1000000;">
-    &times;
-  </span>
-
-  <!-- Center Image -->
-  <div style="display:flex; justify-content:center; align-items:center; height:100%;">
-    <img id="modalImg" 
-         style="max-width:95%; max-height:95%; object-fit:contain;">
-  </div>
-</div>
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b16"><meta name="description" content="Kryptex — useful tools for students, shops, teams and everyday work.">
+<title>Kryptex — All your work, one place</title>
+<link rel="manifest" href="./manifest.json"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#090b16;--panel:#111629;--panel2:#171e34;--line:#29324d;--text:#f4f6ff;--muted:#a5afca;--purple:#9b6cff;--pink:#ff6eb4;--cyan:#60d8e8;--green:#72e0b0;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#4d2b8044,transparent),radial-gradient(700px 400px at -10% 20%,#175d7040,transparent),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.app{max-width:1440px;margin:auto;min-height:100vh}.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:#090b16dd;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:850;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 8px 25px #9b6cff55}.logo span{font-size:21px}.top-actions{display:flex;gap:9px;align-items:center}.pill,.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:9px 13px}.btn.primary{background:linear-gradient(120deg,#8056e9,#d64f9d);border:0;font-weight:750}.btn:hover,.pill:hover{filter:brightness(1.18)}.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;padding:22px}.side{position:sticky;top:83px;align-self:start;background:#101629bb;border:1px solid var(--line);border-radius:20px;padding:14px}.nav-label{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:1.3px;padding:12px 10px 6px}.nav{width:100%;display:flex;gap:11px;align-items:center;text-align:left;padding:11px 12px;border:0;border-radius:12px;background:transparent;color:#cbd3e8}.nav.active,.nav:hover{background:#8d68e52b;color:#fff}.nav .ico{width:22px;text-align:center}.main{min-width:0}.hero{padding:30px;border:1px solid #ffffff18;border-radius:24px;background:linear-gradient(120deg,#34215eaa,#132d46aa),linear-gradient(120deg,#181d34,#101629);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:7%;top:-35px;font-size:180px;color:#ffffff0b}.eyebrow{color:#c4a9ff;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}.hero h1{font-size:clamp(28px,4vw,46px);line-height:1.08;margin:10px 0}.hero p{max-width:650px;color:#c4cbe0;margin:0 0 20px}.search{display:flex;gap:8px;max-width:650px}.field,textarea,select{width:100%;background:#090e1c;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:12px;outline:none}.field:focus,textarea:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #9b6cff22}.section-head{display:flex;justify-content:space-between;align-items:end;margin:27px 2px 13px}.section-head h2{font-size:20px;margin:0}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.card{border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#151c31,#101526);padding:17px;min-height:140px;transition:.18s;cursor:pointer}.card:hover{transform:translateY(-3px);border-color:#8f70dd;box-shadow:var(--shadow)}.card .symbol{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:#9b6cff22;font-size:20px;margin-bottom:12px}.card h3{margin:0 0 4px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:12px}.tag{display:inline-block;margin-top:12px;color:#bda5ff;font-size:11px;font-weight:750}.adbox{margin:20px 0;padding:15px;border:1px dashed #46506c;border-radius:14px;color:#8994b2;text-align:center;font-size:12px;min-height:62px}.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:15px}.panel h2,.panel h3{margin-top:0}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:130px}.output{white-space:pre-wrap;background:#090e1c;border:1px solid var(--line);border-radius:12px;padding:14px;color:#dce5ff;min-height:50px;margin-top:12px}.muted{color:var(--muted)}.tool-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.item{border:1px solid var(--line);background:#0d1324;border-radius:13px;padding:13px}.item strong{display:block}.item small{color:var(--muted)}.item-actions{display:flex;gap:7px;margin-top:10px}.item-actions button{padding:6px 9px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px}th{color:#bba5ff}.chatlog{height:340px;overflow:auto;background:#090e1c;border:1px solid var(--line);border-radius:13px;padding:12px}.bubble{max-width:88%;padding:11px 13px;border-radius:14px;margin:8px 0;white-space:pre-wrap}.bubble.user{margin-left:auto;background:#6244a7}.bubble.ai{background:#1a2540}.bottomnav{display:none}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#222d46;border:1px solid #526080;padding:10px 16px;border-radius:12px;z-index:30;display:none}.footer{padding:25px;text-align:center;color:#77829f;font-size:12px}.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr;padding:13px}.side{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.top{padding:11px 14px}.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;justify-content:space-around;background:#0a0e1ced;border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}.bottomnav button{background:none;border:0;color:#aab4ce;font-size:11px;display:grid;gap:3px;justify-items:center}.bottomnav button span{font-size:18px}.footer{padding-bottom:90px}}
+@media(max-width:520px){.grid,.tool-list{grid-template-columns:1fr}.hero{padding:23px 18px}.hero h1{font-size:31px}.top-actions .hide-mobile{display:none}.section-head{align-items:start}.search{flex-direction:column}.row>*{min-width:100%}}
+</style></head>
+<body><div class="app">
+<header class="top"><div class="brand"><div class="logo"><span>✦</span></div><span>KRYPTEX</span><span class="muted" style="font-size:11px;font-weight:600">WORKSPACE</span></div><div class="top-actions"><button class="pill hide-mobile" id="installBtn" hidden>⬇ Install app</button><button class="pill" id="themeBtn" title="Switch theme">◐</button><button class="btn primary" onclick="openPage('ai')">✦ Ask Kryptex AI</button></div></header>
+<div class="layout"><aside class="side"><div class="nav-label">WORKSPACE</div><button class="nav active" data-page="home"><span class="ico">⌂</span> Overview</button><button class="nav" data-page="student"><span class="ico">🎓</span> Student tools</button><button class="nav" data-page="shop"><span class="ico">🛍️</span> Shop & billing</button><button class="nav" data-page="business"><span class="ico">📊</span> Business & CRM</button><button class="nav" data-page="daily"><span class="ico">⚡</span> Everyday tools</button><button class="nav" data-page="ai"><span class="ico">✦</span> Kryptex AI</button><div class="nav-label">PERSONAL</div><button class="nav" data-page="saved"><span class="ico">▣</span> My saved data</button><button class="nav" data-page="settings"><span class="ico">⚙</span> Settings</button></aside>
+<main class="main">
+<section class="page active" id="page-home"><div class="hero"><div class="eyebrow">One workspace. Many possibilities.</div><h1>Make your day<br><span style="background:linear-gradient(90deg,#c6a8ff,#ff8dc5);background-clip:text;color:transparent">a little easier.</span></h1><p>Smart everyday tools for students, shopkeepers, creators and growing businesses — all in one place.</p><div class="search"><input class="field" id="globalSearch" placeholder="Search tools… e.g. invoice, notes, calculator"><button class="btn primary" onclick="searchTools()">Search tools</button></div></div><div class="section-head"><div><h2>Explore your workspace</h2><p>Choose a category to get started.</p></div></div><div class="grid">
+<div class="card" onclick="openPage('student')"><div class="symbol">🎓</div><h3>For students</h3><p>Study planner, notes, timetable and grade calculator.</p><span class="tag">LEARN SMARTER →</span></div>
+<div class="card" onclick="openPage('shop')"><div class="symbol">🧾</div><h3>Shop & billing</h3><p>Create bills, calculate discounts and manage products.</p><span class="tag">RUN YOUR SHOP →</span></div>
+<div class="card" onclick="openPage('business')"><div class="symbol">📈</div><h3>Business & CRM</h3><p>Keep customer details and track follow-ups.</p><span class="tag">GROW ORGANIZED →</span></div>
+<div class="card" onclick="openPage('daily')"><div class="symbol">⚡</div><h3>Daily utilities</h3><p>Calculator, unit converter, date and text tools.</p><span class="tag">SAVE YOUR TIME →</span></div>
+<div class="card" onclick="openPage('ai')"><div class="symbol">✦</div><h3>Kryptex AI</h3><p>Ask questions, draft text and brainstorm ideas.</p><span class="tag">TRY AI →</span></div>
+<div class="card" onclick="openPage('saved')"><div class="symbol">▣</div><h3>Your saved workspace</h3><p>Access locally saved notes, tasks and customers.</p><span class="tag">YOUR DATA →</span></div></div>
+<div class="adbox">Advertisement space · Ads will appear here after the publisher account and ad units are approved and configured.</div>
+<div class="section-head"><div><h2>Popular tools</h2><p>Quick access to useful features.</p></div></div><div class="grid" id="popularGrid"></div></section>
+<section class="page" id="page-student"><div class="section-head"><div><h2>🎓 Student workspace</h2><p>Plan your study and keep learning organized.</p></div></div><div class="grid">
+<div class="card" onclick="showTool('notes')"><div class="symbol">📝</div><h3>Study notes</h3><p>Write and save your notes on this device.</p></div><div class="card" onclick="showTool('tasks')"><div class="symbol">✅</div><h3>Study task planner</h3><p>Make a checklist for your study goals.</p></div><div class="card" onclick="showTool('grade')"><div class="symbol">📊</div><h3>Percentage calculator</h3><p>Calculate marks percentage.</p></div><div class="card" onclick="showTool('timetable')"><div class="symbol">🗓️</div><h3>Timetable maker</h3><p>Build a simple weekly routine.</p></div></div><div id="toolArea" class="panel hidden" style="margin-top:18px"></div></section>
+<section class="page" id="page-shop"><div class="section-head"><div><h2>🛍️ Shop & billing</h2><p>Simple billing helpers. Verify local tax rules before issuing official invoices.</p></div></div><div class="panel"><h3>Quick bill calculator</h3><div class="row"><input class="field" id="billName" placeholder="Item / product name"><input class="field" id="billQty" type="number" min="1" value="1" placeholder="Quantity"><input class="field" id="billPrice" type="number" min="0" placeholder="Price per item"></div><div class="row" style="margin-top:10px"><input class="field" id="billDiscount" type="number" min="0" value="0" placeholder="Discount %"><button class="btn primary" onclick="addBillItem()">Add item</button><button class="btn" onclick="printBill()">Print bill</button></div><div class="table-wrap"><table><thead><tr><th>Item</th><th>Qty</th><th>Rate</th><th>Total</th><th></th></tr></thead><tbody id="billRows"></tbody></table></div><div class="output" id="billTotal">Total: ₹0.00</div></div>
+<div class="panel"><h3>Discount calculator</h3><div class="row"><input class="field" id="mrp" type="number" placeholder="Original price"><input class="field" id="off" type="number" placeholder="Discount %"><button class="btn primary" onclick="calcDiscount()">Calculate</button></div><div class="output" id="discountOut"></div></div></section>
+<section class="page" id="page-business"><div class="section-head"><div><h2>📊 Business & CRM</h2><p>A lightweight customer list stored in this browser on this device.</p></div></div><div class="panel"><h3>Add a customer</h3><div class="row"><input class="field" id="custName" placeholder="Customer name"><input class="field" id="custPhone" placeholder="Phone (optional)"><input class="field" id="custNote" placeholder="Note / follow-up"></div><button class="btn primary" style="margin-top:10px" onclick="addCustomer()">Save customer</button></div><div class="panel"><div class="row" style="align-items:center"><h3 style="margin:0">Customer list</h3><button class="btn" onclick="exportCustomers()">Export CSV</button></div><div id="customers" class="tool-list" style="margin-top:14px"></div></div></section>
+<section class="page" id="page-daily"><div class="section-head"><div><h2>⚡ Everyday tools</h2><p>Handy utilities for common tasks.</p></div></div><div class="grid">
+<div class="card" onclick="showTool('calc')"><div class="symbol">🧮</div><h3>Calculator</h3><p>Basic arithmetic calculator.</p></div><div class="card" onclick="showTool('convert')"><div class="symbol">📐</div><h3>Unit converter</h3><p>Length, weight and temperature.</p></div><div class="card" onclick="showTool('text')"><div class="symbol">🔤</div><h3>Text tools</h3><p>Word count, uppercase and lowercase.</p></div><div class="card" onclick="showTool('date')"><div class="symbol">📅</div><h3>Date difference</h3><p>Find days between two dates.</p></div></div><div id="dailyToolArea" class="panel hidden" style="margin-top:18px"></div></section>
+<section class="page" id="page-ai"><div class="section-head"><div><h2>✦ Kryptex AI</h2><p>Chat interface. Connect your own secured API endpoint in Settings to activate responses.</p></div></div><div class="panel"><div class="chatlog" id="chatlog"><div class="bubble ai">Hi! I’m Kryptex AI. Connect an API endpoint in Settings to enable AI replies. You can still use all offline tools.</div></div><div class="row" style="margin-top:12px"><input class="field" id="chatInput" placeholder="Ask something…" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">Send</button></div><p class="muted" style="font-size:12px">Do not enter passwords, payment details or private personal information.</p></div></section>
+<section class="page" id="page-saved"><div class="section-head"><div><h2>▣ My saved data</h2><p>Notes, tasks and customers saved in this browser.</p></div></div><div class="panel"><h3>Workspace overview</h3><div class="grid"><div class="item"><strong id="savedNotes">0</strong><small>Saved notes</small></div><div class="item"><strong id="savedTasks">0</strong><small>Study tasks</small></div><div class="item"><strong id="savedCustomers">0</strong><small>Customers</small></div></div><p class="muted">Data stays in this browser's local storage. It is not synced to other devices. Export important information regularly.</p><button class="btn" onclick="exportBackup()">Download data backup</button></div></section>
+<section class="page" id="page-settings"><div class="section-head"><div><h2>⚙ Settings</h2><p>Configure this workspace.</p></div></div><div class="panel"><h3>AI connection</h3><p class="muted">Enter your own HTTPS backend endpoint that accepts POST requests and returns JSON with a <code>reply</code> field. Never put secret API keys in this public website.</p><input class="field" id="apiEndpoint" placeholder="https://your-secure-api.example.com/chat"><button class="btn primary" style="margin-top:10px" onclick="saveEndpoint()">Save endpoint</button><p id="apiStatus" class="muted"></p></div><div class="panel"><h3>Privacy & storage</h3><p class="muted">Your notes, tasks and customer list are saved locally on this device. Clearing browser storage will remove them.</p><button class="btn" onclick="exportBackup()">Export my data</button> <button class="btn" onclick="clearWorkspace()">Clear local data</button></div><div class="panel"><h3>About Kryptex</h3><p class="muted">Kryptex Workspace · Version 1.0 · Built for students, shops and everyday work.</p></div></section>
+</main></div><nav class="bottomnav"><button onclick="openPage('home')"><span>⌂</span>Home</button><button onclick="openPage('student')"><span>🎓</span>Study</button><button onclick="openPage('shop')"><span>🧾</span>Shop</button><button onclick="openPage('business')"><span>📊</span>CRM</button><button onclick="openPage('ai')"><span>✦</span>AI</button></nav><div class="footer">© <span id="year"></span> Kryptex Workspace · Made to make everyday work simpler.</div></div><div class="toast" id="toast"></div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  // Sirf normal images select karo
-  const images = document.querySelectorAll("img:not(#modalImg)");
-
-  images.forEach(function(img) {
-
-    img.style.cursor = "pointer";
-
-    img.addEventListener("click", function () {
-
-      document.getElementById("modalImg").src = this.src;
-
-      document.getElementById("imgModal").style.display = "block";
-
-      document.body.style.overflow = "hidden";
-    });
-  });
-});
-
-function closeModal() {
-  document.getElementById("imgModal").style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-// ESC key support
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    closeModal();
-  }
-});
-
-// Background click se bhi close
-document.getElementById("imgModal").addEventListener("click", function(e) {
-  if (e.target.id === "imgModal") {
-    closeModal();
-  }
-});
-</script>
-
-
-<link rel="apple-touch-icon" href="images/favicon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png">
-<link rel="manifest" href="manifest.json">
-
+const $=id=>document.getElementById(id), get=(k,d=[])=>{try{return JSON.parse(localStorage.getItem('kx_'+k))??d}catch{return d}}, put=(k,v)=>localStorage.setItem('kx_'+k,JSON.stringify(v));
+const tools=[['📝','Study notes','student','notes'],['✅','Task planner','student','tasks'],['📊','Percentage calculator','student','grade'],['🗓️','Timetable maker','student','timetable'],['🧮','Calculator','daily','calc'],['📐','Unit converter','daily','convert'],['🔤','Text tools','daily','text'],['📅','Date difference','daily','date'],['🧾','Bill calculator','shop','bill'],['👥','Customer manager','business','crm']];
+$('year').textContent=new Date().getFullYear();
+function toast(s){$('toast').textContent=s;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2400)}
+function openPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$('page-'+p).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===p));window.scrollTo({top:0,behavior:'smooth'});refreshSaved()}
+document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>openPage(b.dataset.page));
+function card(t){return '<div class="card" onclick="showTool(\''+t[3]+'\')"><div class="symbol">'+t[0]+'</div><h3>'+t[1]+'</h3><p>Open this tool</p></div>'}
+$('popularGrid').innerHTML=tools.slice(0,6).map(card).join('');
+function searchTools(){const q=$('globalSearch').value.toLowerCase();const hits=tools.filter(t=>t[1].toLowerCase().includes(q)||t[2].includes(q));$('popularGrid').innerHTML=hits.map(card).join('')||'<p class="muted">No matching tools found.</p>';openPage('home')}
+$('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter')searchTools()});
+function showTool(t){const area=['notes','tasks','grade','timetable'].includes(t)?$('toolArea'):$('dailyToolArea');area.classList.remove('hidden');let h='';
+if(t==='notes')h='<h3>Study notes</h3><input class="field" id="noteTitle" placeholder="Note title"><textarea id="noteBody" rows="5" placeholder="Write your notes…"></textarea><button class="btn primary" onclick="saveNote()">Save note</button><div id="noteList"></div>';
+if(t==='tasks')h='<h3>Study task planner</h3><div class="row"><input class="field" id="taskText" placeholder="Add a task"><button class="btn primary" onclick="addTask()">Add task</button></div><div id="taskList"></div>';
+if(t==='grade')h='<h3>Percentage calculator</h3><div class="row"><input class="field" id="marks" type="number" placeholder="Marks obtained"><input class="field" id="maxMarks" type="number" placeholder="Maximum marks"><button class="btn primary" onclick="gradeCalc()">Calculate</button></div><div id="gradeOut" class="output"></div>';
+if(t==='timetable')h='<h3>Weekly timetable</h3><div class="row"><input class="field" id="ttDay" placeholder="Day (e.g. Monday)"><input class="field" id="ttTime" placeholder="Time"><input class="field" id="ttSubject" placeholder="Subject / activity"><button class="btn primary" onclick="addTimetable()">Add</button></div><div id="ttList"></div>';
+if(t==='calc')h='<h3>Calculator</h3><input class="field" id="calcExpr" placeholder="Example: (25+5)*2" onkeydown="if(event.key===\'Enter\')calculate()"><button class="btn primary" onclick="calculate()">Calculate</button><div id="calcOut" class="output"></div><p class="muted">Supports basic arithmetic, brackets and decimals.</p>';
+if(t==='convert')h='<h3>Unit converter</h3><div class="row"><input class="field" id="convValue" type="number" placeholder="Value"><select id="convType"><option value="kmmi">Kilometres → miles</option><option value="mft">Metres → feet</option><option value="kgp">Kilograms → pounds</option><option value="cF">Celsius → Fahrenheit</option><option value="F C">Fahrenheit → Celsius</option></select><button class="btn primary" onclick="convertUnit()">Convert</button></div><div id="convOut" class="output"></div>';
+if(t==='text')h='<h3>Text tools</h3><textarea class="field" rows="5" id="textInput" placeholder="Paste or type text…"></textarea><div class="row"><button class="btn" onclick="textAction('+"'upper'"+')">UPPERCASE</button><button class="btn" onclick="textAction('+"'lower'"+')">lowercase</button><button class="btn" onclick="textAction('+"'count'"+')">Word count</button><button class="btn" onclick="textAction('+"'copy'"+')">Copy</button></div><div id="textOut" class="output"></div>';
+if(t==='date')h='<h3>Date difference</h3><div class="row"><input class="field" type="date" id="dateA"><input class="field" type="date" id="dateB"><button class="btn primary" onclick="dateDiff()">Find days</button></div><div id="dateOut" class="output"></div>';
+area.innerHTML=h;if(t==='notes')renderNotes();if(t==='tasks')renderTasks();if(t==='timetable')renderTT();area.scrollIntoView({behavior:'smooth',block:'start'})}
+function saveNote(){let a=get('notes');a.unshift({id:Date.now(),title:$('noteTitle').value||'Untitled',body:$('noteBody').value});put('notes',a);renderNotes();refreshSaved();toast('Note saved')}
+function renderNotes(){let a=get('notes');if($('noteList'))$('noteList').innerHTML=a.map(n=>'<div class="item"><strong>'+esc(n.title)+'</strong><p>'+esc(n.body).slice(0,220)+'</p><button class="btn" onclick="delNote('+n.id+')">Delete</button></div>').join('')}
+function delNote(id){put('notes',get('notes').filter(n=>n.id!==id));renderNotes();refreshSaved()}
+function addTask(){let v=$('taskText').value.trim();if(!v)return;let a=get('tasks');a.push({id:Date.now(),text:v,done:false});put('tasks',a);$('taskText').value='';renderTasks();refreshSaved()}
+function renderTasks(){let a=get('tasks');if($('taskList'))$('taskList').innerHTML=a.map(t=>'<div class="item"><label><input type="checkbox" '+(t.done?'checked':'')+' onchange="toggleTask('+t.id+')"> '+esc(t.text)+'</label><button class="btn" onclick="delTask('+t.id+')">×</button></div>').join('')}
+function toggleTask(id){let a=get('tasks');a=a.map(t=>t.id===id?{...t,done:!t.done}:t);put('tasks',a);renderTasks()}
+function delTask(id){put('tasks',get('tasks').filter(t=>t.id!==id));renderTasks();refreshSaved()}
+function gradeCalc(){let m=+$('marks').value,x=+$('maxMarks').value;$('gradeOut').textContent=x>0&&m>=0?(m/x*100).toFixed(2)+'%':'Enter valid marks.'}
+function addTimetable(){let a=get('tt');a.push({day:$('ttDay').value,time:$('ttTime').value,subject:$('ttSubject').value});put('tt',a);renderTT()}
+function renderTT(){if($('ttList'))$('ttList').innerHTML=get('tt').map(x=>'<div class="item">'+esc(x.day)+' · '+esc(x.time)+' — <b>'+esc(x.subject)+'</b></div>').join('')}
+function calculate(){let s=$('calcExpr').value;if(!/^[0-9+*/().%\s-]+$/.test(s)){ $('calcOut').textContent='Only basic arithmetic characters are allowed.';return}try{$('calcOut').textContent=Function('"use strict";return ('+s+')')()}catch{$('calcOut').textContent='Check your expression.'}}
+function convertUnit(){let v=+$('convValue').value,t=$('convType').value,r={kmmi:v*.621371,mft:v*3.28084,kgp:v*2.20462,cF:v*9/5+32,'F C':(v-32)*5/9}[t];$('convOut').textContent=Number.isFinite(r)?r.toFixed(4):'Enter a value.'}
+function textAction(a){let s=$('textInput').value,o=$('textOut');if(a==='upper')$('textInput').value=s.toUpperCase();if(a==='lower')$('textInput').value=s.toLowerCase();if(a==='count')o.textContent='Words: '+(s.trim()?s.trim().split(/\s+/).length:0)+' · Characters: '+s.length;if(a==='copy')navigator.clipboard?.writeText(s).then(()=>toast('Copied'))}
+function dateDiff(){let a=new Date($('dateA').value),b=new Date($('dateB').value);if(isNaN(a)||isNaN(b)){$('dateOut').textContent='Choose both dates.';return}$('dateOut').textContent=Math.abs(Math.round((b-a)/86400000))+' days'}
+let bill=[];function addBillItem(){let name=$('billName').value.trim(),q=+$('billQty').value,p=+$('billPrice').value;if(!name||q<=0||p<0||!Number.isFinite(p))return toast('Enter valid item details');bill.push({name,q,p});renderBill()}
+function renderBill(){let sub=bill.reduce((s,x)=>s+x.q*x.p,0),d=Math.min(100,Math.max(0,+$('billDiscount').value||0)),total=sub*(1-d/100);$('billRows').innerHTML=bill.map((x,i)=>'<tr><td>'+esc(x.name)+'</td><td>'+x.q+'</td><td>₹'+x.p.toFixed(2)+'</td><td>₹'+(x.q*x.p).toFixed(2)+'</td><td><button class="btn" onclick="bill.splice('+i+',1);renderBill()">×</button></td></tr>').join('');$('billTotal').textContent='Subtotal: ₹'+sub.toFixed(2)+' · Discount: '+d+'% · Total: ₹'+total.toFixed(2)}
+$('billDiscount').addEventListener('input',renderBill);
+function calcDiscount(){let p=+$('mrp').value,d=+$('off').value;if(p<0||d<0||d>100)return $('discountOut').textContent='Enter valid values.';$('discountOut').textContent='You save ₹'+(p*d/100).toFixed(2)+' · Final price ₹'+(p*(1-d/100)).toFixed(2)}
+function printBill(){let w=window.open('','_blank');if(!w)return toast('Allow pop-ups to print');w.document.write('<h2>Kryptex Bill</h2>'+document.querySelector('.table-wrap').innerHTML+'<p>'+ $('billTotal').textContent+'</p>');w.document.close();w.print()}
+function addCustomer(){let n=$('custName').value.trim();if(!n)return toast('Enter customer name');let a=get('customers');a.unshift({id:Date.now(),name:n,phone:$('custPhone').value,note:$('custNote').value});put('customers',a);$('custName').value=$('custPhone').value=$('custNote').value='';renderCustomers();refreshSaved();toast('Customer saved')}
+function renderCustomers(){let a=get('customers');$('customers').innerHTML=a.map(c=>'<div class="item"><strong>'+esc(c.name)+'</strong><small>'+esc(c.phone)+'</small><p>'+esc(c.note)+'</p><button class="btn" onclick="delCustomer('+c.id+')">Delete</button></div>').join('')||'<p class="muted">No customers saved yet.</p>'}
+function delCustomer(id){put('customers',get('customers').filter(c=>c.id!==id));renderCustomers();refreshSaved()}
+function exportCustomers(){let a=get('customers'),csv='Name,Phone,Note\n'+a.map(c=>[c.name,c.phone,c.note].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download('customers.csv',csv,'text/csv')}
+function download(name,data,type){let u=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+function exportBackup(){download('kryptex-backup.json',JSON.stringify({notes:get('notes'),tasks:get('tasks'),tt:get('tt'),customers:get('customers')},null,2),'application/json')}
+function refreshSaved(){$('savedNotes').textContent=get('notes').length;$('savedTasks').textContent=get('tasks').length;$('savedCustomers').textContent=get('customers').length;renderCustomers()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function saveEndpoint(){let v=$('apiEndpoint').value.trim();if(v&&!v.startsWith('https://'))return toast('Use a secure HTTPS endpoint');localStorage.setItem('kx_endpoint',v);$('apiStatus').textContent=v?'Endpoint saved on this device.':'AI endpoint cleared.';toast('Settings saved')}
+$('apiEndpoint').value=localStorage.getItem('kx_endpoint')||'';
+async function sendChat(){let input=$('chatInput'),msg=input.value.trim();if(!msg)return;let log=$('chatlog');log.innerHTML+='<div class="bubble user">'+esc(msg)+'</div>';input.value='';log.scrollTop=log.scrollHeight;let endpoint=localStorage.getItem('kx_endpoint');if(!endpoint){log.innerHTML+='<div class="bubble ai">AI endpoint abhi connect nahi hai. Settings mein apna secure backend URL add karo. Baaki tools abhi use kar sakte ho.</div>';return}let wait=document.createElement('div');wait.className='bubble ai';wait.textContent='Thinking…';log.append(wait);try{let res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg})});let data=await res.json();wait.textContent=data.reply||data.response||'No response received.'}catch(e){wait.textContent='Connection failed. Check the endpoint and try again.'}log.scrollTop=log.scrollHeight}
+function clearWorkspace(){if(!confirm('Clear all locally saved notes, tasks, timetable and customers on this device?'))return;['notes','tasks','tt','customers'].forEach(k=>localStorage.removeItem('kx_'+k));refreshSaved();renderCustomers();toast('Local workspace cleared')}
+$('themeBtn').onclick=()=>{document.body.classList.toggle('light');if(document.body.classList.contains('light')){document.body.style.filter='brightness(1.18)';}else document.body.style.filter='';};
+let deferredInstall;$('installBtn').hidden=true;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('installBtn').hidden=false});$('installBtn').onclick=async()=>{if(deferredInstall){deferredInstall.prompt();deferredInstall=null}else toast('Use browser menu → Add to Home screen')};
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+refreshSaved();renderCustomers();
+</script></body></html>
