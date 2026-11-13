@@ -1,6 +1,6 @@
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 export default async (req)=>{
- if(req.method==='GET'){const hasKey=!!Netlify.env.get('GEMINI_API_KEY');return json({ok:hasKey,provider:hasKey?'Gemini API':'Not configured',error:hasKey?undefined:'Server AI key is not configured.'},hasKey?200:503)}
+ if(req.method==='GET'){const hasHub=!!Netlify.env.get('KRYPTEX_HUB_API_URL');const hasKey=!!Netlify.env.get('GEMINI_API_KEY');const ok=hasHub||hasKey;return json({ok,provider:hasHub?'Kryptex Hub API':hasKey?'Gemini API':'Not configured',error:ok?undefined:'Server AI key or Kryptex Hub URL is not configured.'},ok?200:503)}
  if(req.method!=='POST')return json({error:'Method not allowed'},405);
  try{
   const body=await req.json();const message=String(body.message||'').trim();if(!message)return json({error:'Message is required.'},400);if(message.length>12000)return json({error:'Request is too long.'},413);
