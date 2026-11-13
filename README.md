@@ -1,14 +1,17 @@
-# Kryptex Studio
+# Kryptex Studio 3.0
 
-A redesigned mobile-first PWA workspace with AI writing, image-prompt, video-script, social-media, summarizer, translator and study tools, plus calculator, local notes/tasks and printable invoice maker.
+Mobile-first PWA toolbox with 50 listed tools and 10 mini-games. Desktop uses a wide workspace and multi-column cards; phones use compact two-column cards and a bottom navigation.
+
+## Included tools
+The catalogue includes the 39 requested items plus 11 everyday extras. Some are browser-local (password generator, QR display, calculators, word counter, CSV preview, Markdown preview, timers, notes); AI-assisted tools call `/api/ai` and require a live backend. Media conversion, background/object removal, photo restoration, video generation and OCR require compatible provider services and are not claimed as active unless configured.
+
+## Games
+Tic-tac-toe uses minimax. Math challenge, Word Master, Sudoku solver/player, memory match, typing speed, GK quiz, basic chessboard demo, 2048 and Snake are included. Chess is a basic board interaction demo (not full tournament chess rules); Snake & Ludo menu currently provides Snake. A full multiplayer Ludo implementation and server leaderboard are not included yet.
 
 ## AI backend
-A Netlify Function is included at `netlify/functions/ai.mjs` and routed to `/api/ai`. Configure either `GEMINI_API_KEY` (optional `GEMINI_MODEL`) or `KRYPTEX_HUB_API_URL` as a server-side environment variable. The latter should be the base URL of the existing Kryptex Hub Express server; requests are forwarded to its `/chat` route. Never place API keys in browser code or commit them to Git.
+Netlify Function: `netlify/functions/ai.mjs`, route `/api/ai`. Set `GEMINI_API_KEY` or `KRYPTEX_HUB_API_URL` in the hosting provider's environment variables. The existing Kryptex Hub server's `/chat` endpoint can be used as the upstream URL if it is deployed and publicly reachable. Never place secrets in browser code.
 
-**Important:** GitHub Pages only hosts static files and cannot execute server functions. The current Pages workflow publishes the PWA shell; the AI backend will only run after this repository is deployed on Netlify (or the function is hosted on another compatible backend). Provider credentials also need to be configured securely in that host. The Netlify project/deploy could not be updated from the available deployment connection in this session, so live AI is not yet verified.
+**Hosting limitation:** GitHub Pages serves the static PWA but cannot execute Netlify Functions. For AI tools to work, deploy this repository to Netlify (or host the function separately and configure the frontend API route). The current GitHub Pages workflow does not deploy the server function. The previous Netlify project connection is read-only in this session, so a live backend deployment and secret configuration are not verified.
 
-## App
-The PWA can be installed on Android from a supported browser using Install / Add to Home Screen. This is not a native APK or Play Store release. Offline caching covers the app shell; AI requires internet access.
-
-## Data and feature limits
-Notes and tasks are saved locally in the current browser/device and are not cloud-synced. Invoice Maker creates a basic printable bill, not GST-compliant accounting software. Image Studio currently creates a detailed image-generation prompt; actual image generation requires an image provider endpoint. Ads.txt is present, but live ads require approval and configured ad units.
+## PWA and data
+Installable web app, not a native APK or Play Store app. Local notes/tasks are stored in the current browser only; there is no account or cloud sync. Ads require approval and configured web ad units; the ads.txt declaration alone does not activate ads.
