@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
     inputs:
       steps:
-        description: "Training steps (CPU-friendly default)"
+        description: "Training steps (free CPU profile)"
         required: false
-        default: "2000"
+        default: "1000"
 permissions:
   contents: write
 concurrency:
@@ -35,7 +35,7 @@ jobs:
       - name: Install PyTorch
         run: pip install -r requirements.txt
       - name: Train AK-Byte-1 with supervised prompt-answer learning
-        run: python train.py --steps "${{ inputs.steps || '2000' }}" --batch-size 8 --lr 0.0002
+        run: python train.py --steps "${{ inputs.steps || '1000' }}" --batch-size 4 --lr 0.0002
       - name: Commit trained weights
         run: |
           git config user.name "github-actions[bot]"
