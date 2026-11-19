@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090914"><title>Ankit Kryptex AI — AK-Byte-1</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#090914;color:#f4f1ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#392064 0,transparent 55%),#090914}
+header{max-width:850px;margin:auto;padding:22px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ffffff18}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#9333ea,#ec4899);display:grid;place-items:center;font-weight:900;font-size:22px}
+h1{font-size:18px;margin:0}header small{color:#b6a9ce}
+main{max-width:850px;margin:24px auto;padding:0 14px}.intro{padding:24px 8px 16px}.tag{color:#d8a8ff;font-size:12px;letter-spacing:2px;font-weight:700}
+h2{font-size:clamp(28px,7vw,42px);margin:8px 0}.intro p{color:#bcb4cb;line-height:1.6}
+#status{font-size:13px;color:#f4d28a;margin-top:10px}
+.panel{border:1px solid #ffffff1c;background:#11111fdd;border-radius:22px;overflow:hidden;box-shadow:0 20px 70px #0005}
+#chat{height:min(55vh,520px);overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:88%;padding:12px 14px;border-radius:16px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.user{align-self:flex-end;background:#7136a9}.bot{align-self:flex-start;background:#252338}
+form{display:flex;gap:8px;padding:12px;border-top:1px solid #ffffff18}
+input{min-width:0;flex:1;background:#080812;border:1px solid #ffffff25;border-radius:13px;padding:14px;color:white;font-size:16px}
+button{border:0;border-radius:13px;background:linear-gradient(135deg,#9333ea,#d946a6);color:white;padding:0 19px;font-weight:700;font-size:15px}
+button:disabled{opacity:.5}.foot{color:#847c94;font-size:12px;text-align:center;padding:18px}
+</style></head>
+<body>
+<header><div class="logo">AK</div><div><h1>ANKIT KR YPTEX AI</h1><small>AK-Byte-1 · From-scratch model</small></div></header>
+<main><section class="intro"><div class="tag">YOUR OWN EXPERIMENTAL AI</div><h2>Ask Ankit Kryptex.</h2><p>Ye ek chhota language model hai jiske weights scratch se train hote hain. Ye kisi third-party chatbot/model API ko call nahi karta.</p><div id="status">Checking model status…</div></section>
+<section class="panel"><div id="chat"><div class="msg bot">Namaste! Main AK-Byte-1 hoon. Mujhse kuch poochho.</div></div>
+<form id="form"><input id="message" autocomplete="off" maxlength="2000" placeholder="Message Ankit Kryptex AI…" required><button id="send">Send</button></form></section>
+<div class="foot">Experimental model · Answers may be incorrect · Verify important information</div></main>
+<script>
+const chat=document.querySelector('#chat'),form=document.querySelector('#form'),input=document.querySelector('#message'),send=document.querySelector('#send'),statusEl=document.querySelector('#status');
+function bubble(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;chat.append(d);chat.scrollTop=chat.scrollHeight;return d}
+async function check(){try{const r=await fetch('/api/status');const s=await r.json();statusEl.textContent=s.trained?'● AK-Byte-1 trained weights loaded':'○ Model weights not trained yet — run the GitHub Actions training workflow.'}catch(e){statusEl.textContent='API server se connect nahi ho pa raha.'}}
+form.addEventListener('submit',async e=>{e.preventDefault();const message=input.value.trim();if(!message)return;bubble(message,'user');input.value='';send.disabled=true;const waiting=bubble('Soch raha hoon…','bot');try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message})});const data=await r.json();if(!r.ok)throw new Error(data.detail||'Request failed');waiting.textContent=data.reply||'No response';}catch(err){waiting.textContent=err.message}finally{send.disabled=false;input.focus()}});
+check();
+</script></body></html>
