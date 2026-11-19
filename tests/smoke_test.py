@@ -1,11 +1,20 @@
 import os
+import sys
+from pathlib import Path
+
 import torch
 
+# Make the repository root importable when this file is run as a script.
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+
 def main():
-    weights = os.getenv("AK_WEIGHTS", "model/weights.pt")
+    weights = os.getenv("AK_WEIGHTS", str(ROOT / "model" / "weights.pt"))
     assert os.path.isfile(weights), f"Missing trained weights: {weights}"
 
     import api
+
     health = api.health()
     assert health["ok"] is True
     assert health["trained_weights_available"] is True
@@ -22,6 +31,7 @@ def main():
     assert isinstance(result.reply, str) and len(result.reply) > 0
     print("AK-Byte-1 smoke test passed")
     print(f"Generated sample: {result.reply!r}")
+
 
 if __name__ == "__main__":
     main()
