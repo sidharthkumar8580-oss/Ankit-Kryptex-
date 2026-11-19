@@ -27,16 +27,21 @@ def load_model():
         return MODEL
     if not os.path.exists(WEIGHTS_PATH):
         return None
-    checkpoint = torch.load(WEIGHTS_PATH, map_location=DEVICE, weights_only=True)
-    model = AKByteModel()
-    model.load_state_dict(checkpoint["state_dict"])
-    model.eval()
-    MODEL = model
-    return MODEL
+    try:
+        checkpoint = torch.load(WEIGHTS_PATH, map_location=DEVICE, weights_only=True)
+        model = AKByteModel()
+        model.load_state_dict(checkpoint["state_dict"])
+        model.eval()
+        MODEL = model
+        return MODEL
+    except (RuntimeError, KeyError, OSError, ValueError) as error:
+        # Old checkpoints may use a different architecture; wait for the new training run.
+        print(f"AK-Byte-1 weights are not compatible with this architecture yet: {error}", flush=True)
+        return None
 
 @app.get("/health")
 def health():
-    return {"ok": True, "model": "AK-Byte-1", "trained_weights_available": os.path.exists(WEIGHTS_PATH)}
+    return {"ok": True, "model": "AK-Byte-1", "trained_weights_available": load_model() is not None}
 
 @app.get("/api/status")
 def status():
