@@ -125,3 +125,101 @@
 {"prompt":"What is the full form of HTML?","response":"HTML ka full form HyperText Markup Language hai."}
 {"prompt":"What is the full form of CSS?","response":"CSS ka full form Cascading Style Sheets hai."}
 {"prompt":"What is the full form of AI?","response":"AI ka full form Artificial Intelligence hai."}
+{"prompt":"Explain electric field","response":"Electric field kisi charge ke aas-paas ka region hai jahan doosre charge par electric force lagta hai. E = F/q aur SI unit N/C hai."}
+{"prompt":"What is electric potential?","response":"Electric potential kisi point par unit positive charge ki potential energy hoti hai. Iski SI unit volt hai."}
+{"prompt":"What is Coulomb's law?","response":"Do stationary point charges ke beech electrostatic force unke charges ke product ke proportional aur distance ke square ke inversely proportional hota hai."}
+{"prompt":"What is capacitance?","response":"Capacitance charge store karne ki capacity hai. C = Q/V aur SI unit farad hai."}
+{"prompt":"What is a capacitor?","response":"Capacitor ek electronic component hai jo electric field mein energy store karta hai."}
+{"prompt":"What is magnetic field?","response":"Magnetic field magnet, current ya changing electric field ke aas-paas ka region hai jahan magnetic force experience hota hai."}
+{"prompt":"What is electromagnetic induction?","response":"Jab magnetic flux change hota hai to circuit mein induced emf produce hoti hai. Is phenomenon ko electromagnetic induction kehte hain."}
+{"prompt":"What is a semiconductor?","response":"Semiconductor aisa material hai jiski electrical conductivity conductor aur insulator ke beech hoti hai. Silicon iska common example hai."}
+{"prompt":"What is a diode?","response":"Diode ek semiconductor component hai jo aam taur par current ko ek direction mein aasani se flow karne deta hai."}
+{"prompt":"What is a transistor?","response":"Transistor semiconductor device hai jo electronic signal ko switch ya amplify kar sakta hai."}
+{"prompt":"What is an LED?","response":"LED ka full form Light Emitting Diode hai. Forward current flow hone par yeh light emit karta hai."}
+{"prompt":"How does a mobile phone communicate?","response":"Mobile phone radio waves ke through nearby cell tower se communicate karta hai. Network tower calls aur data ko aage route karta hai."}
+{"prompt":"How does a refrigerator cool food?","response":"Refrigerator refrigerant ke evaporation aur condensation cycle se andar ki heat absorb karke bahar release karta hai."}
+{"prompt":"How does an electric motor work?","response":"Electric motor magnetic field aur current-carrying conductor ke interaction se electrical energy ko mechanical rotation mein badalta hai."}
+{"prompt":"How does a generator work?","response":"Generator electromagnetic induction ke principle se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"How does a solar panel work?","response":"Solar cell photovoltaic effect se sunlight ko electrical energy mein convert karta hai."}
+{"prompt":"What is an electric vehicle?","response":"Electric vehicle propulsion ke liye electric motor aur rechargeable battery ka use karta hai."}
+{"prompt":"What is an inverter?","response":"Inverter DC electricity ko AC electricity mein convert karta hai. Iska use backup power aur solar systems mein hota hai."}
+{"prompt":"What is a transformer?","response":"Transformer changing magnetic flux ke through AC voltage ko step up ya step down karta hai."}
+{"prompt":"What is frequency?","response":"Frequency ek second mein complete cycles ki sankhya hai. Iski SI unit hertz hai."}
+{"prompt":"What is wavelength?","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai. Symbol lambda hai."}
+{"prompt":"What is sound?","response":"Sound ek mechanical wave hai jo medium ke particles ke vibration se travel karti hai. Vacuum mein sound travel nahi karti."}
+{"prompt":"What is refraction of light?","response":"Light jab ek medium se doosre medium mein jaati hai aur uski speed badalti hai to direction change ho sakti hai. Isse refraction kehte hain."}
+{"prompt":"What is reflection of light?","response":"Jab light kisi surface se takra kar wapas same medium mein lautti hai to use reflection kehte hain."}
+{"prompt":"What is pH?","response":"pH solution ki acidity ya basicity ka measure hai. 25 degree Celsius par pH 7 neutral, 7 se kam acidic aur 7 se zyada basic hota hai."}
+{"prompt":"What is a covalent bond?","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"What is an ionic bond?","response":"Ionic bond oppositely charged ions ke beech electrostatic attraction se banta hai, aam taur par electron transfer ke baad."}
+{"prompt":"What is oxidation?","response":"Oxidation ko electron loss ke roop mein define kiya ja sakta hai. Oxidation number increase hona bhi oxidation hai."}
+{"prompt":"What is reduction?","response":"Reduction mein species electrons gain karti hai ya uska oxidation number decrease hota hai."}
+{"prompt":"What is a catalyst?","response":"Catalyst reaction ke liye alternate pathway provide karke reaction rate badalta hai aur overall reaction mein consume nahi hota."}
+{"prompt":"What is an aldehyde?","response":"Aldehyde organic compound hai jisme terminal -CHO functional group hota hai."}
+{"prompt":"What is a ketone?","response":"Ketone organic compound hai jisme carbonyl group do carbon groups ke beech hota hai."}
+{"prompt":"What is a carboxylic acid?","response":"Carboxylic acid mein -COOH functional group hota hai. Ethanoic acid iska common example hai."}
+{"prompt":"What is an alcohol in chemistry?","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai. Ethanol ek example hai."}
+{"prompt":"What is phenol?","response":"Phenol mein -OH group directly aromatic benzene ring se attached hota hai."}
+{"prompt":"What is an ether?","response":"Ether mein oxygen atom do carbon groups ke beech hota hai. General structure R-O-R prime hai."}
+{"prompt":"What is a Grignard reagent?","response":"Grignard reagent organomagnesium halide hota hai jiska general formula R-Mg-X hai. Yeh organic synthesis mein useful hai."}
+{"prompt":"What is the Williamson ether synthesis?","response":"Williamson synthesis mein alkoxide ion primary alkyl halide ke saath reaction karke ether banata hai."}
+{"prompt":"What is a mole in chemistry?","response":"One mole mein exactly 6.02214076 × 10^23 elementary entities hote hain. Is number ko Avogadro constant kehte hain."}
+{"prompt":"What is molarity?","response":"Molarity solution ke ek litre mein dissolved solute ke moles ki sankhya hai. Unit mol per litre hai."}
+{"prompt":"What is an atom?","response":"Atom kisi element ki chemical identity retain karne wali smallest unit hai. Ismein nucleus aur electrons hote hain."}
+{"prompt":"What is an isotope?","response":"Isotopes same element ke atoms hote hain jinke protons same lekin neutrons ki sankhya different hoti hai."}
+{"prompt":"What is DNA?","response":"DNA genetic information store karne wala molecule hai. Iski structure double helix hoti hai."}
+{"prompt":"What is a cell?","response":"Cell living organisms ki basic structural aur functional unit hai."}
+{"prompt":"What is an ecosystem?","response":"Ecosystem mein living organisms aur unka non-living environment ek doosre ke saath interact karte hain."}
+{"prompt":"What is a variable in Python?","response":"Python variable kisi value ko refer karne wala naam hota hai. Example: age = 16."}
+{"prompt":"What is a Python list?","response":"List Python ka ordered, mutable collection hai. Example: numbers = [1, 2, 3]."}
+{"prompt":"What is a Python function?","response":"Function reusable code block hota hai jo def keyword se define kiya jata hai."}
+{"prompt":"What is a loop in programming?","response":"Loop code ko repeat karta hai. Python mein common loops for aur while hain."}
+{"prompt":"What is an if statement?","response":"If statement condition check karta hai aur condition true hone par uska indented code execute karta hai."}
+{"prompt":"What is an HTML element?","response":"HTML element aam taur par opening tag, content aur closing tag se milkar banta hai. Kuch elements void hote hain."}
+{"prompt":"What is responsive web design?","response":"Responsive design website layout ko screen size ke hisaab se adapt karta hai, taaki mobile aur desktop dono par use aasaan ho."}
+{"prompt":"What is machine learning classification?","response":"Classification supervised learning task hai jisme model input ko predefined categories ya classes mein assign karta hai."}
+{"prompt":"What is regression in machine learning?","response":"Regression supervised learning task hai jisme model continuous numerical value predict karta hai."}
+{"prompt":"What is a neural network activation function?","response":"Activation function neural network mein non-linearity add karta hai, jisse model complex patterns learn kar sakta hai."}
+{"prompt":"What is gradient descent?","response":"Gradient descent optimization method hai jo loss function ke gradient ki opposite direction mein parameters update karta hai."}
+{"prompt":"What is a training and test split?","response":"Dataset ko training aur test parts mein divide kiya jata hai. Training part learning ke liye aur test part unseen performance estimate karne ke liye hota hai."}
+{"prompt":"What is data leakage?","response":"Data leakage tab hoti hai jab training ke dauran aisi information model ko mil jati hai jo real prediction time par available nahi honi chahiye."}
+{"prompt":"Why should training data be diverse?","response":"Diverse aur representative data model ko alag-alag examples par patterns seekhne mein madad karta hai aur narrow memorization ka risk kam karta hai."}
+{"prompt":"What is an epoch in model training?","response":"Epoch training dataset ke har training example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Why is a validation set useful?","response":"Validation set training ke dauran model settings compare karne aur overfitting detect karne mein madad karta hai."}
+{"prompt":"How do I debug a program?","response":"Error message padho, problem ko chhote steps mein reproduce karo, inputs aur variables inspect karo, phir ek change karke dobara test karo."}
+{"prompt":"What is an HTTP status code 404?","response":"HTTP 404 ka matlab requested resource server par nahi mila."}
+{"prompt":"What is HTTP status code 500?","response":"HTTP 500 ka matlab server ne request process karte waqt unexpected internal error encounter kiya."}
+{"prompt":"What is authentication?","response":"Authentication verify karta hai ki user ya system kaun hai, jaise password ya passkey se."}
+{"prompt":"What is authorization?","response":"Authorization decide karta hai ki authenticated user ko kaunse resources ya actions ki permission hai."}
+{"prompt":"What is two-factor authentication?","response":"Two-factor authentication login ke liye do different categories ke verification factors maangta hai."}
+{"prompt":"How can I protect my GitHub account?","response":"Unique password ya passkey use karo, two-factor authentication enable karo, recovery options safe rakho aur unknown links se bachkar raho."}
+{"prompt":"What is an environment variable?","response":"Environment variable deployment ya runtime environment mein configuration value store karta hai, jaise PORT. Secrets ko source code mein hard-code nahi karna chahiye."}
+{"prompt":"What is a software bug?","response":"Software bug code ya design ki aisi problem hai jo program ko expected behavior se alag chalati hai."}
+{"prompt":"What is an algorithm?","response":"Algorithm kisi problem ko solve karne ke liye clear, ordered steps ka set hota hai."}
+{"prompt":"What is a data structure?","response":"Data structure data ko organize aur store karne ka tareeka hai, jisse operations efficiently ho sakein."}
+{"prompt":"What is an array?","response":"Array indexed collection hota hai jo elements ko sequence mein store karta hai."}
+{"prompt":"What is a stack?","response":"Stack last-in, first-out data structure hai. Last added item sabse pehle remove hota hai."}
+{"prompt":"What is a queue?","response":"Queue first-in, first-out data structure hai. Jo item pehle add hota hai woh pehle remove hota hai."}
+{"prompt":"What is the difference between RAM and storage?","response":"RAM active programs ke liye temporary fast memory hai. Storage files ko long term ke liye rakhta hai."}
+{"prompt":"What is an operating system?","response":"Operating system hardware aur software resources manage karta hai aur applications ko services provide karta hai."}
+{"prompt":"What is Linux?","response":"Linux open-source operating-system kernel hai. Linux-based distributions servers, computers aur embedded devices mein use hoti hain."}
+{"prompt":"What is Android?","response":"Android mobile devices ke liye operating system platform hai jo Linux kernel par based hai."}
+{"prompt":"What is a browser?","response":"Web browser software hai jo websites aur web applications ko access aur display karta hai."}
+{"prompt":"What is a URL?","response":"URL internet par kisi resource ka address hota hai."}
+{"prompt":"What is encryption?","response":"Encryption readable data ko cryptographic method se aise format mein badalta hai jise correct key ke bina samajhna mushkil hota hai."}
+{"prompt":"What is a backup?","response":"Backup important files ya data ki extra copy hai jisse original data lost ya damaged hone par restore kiya ja sakta hai."}
+{"prompt":"How do I study a difficult topic?","response":"Pehle basic idea samjho, phir ek solved example dekho, khud ek similar question solve karo aur galtiyon ko review karo."}
+{"prompt":"How should I practice spoken English?","response":"Roz familiar topics par chhote sentences bolo, apni recording suno aur ek-do mistakes ko correct karke repeat karo."}
+{"prompt":"What does although mean?","response":"Although ka matlab hai halanki ya yadyapi. Example: Although it was raining, we went outside."}
+{"prompt":"What does improve mean?","response":"Improve ka matlab hai behtar banana ya sudharna."}
+{"prompt":"What is the difference between learn and teach?","response":"Learn ka matlab seekhna hai. Teach ka matlab kisi doosre ko sikhana hai."}
+{"prompt":"What is the difference between their and there?","response":"Their possession dikhata hai, jaise their book. There kisi place ko ya existence ko refer karta hai, jaise the book is there."}
+{"prompt":"What does I agree mean?","response":"I agree ka matlab hai main sahmat hoon."}
+{"prompt":"What does I am looking forward to it mean?","response":"Iska matlab hai main uska intezar utsah ke saath kar raha hoon."}
+{"prompt":"What is the capital of Japan?","response":"Tokyo Japan ki capital hai."}
+{"prompt":"What is the nearest star to Earth?","response":"Sun Earth ke sabse nazdeek star hai."}
+{"prompt":"Why does ice float on water?","response":"Ice ki density liquid water se kam hoti hai, isliye ice water par float karti hai."}
+{"prompt":"Why do metal wires conduct electricity?","response":"Metals mein kuch electrons mobile hote hain. Electric field lagne par ye charge transport kar sakte hain."}
+{"prompt":"What is renewable energy?","response":"Renewable energy aise natural sources se milti hai jo continuously replenish hote rehte hain, jaise sunlight, wind aur flowing water."}
+{"prompt":"What is climate change?","response":"Climate change long-term changes in temperature aur weather patterns ko kehte hain. Recent warming ka major driver human greenhouse-gas emissions hain."}
+{"prompt":"What is scientific evidence?","response":"Scientific evidence observations, measurements aur experiments se milne wala data hai jo kisi explanation ko support ya challenge karta hai."}
