@@ -1,6 +1,5 @@
 name: Train AK-Byte-1 from scratch
 on:
-  # Retrain when training code or dataset changes; weight commits do not retrigger this workflow.
   push:
     branches: [main]
     paths:
@@ -15,13 +14,13 @@ on:
       steps:
         description: "Training steps"
         required: false
-        default: "3000"
+        default: "60000"
 permissions:
   contents: write
 jobs:
   train:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 360
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,12 +31,12 @@ jobs:
           cache: pip
       - name: Install PyTorch
         run: pip install -r requirements.txt
-      - name: Train AK-Byte-1 from random initialization
-        run: python train.py --steps "${{ inputs.steps || '3000' }}"
+      - name: Train AK-Byte-1 with supervised prompt-answer learning
+        run: python train.py --steps "${{ inputs.steps || '60000' }}" --batch-size 16 --lr 0.0002
       - name: Commit trained weights
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model/weights.pt
-          git commit -m "Train AK-Byte-1 on expanded dataset" || echo "No weight changes to commit"
+          git commit -m "Train AK-Byte-1 for 60000 supervised steps" || echo "No weight changes to commit"
           git push
