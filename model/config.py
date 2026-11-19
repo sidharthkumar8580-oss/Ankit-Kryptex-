@@ -1,9 +1,9 @@
 VOCAB_SIZE = 256
 BLOCK_SIZE = 256
 
-# Larger but still restrained profile for a free GitHub-hosted CPU runner.
-# 384 hidden dimensions / 8 heads = 48 dimensions per attention head.
-D_MODEL = 384
+# Enlarged experimental profile for Google Colab T4.
+# Keep sequence length and batch size modest to limit VRAM use.
+D_MODEL = 512
 N_HEADS = 8
-N_LAYERS = 6
+N_LAYERS = 12
 DROPOUT = 0.1
