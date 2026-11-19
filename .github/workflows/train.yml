@@ -1,7 +1,6 @@
 name: Train AK-Byte-1 from scratch
 on:
-  push:
-    branches: [main]
+  # Training is manual only; ordinary code commits must not retrain the model.
   workflow_dispatch:
     inputs:
       steps:
