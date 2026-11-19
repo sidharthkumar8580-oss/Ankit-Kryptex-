@@ -16,8 +16,8 @@ def load_examples(path):
             if not line.strip():
                 continue
             item = json.loads(line)
-            prompt = ("User: " + item["prompt"].strip() + "\\nAnkit Kryptex: ").encode("utf-8")
-            answer = (item["response"].strip() + "\\n\\n").encode("utf-8")
+            prompt = ("User: " + item["prompt"].strip() + "\nAnkit Kryptex: ").encode("utf-8")
+            answer = (item["response"].strip() + "\n\n").encode("utf-8")
             # Preserve the question and train the answer continuation.
             answer = answer[: max(1, BLOCK_SIZE - len(prompt))]
             sequence = torch.tensor(list(prompt + answer), dtype=torch.long)
