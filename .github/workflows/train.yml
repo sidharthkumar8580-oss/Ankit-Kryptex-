@@ -17,6 +17,9 @@ on:
         default: "60000"
 permissions:
   contents: write
+concurrency:
+  group: ak-byte-1-training
+  cancel-in-progress: true
 jobs:
   train:
     runs-on: ubuntu-latest
