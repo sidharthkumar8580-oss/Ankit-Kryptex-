@@ -18,7 +18,7 @@ def load_text(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--steps", type=int, default=300)
+    parser.add_argument("--steps", type=int, default=3000)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=3e-4)
     parser.add_argument("--data", default="data/train.jsonl")
