@@ -1,46 +1,37 @@
 # Ankit Kryptex AI — AK-Byte-1
 
-An original educational decoder-only Transformer initialized from random weights and trained from scratch. It does not call hosted language-model inference APIs and does not download pretrained weights.
+AK-Byte-1 is being upgraded from a tiny randomly initialized Transformer to a pretrained instruction model fine-tuned with QLoRA.
 
-## Current free-CPU profile
+## Selected base model
 
-- Architecture: decoder-only Transformer
-- Tokenizer: byte-level (256 possible byte values)
-- Context length: 256 bytes
-- Hidden dimensions: 384
-- Attention heads: 8 (48 dimensions per head)
-- Transformer blocks: 6
-- Approximate parameter count: about 11 million (implementation-dependent exact count)
-- Initialization: random weights
-- Training: 1,000 supervised steps by default, batch size 4, learning rate 0.0002
-- Runner: GitHub-hosted Ubuntu CPU, with a 6-hour job timeout
+- Base: [Qwen/Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
+- Parameters: approximately 0.49 billion
+- License: Apache-2.0 (retain upstream license and attribution)
+- Fine-tuning: 4-bit QLoRA on a Colab GPU
+- Adapter output: Google Drive folder `MyDrive/AK-Byte-1-Qwen-QLoRA/adapter`
 
-This is a larger experimental profile chosen to stay within a modest free CPU budget. GitHub controls runner availability and account usage limits; a run can still be queued, stopped, or exceed practical time. It is not comparable to ChatGPT.
+The base model already has instruction-following and multilingual abilities. Fine-tuning adapts it to Ankit Kryptex's preferred behavior and reviewed examples. This is not a ChatGPT-scale model and does not guarantee ChatGPT-level quality.
 
-## Training
+## Training notebook
 
-A push to the configured training files starts the workflow automatically. To inspect progress, open the repository Actions tab and select **Train AK-Byte-1 from scratch**. On success, the workflow commits `model/weights.pt`. Restart/redeploy the API after new weights are committed.
+Open the updated Colab notebook:
+
+`AK-Byte-1_GPU_Training.ipynb`
+
+It installs the training dependencies, loads the 4-bit base model, tokenizes `data/train.jsonl`, splits training/validation data, trains a LoRA adapter, evaluates it, saves the adapter to Google Drive, and tests a simple greeting.
+
+The notebook requires a Colab GPU. Free GPU availability and session duration are controlled by Colab. The assistant cannot start or monitor a training session inside the user's logged-in Colab account.
 
 ## Dataset quality
 
-The current `data/train.jsonl` is only a small starter dataset, not one million examples. No duplicate or fabricated rows are added to inflate its size. Add original or properly licensed, reviewed prompt/response pairs, one JSON object per line:
+The repository currently contains 1,000 JSONL rows, but only 378 distinct response texts. It is a small starter dataset, not one million high-quality examples. Repeating or fabricating rows will not create intelligence. Add original, varied, reviewed, properly licensed prompt/response examples; do not add private messages, passwords, API keys, or personal data.
 
-```json
-{"prompt":"Your question","response":"Your answer"}
-```
+## Current API status — important
 
-Do not include passwords, API keys, private messages, or personal data. A larger model cannot learn broad knowledge from a tiny dataset; high-quality data matters more than an inflated row count.
+The existing Render API code still loads the old custom AK-Byte-1 scratch model from `model/weights.pt`. It has **not yet been switched** to the new Qwen base model plus fine-tuned adapter. The QLoRA notebook only creates the adapter in Google Drive; it does not automatically update the Render deployment.
 
-## API
+A 0.5B model may exceed the memory available on a free 512 MB web service. Before changing the live API, select an inference format and hosting plan that can actually hold the model. Do not claim the live API is using Qwen until that deployment is completed and tested.
 
-The FastAPI server exposes `POST /api/chat`. Example body:
+## Original scratch model
 
-```json
-{"message":"Namaste","max_new_tokens":80}
-```
-
-Install with `pip install -r requirements.txt` and run `uvicorn api:app --host 0.0.0.0 --port 8000`.
-
-## Limitations
-
-AK-Byte-1 is a small learning experiment. Byte-level tokenization and the tiny starter dataset mean replies may be weak, repetitive, or incorrect. Free CPU training is not continuous background training and does not guarantee a successful run.
+The repository's earlier `model/network.py`, `model/config.py`, and `train.py` remain as the original educational scratch-training experiment. They are not the new QLoRA training path.
