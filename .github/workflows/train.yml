@@ -1,34 +1,43 @@
 name: Train AK-Byte-1 from scratch
 on:
-  # Training is manual only; ordinary code commits must not retrain the model.
+  # Retrain when training code or dataset changes; weight commits do not retrigger this workflow.
+  push:
+    branches: [main]
+    paths:
+      - "data/train.jsonl"
+      - "train.py"
+      - "model/network.py"
+      - "model/config.py"
+      - "requirements.txt"
+      - ".github/workflows/train.yml"
   workflow_dispatch:
     inputs:
       steps:
-        description: "Training steps (start small)"
-        required: true
-        default: "300"
+        description: "Training steps"
+        required: false
+        default: "3000"
 permissions:
   contents: write
 jobs:
   train:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: pip
       - name: Install PyTorch
         run: pip install -r requirements.txt
-      - name: Train new model from random initialization
-        run: python train.py --steps "${{ inputs.steps || '300' }}"
+      - name: Train AK-Byte-1 from random initialization
+        run: python train.py --steps "${{ inputs.steps || '3000' }}"
       - name: Commit trained weights
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model/weights.pt
-          git commit -m "Train AK-Byte-1 model weights" || echo "No weight changes to commit"
+          git commit -m "Train AK-Byte-1 on expanded dataset" || echo "No weight changes to commit"
           git push
