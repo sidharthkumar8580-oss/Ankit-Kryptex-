@@ -223,3 +223,778 @@
 {"prompt":"What is renewable energy?","response":"Renewable energy aise natural sources se milti hai jo continuously replenish hote rehte hain, jaise sunlight, wind aur flowing water."}
 {"prompt":"What is climate change?","response":"Climate change long-term changes in temperature aur weather patterns ko kehte hain. Recent warming ka major driver human greenhouse-gas emissions hain."}
 {"prompt":"What is scientific evidence?","response":"Scientific evidence observations, measurements aur experiments se milne wala data hai jo kisi explanation ko support ya challenge karta hai."}
+{"prompt":"Gravity kya hai?","response":"Gravity mass wali objects ke beech attractive force hai. Earth ki gravity objects ko apni taraf kheenchti hai aur humein surface par rakhti hai."}
+{"prompt":"Explain Gravity in simple words.","response":"Gravity mass wali objects ke beech attractive force hai. Earth ki gravity objects ko apni taraf kheenchti hai aur humein surface par rakhti hai."}
+{"prompt":"Gravity ko aasaan Hinglish mein samjhao.","response":"Gravity mass wali objects ke beech attractive force hai. Earth ki gravity objects ko apni taraf kheenchti hai aur humein surface par rakhti hai."}
+{"prompt":"Define Gravity.","response":"Gravity mass wali objects ke beech attractive force hai. Earth ki gravity objects ko apni taraf kheenchti hai aur humein surface par rakhti hai."}
+{"prompt":"Tell me about Gravity.","response":"Gravity mass wali objects ke beech attractive force hai. Earth ki gravity objects ko apni taraf kheenchti hai aur humein surface par rakhti hai."}
+{"prompt":"Mass and weight kya hai?","response":"Mass kisi object mein matter ki quantity ka measure hai aur kilogram mein measure hota hai. Weight gravity ke karan lagne wala force hai aur newton mein measure hota hai."}
+{"prompt":"Explain Mass and weight in simple words.","response":"Mass kisi object mein matter ki quantity ka measure hai aur kilogram mein measure hota hai. Weight gravity ke karan lagne wala force hai aur newton mein measure hota hai."}
+{"prompt":"Mass and weight ko aasaan Hinglish mein samjhao.","response":"Mass kisi object mein matter ki quantity ka measure hai aur kilogram mein measure hota hai. Weight gravity ke karan lagne wala force hai aur newton mein measure hota hai."}
+{"prompt":"Define Mass and weight.","response":"Mass kisi object mein matter ki quantity ka measure hai aur kilogram mein measure hota hai. Weight gravity ke karan lagne wala force hai aur newton mein measure hota hai."}
+{"prompt":"Tell me about Mass and weight.","response":"Mass kisi object mein matter ki quantity ka measure hai aur kilogram mein measure hota hai. Weight gravity ke karan lagne wala force hai aur newton mein measure hota hai."}
+{"prompt":"Newton's first law kya hai?","response":"Newton ka first law kehta hai ki object rest mein rahega ya uniform straight-line motion mein rahega jab tak uspe net external force na lage."}
+{"prompt":"Explain Newton's first law in simple words.","response":"Newton ka first law kehta hai ki object rest mein rahega ya uniform straight-line motion mein rahega jab tak uspe net external force na lage."}
+{"prompt":"Newton's first law ko aasaan Hinglish mein samjhao.","response":"Newton ka first law kehta hai ki object rest mein rahega ya uniform straight-line motion mein rahega jab tak uspe net external force na lage."}
+{"prompt":"Define Newton's first law.","response":"Newton ka first law kehta hai ki object rest mein rahega ya uniform straight-line motion mein rahega jab tak uspe net external force na lage."}
+{"prompt":"Tell me about Newton's first law.","response":"Newton ka first law kehta hai ki object rest mein rahega ya uniform straight-line motion mein rahega jab tak uspe net external force na lage."}
+{"prompt":"Newton's second law kya hai?","response":"Newton ka second law F = ma hai. Net force object ke mass aur acceleration ke product ke barabar hota hai."}
+{"prompt":"Explain Newton's second law in simple words.","response":"Newton ka second law F = ma hai. Net force object ke mass aur acceleration ke product ke barabar hota hai."}
+{"prompt":"Newton's second law ko aasaan Hinglish mein samjhao.","response":"Newton ka second law F = ma hai. Net force object ke mass aur acceleration ke product ke barabar hota hai."}
+{"prompt":"Define Newton's second law.","response":"Newton ka second law F = ma hai. Net force object ke mass aur acceleration ke product ke barabar hota hai."}
+{"prompt":"Tell me about Newton's second law.","response":"Newton ka second law F = ma hai. Net force object ke mass aur acceleration ke product ke barabar hota hai."}
+{"prompt":"Newton's third law kya hai?","response":"Har action ke equal magnitude aur opposite direction mein reaction hota hai. Action aur reaction different objects par lagte hain."}
+{"prompt":"Explain Newton's third law in simple words.","response":"Har action ke equal magnitude aur opposite direction mein reaction hota hai. Action aur reaction different objects par lagte hain."}
+{"prompt":"Newton's third law ko aasaan Hinglish mein samjhao.","response":"Har action ke equal magnitude aur opposite direction mein reaction hota hai. Action aur reaction different objects par lagte hain."}
+{"prompt":"Define Newton's third law.","response":"Har action ke equal magnitude aur opposite direction mein reaction hota hai. Action aur reaction different objects par lagte hain."}
+{"prompt":"Tell me about Newton's third law.","response":"Har action ke equal magnitude aur opposite direction mein reaction hota hai. Action aur reaction different objects par lagte hain."}
+{"prompt":"Work in physics kya hai?","response":"Physics mein work tab hota hai jab force ke karan displacement ho. Constant force ke liye W = F s cos theta hota hai."}
+{"prompt":"Explain Work in physics in simple words.","response":"Physics mein work tab hota hai jab force ke karan displacement ho. Constant force ke liye W = F s cos theta hota hai."}
+{"prompt":"Work in physics ko aasaan Hinglish mein samjhao.","response":"Physics mein work tab hota hai jab force ke karan displacement ho. Constant force ke liye W = F s cos theta hota hai."}
+{"prompt":"Define Work in physics.","response":"Physics mein work tab hota hai jab force ke karan displacement ho. Constant force ke liye W = F s cos theta hota hai."}
+{"prompt":"Tell me about Work in physics.","response":"Physics mein work tab hota hai jab force ke karan displacement ho. Constant force ke liye W = F s cos theta hota hai."}
+{"prompt":"Kinetic energy kya hai?","response":"Kinetic energy motion ke karan hoti hai. Mass m aur speed v ke liye KE = one half m v squared hoti hai."}
+{"prompt":"Explain Kinetic energy in simple words.","response":"Kinetic energy motion ke karan hoti hai. Mass m aur speed v ke liye KE = one half m v squared hoti hai."}
+{"prompt":"Kinetic energy ko aasaan Hinglish mein samjhao.","response":"Kinetic energy motion ke karan hoti hai. Mass m aur speed v ke liye KE = one half m v squared hoti hai."}
+{"prompt":"Define Kinetic energy.","response":"Kinetic energy motion ke karan hoti hai. Mass m aur speed v ke liye KE = one half m v squared hoti hai."}
+{"prompt":"Tell me about Kinetic energy.","response":"Kinetic energy motion ke karan hoti hai. Mass m aur speed v ke liye KE = one half m v squared hoti hai."}
+{"prompt":"Potential energy kya hai?","response":"Potential energy position ya configuration ke karan stored energy hai. Earth ke paas gravitational potential energy mgh hoti hai."}
+{"prompt":"Explain Potential energy in simple words.","response":"Potential energy position ya configuration ke karan stored energy hai. Earth ke paas gravitational potential energy mgh hoti hai."}
+{"prompt":"Potential energy ko aasaan Hinglish mein samjhao.","response":"Potential energy position ya configuration ke karan stored energy hai. Earth ke paas gravitational potential energy mgh hoti hai."}
+{"prompt":"Define Potential energy.","response":"Potential energy position ya configuration ke karan stored energy hai. Earth ke paas gravitational potential energy mgh hoti hai."}
+{"prompt":"Tell me about Potential energy.","response":"Potential energy position ya configuration ke karan stored energy hai. Earth ke paas gravitational potential energy mgh hoti hai."}
+{"prompt":"Power kya hai?","response":"Power work karne ya energy transfer hone ki rate hai. SI unit watt hai aur P = W/t."}
+{"prompt":"Explain Power in simple words.","response":"Power work karne ya energy transfer hone ki rate hai. SI unit watt hai aur P = W/t."}
+{"prompt":"Power ko aasaan Hinglish mein samjhao.","response":"Power work karne ya energy transfer hone ki rate hai. SI unit watt hai aur P = W/t."}
+{"prompt":"Define Power.","response":"Power work karne ya energy transfer hone ki rate hai. SI unit watt hai aur P = W/t."}
+{"prompt":"Tell me about Power.","response":"Power work karne ya energy transfer hone ki rate hai. SI unit watt hai aur P = W/t."}
+{"prompt":"Momentum kya hai?","response":"Momentum mass aur velocity ka product hai. p = mv aur SI unit kg metre per second hai."}
+{"prompt":"Explain Momentum in simple words.","response":"Momentum mass aur velocity ka product hai. p = mv aur SI unit kg metre per second hai."}
+{"prompt":"Momentum ko aasaan Hinglish mein samjhao.","response":"Momentum mass aur velocity ka product hai. p = mv aur SI unit kg metre per second hai."}
+{"prompt":"Define Momentum.","response":"Momentum mass aur velocity ka product hai. p = mv aur SI unit kg metre per second hai."}
+{"prompt":"Tell me about Momentum.","response":"Momentum mass aur velocity ka product hai. p = mv aur SI unit kg metre per second hai."}
+{"prompt":"Impulse kya hai?","response":"Impulse force aur time interval ka product hai aur momentum ke change ke equal hota hai."}
+{"prompt":"Explain Impulse in simple words.","response":"Impulse force aur time interval ka product hai aur momentum ke change ke equal hota hai."}
+{"prompt":"Impulse ko aasaan Hinglish mein samjhao.","response":"Impulse force aur time interval ka product hai aur momentum ke change ke equal hota hai."}
+{"prompt":"Define Impulse.","response":"Impulse force aur time interval ka product hai aur momentum ke change ke equal hota hai."}
+{"prompt":"Tell me about Impulse.","response":"Impulse force aur time interval ka product hai aur momentum ke change ke equal hota hai."}
+{"prompt":"Pressure kya hai?","response":"Pressure unit area par lagne wala perpendicular force hai. P = F/A aur SI unit pascal hai."}
+{"prompt":"Explain Pressure in simple words.","response":"Pressure unit area par lagne wala perpendicular force hai. P = F/A aur SI unit pascal hai."}
+{"prompt":"Pressure ko aasaan Hinglish mein samjhao.","response":"Pressure unit area par lagne wala perpendicular force hai. P = F/A aur SI unit pascal hai."}
+{"prompt":"Define Pressure.","response":"Pressure unit area par lagne wala perpendicular force hai. P = F/A aur SI unit pascal hai."}
+{"prompt":"Tell me about Pressure.","response":"Pressure unit area par lagne wala perpendicular force hai. P = F/A aur SI unit pascal hai."}
+{"prompt":"Density kya hai?","response":"Density mass per unit volume hai. rho = m/V aur SI unit kg per cubic metre hai."}
+{"prompt":"Explain Density in simple words.","response":"Density mass per unit volume hai. rho = m/V aur SI unit kg per cubic metre hai."}
+{"prompt":"Density ko aasaan Hinglish mein samjhao.","response":"Density mass per unit volume hai. rho = m/V aur SI unit kg per cubic metre hai."}
+{"prompt":"Define Density.","response":"Density mass per unit volume hai. rho = m/V aur SI unit kg per cubic metre hai."}
+{"prompt":"Tell me about Density.","response":"Density mass per unit volume hai. rho = m/V aur SI unit kg per cubic metre hai."}
+{"prompt":"Archimedes principle kya hai?","response":"Fluid mein immersed object par upward buoyant force lagta hai jo displaced fluid ke weight ke equal hota hai."}
+{"prompt":"Explain Archimedes principle in simple words.","response":"Fluid mein immersed object par upward buoyant force lagta hai jo displaced fluid ke weight ke equal hota hai."}
+{"prompt":"Archimedes principle ko aasaan Hinglish mein samjhao.","response":"Fluid mein immersed object par upward buoyant force lagta hai jo displaced fluid ke weight ke equal hota hai."}
+{"prompt":"Define Archimedes principle.","response":"Fluid mein immersed object par upward buoyant force lagta hai jo displaced fluid ke weight ke equal hota hai."}
+{"prompt":"Tell me about Archimedes principle.","response":"Fluid mein immersed object par upward buoyant force lagta hai jo displaced fluid ke weight ke equal hota hai."}
+{"prompt":"Pascal law kya hai?","response":"Confined fluid par lagaya gaya pressure change fluid ke har part aur container walls tak transmit hota hai."}
+{"prompt":"Explain Pascal law in simple words.","response":"Confined fluid par lagaya gaya pressure change fluid ke har part aur container walls tak transmit hota hai."}
+{"prompt":"Pascal law ko aasaan Hinglish mein samjhao.","response":"Confined fluid par lagaya gaya pressure change fluid ke har part aur container walls tak transmit hota hai."}
+{"prompt":"Define Pascal law.","response":"Confined fluid par lagaya gaya pressure change fluid ke har part aur container walls tak transmit hota hai."}
+{"prompt":"Tell me about Pascal law.","response":"Confined fluid par lagaya gaya pressure change fluid ke har part aur container walls tak transmit hota hai."}
+{"prompt":"Ohm law kya hai?","response":"Constant physical conditions par conductor ke across potential difference current ke proportional hota hai. V = IR."}
+{"prompt":"Explain Ohm law in simple words.","response":"Constant physical conditions par conductor ke across potential difference current ke proportional hota hai. V = IR."}
+{"prompt":"Ohm law ko aasaan Hinglish mein samjhao.","response":"Constant physical conditions par conductor ke across potential difference current ke proportional hota hai. V = IR."}
+{"prompt":"Define Ohm law.","response":"Constant physical conditions par conductor ke across potential difference current ke proportional hota hai. V = IR."}
+{"prompt":"Tell me about Ohm law.","response":"Constant physical conditions par conductor ke across potential difference current ke proportional hota hai. V = IR."}
+{"prompt":"Explain Electric current in simple words.","response":"Electric current charge flow ki rate hai. I = Q/t aur SI unit ampere hai."}
+{"prompt":"Electric current ko aasaan Hinglish mein samjhao.","response":"Electric current charge flow ki rate hai. I = Q/t aur SI unit ampere hai."}
+{"prompt":"Define Electric current.","response":"Electric current charge flow ki rate hai. I = Q/t aur SI unit ampere hai."}
+{"prompt":"Tell me about Electric current.","response":"Electric current charge flow ki rate hai. I = Q/t aur SI unit ampere hai."}
+{"prompt":"Resistance kya hai?","response":"Resistance current flow ka opposition hai. SI unit ohm hai aur Ohm law se R = V/I."}
+{"prompt":"Explain Resistance in simple words.","response":"Resistance current flow ka opposition hai. SI unit ohm hai aur Ohm law se R = V/I."}
+{"prompt":"Resistance ko aasaan Hinglish mein samjhao.","response":"Resistance current flow ka opposition hai. SI unit ohm hai aur Ohm law se R = V/I."}
+{"prompt":"Define Resistance.","response":"Resistance current flow ka opposition hai. SI unit ohm hai aur Ohm law se R = V/I."}
+{"prompt":"Tell me about Resistance.","response":"Resistance current flow ka opposition hai. SI unit ohm hai aur Ohm law se R = V/I."}
+{"prompt":"Series circuit kya hai?","response":"Series circuit mein components ek path mein connected hote hain. Sabhi components se same current flow karta hai."}
+{"prompt":"Explain Series circuit in simple words.","response":"Series circuit mein components ek path mein connected hote hain. Sabhi components se same current flow karta hai."}
+{"prompt":"Series circuit ko aasaan Hinglish mein samjhao.","response":"Series circuit mein components ek path mein connected hote hain. Sabhi components se same current flow karta hai."}
+{"prompt":"Define Series circuit.","response":"Series circuit mein components ek path mein connected hote hain. Sabhi components se same current flow karta hai."}
+{"prompt":"Tell me about Series circuit.","response":"Series circuit mein components ek path mein connected hote hain. Sabhi components se same current flow karta hai."}
+{"prompt":"Parallel circuit kya hai?","response":"Parallel circuit mein components ke across same voltage hota hai aur current branches mein divide hota hai."}
+{"prompt":"Explain Parallel circuit in simple words.","response":"Parallel circuit mein components ke across same voltage hota hai aur current branches mein divide hota hai."}
+{"prompt":"Parallel circuit ko aasaan Hinglish mein samjhao.","response":"Parallel circuit mein components ke across same voltage hota hai aur current branches mein divide hota hai."}
+{"prompt":"Define Parallel circuit.","response":"Parallel circuit mein components ke across same voltage hota hai aur current branches mein divide hota hai."}
+{"prompt":"Tell me about Parallel circuit.","response":"Parallel circuit mein components ke across same voltage hota hai aur current branches mein divide hota hai."}
+{"prompt":"Electric power kya hai?","response":"Electric power electrical energy transfer ki rate hai. P = VI, aur resistor ke liye P = I squared R bhi hota hai."}
+{"prompt":"Explain Electric power in simple words.","response":"Electric power electrical energy transfer ki rate hai. P = VI, aur resistor ke liye P = I squared R bhi hota hai."}
+{"prompt":"Electric power ko aasaan Hinglish mein samjhao.","response":"Electric power electrical energy transfer ki rate hai. P = VI, aur resistor ke liye P = I squared R bhi hota hai."}
+{"prompt":"Define Electric power.","response":"Electric power electrical energy transfer ki rate hai. P = VI, aur resistor ke liye P = I squared R bhi hota hai."}
+{"prompt":"Tell me about Electric power.","response":"Electric power electrical energy transfer ki rate hai. P = VI, aur resistor ke liye P = I squared R bhi hota hai."}
+{"prompt":"Electric fuse kya hai?","response":"Fuse ek safety device hai jisme thin wire excessive current par melt hokar circuit break kar deti hai."}
+{"prompt":"Explain Electric fuse in simple words.","response":"Fuse ek safety device hai jisme thin wire excessive current par melt hokar circuit break kar deti hai."}
+{"prompt":"Electric fuse ko aasaan Hinglish mein samjhao.","response":"Fuse ek safety device hai jisme thin wire excessive current par melt hokar circuit break kar deti hai."}
+{"prompt":"Define Electric fuse.","response":"Fuse ek safety device hai jisme thin wire excessive current par melt hokar circuit break kar deti hai."}
+{"prompt":"Tell me about Electric fuse.","response":"Fuse ek safety device hai jisme thin wire excessive current par melt hokar circuit break kar deti hai."}
+{"prompt":"Earthing kya hai?","response":"Earthing exposed conductive body ko low-resistance path se ground se connect karti hai, fault current ko safely divert karne mein madad karti hai."}
+{"prompt":"Explain Earthing in simple words.","response":"Earthing exposed conductive body ko low-resistance path se ground se connect karti hai, fault current ko safely divert karne mein madad karti hai."}
+{"prompt":"Earthing ko aasaan Hinglish mein samjhao.","response":"Earthing exposed conductive body ko low-resistance path se ground se connect karti hai, fault current ko safely divert karne mein madad karti hai."}
+{"prompt":"Define Earthing.","response":"Earthing exposed conductive body ko low-resistance path se ground se connect karti hai, fault current ko safely divert karne mein madad karti hai."}
+{"prompt":"Tell me about Earthing.","response":"Earthing exposed conductive body ko low-resistance path se ground se connect karti hai, fault current ko safely divert karne mein madad karti hai."}
+{"prompt":"AC and DC kya hai?","response":"Direct current ek direction mein flow karta hai. Alternating current ki direction aur magnitude time ke saath periodically change hote hain."}
+{"prompt":"Explain AC and DC in simple words.","response":"Direct current ek direction mein flow karta hai. Alternating current ki direction aur magnitude time ke saath periodically change hote hain."}
+{"prompt":"AC and DC ko aasaan Hinglish mein samjhao.","response":"Direct current ek direction mein flow karta hai. Alternating current ki direction aur magnitude time ke saath periodically change hote hain."}
+{"prompt":"Define AC and DC.","response":"Direct current ek direction mein flow karta hai. Alternating current ki direction aur magnitude time ke saath periodically change hote hain."}
+{"prompt":"Tell me about AC and DC.","response":"Direct current ek direction mein flow karta hai. Alternating current ki direction aur magnitude time ke saath periodically change hote hain."}
+{"prompt":"Electromagnetic waves kya hai?","response":"Electromagnetic waves changing electric aur magnetic fields se banti hain aur vacuum mein light speed se travel karti hain."}
+{"prompt":"Explain Electromagnetic waves in simple words.","response":"Electromagnetic waves changing electric aur magnetic fields se banti hain aur vacuum mein light speed se travel karti hain."}
+{"prompt":"Electromagnetic waves ko aasaan Hinglish mein samjhao.","response":"Electromagnetic waves changing electric aur magnetic fields se banti hain aur vacuum mein light speed se travel karti hain."}
+{"prompt":"Define Electromagnetic waves.","response":"Electromagnetic waves changing electric aur magnetic fields se banti hain aur vacuum mein light speed se travel karti hain."}
+{"prompt":"Tell me about Electromagnetic waves.","response":"Electromagnetic waves changing electric aur magnetic fields se banti hain aur vacuum mein light speed se travel karti hain."}
+{"prompt":"Radio waves kya hai?","response":"Radio waves electromagnetic waves hain jo wireless communication, broadcasting aur radar mein use hoti hain."}
+{"prompt":"Explain Radio waves in simple words.","response":"Radio waves electromagnetic waves hain jo wireless communication, broadcasting aur radar mein use hoti hain."}
+{"prompt":"Radio waves ko aasaan Hinglish mein samjhao.","response":"Radio waves electromagnetic waves hain jo wireless communication, broadcasting aur radar mein use hoti hain."}
+{"prompt":"Define Radio waves.","response":"Radio waves electromagnetic waves hain jo wireless communication, broadcasting aur radar mein use hoti hain."}
+{"prompt":"Tell me about Radio waves.","response":"Radio waves electromagnetic waves hain jo wireless communication, broadcasting aur radar mein use hoti hain."}
+{"prompt":"GPS kya hai?","response":"GPS satellites ke timed radio signals se receiver apni position estimate karta hai. Accurate timing aur multiple satellites zaroori hote hain."}
+{"prompt":"Explain GPS in simple words.","response":"GPS satellites ke timed radio signals se receiver apni position estimate karta hai. Accurate timing aur multiple satellites zaroori hote hain."}
+{"prompt":"GPS ko aasaan Hinglish mein samjhao.","response":"GPS satellites ke timed radio signals se receiver apni position estimate karta hai. Accurate timing aur multiple satellites zaroori hote hain."}
+{"prompt":"Define GPS.","response":"GPS satellites ke timed radio signals se receiver apni position estimate karta hai. Accurate timing aur multiple satellites zaroori hote hain."}
+{"prompt":"Tell me about GPS.","response":"GPS satellites ke timed radio signals se receiver apni position estimate karta hai. Accurate timing aur multiple satellites zaroori hote hain."}
+{"prompt":"Wi-Fi kya hai?","response":"Wi-Fi radio signals ke through nearby wireless router aur devices ke beech local network communication provide karta hai."}
+{"prompt":"Explain Wi-Fi in simple words.","response":"Wi-Fi radio signals ke through nearby wireless router aur devices ke beech local network communication provide karta hai."}
+{"prompt":"Wi-Fi ko aasaan Hinglish mein samjhao.","response":"Wi-Fi radio signals ke through nearby wireless router aur devices ke beech local network communication provide karta hai."}
+{"prompt":"Define Wi-Fi.","response":"Wi-Fi radio signals ke through nearby wireless router aur devices ke beech local network communication provide karta hai."}
+{"prompt":"Tell me about Wi-Fi.","response":"Wi-Fi radio signals ke through nearby wireless router aur devices ke beech local network communication provide karta hai."}
+{"prompt":"Bluetooth kya hai?","response":"Bluetooth short-range wireless technology hai jo headphones, keyboards aur phones jaise devices connect karti hai."}
+{"prompt":"Explain Bluetooth in simple words.","response":"Bluetooth short-range wireless technology hai jo headphones, keyboards aur phones jaise devices connect karti hai."}
+{"prompt":"Bluetooth ko aasaan Hinglish mein samjhao.","response":"Bluetooth short-range wireless technology hai jo headphones, keyboards aur phones jaise devices connect karti hai."}
+{"prompt":"Define Bluetooth.","response":"Bluetooth short-range wireless technology hai jo headphones, keyboards aur phones jaise devices connect karti hai."}
+{"prompt":"Tell me about Bluetooth.","response":"Bluetooth short-range wireless technology hai jo headphones, keyboards aur phones jaise devices connect karti hai."}
+{"prompt":"Battery kya hai?","response":"Battery chemical energy ko electrical energy mein convert karti hai through electrochemical reactions."}
+{"prompt":"Explain Battery in simple words.","response":"Battery chemical energy ko electrical energy mein convert karti hai through electrochemical reactions."}
+{"prompt":"Battery ko aasaan Hinglish mein samjhao.","response":"Battery chemical energy ko electrical energy mein convert karti hai through electrochemical reactions."}
+{"prompt":"Define Battery.","response":"Battery chemical energy ko electrical energy mein convert karti hai through electrochemical reactions."}
+{"prompt":"Tell me about Battery.","response":"Battery chemical energy ko electrical energy mein convert karti hai through electrochemical reactions."}
+{"prompt":"Lithium-ion battery kya hai?","response":"Lithium-ion battery charge aur discharge ke dauran lithium ions ko electrodes ke beech move karati hai."}
+{"prompt":"Explain Lithium-ion battery in simple words.","response":"Lithium-ion battery charge aur discharge ke dauran lithium ions ko electrodes ke beech move karati hai."}
+{"prompt":"Lithium-ion battery ko aasaan Hinglish mein samjhao.","response":"Lithium-ion battery charge aur discharge ke dauran lithium ions ko electrodes ke beech move karati hai."}
+{"prompt":"Define Lithium-ion battery.","response":"Lithium-ion battery charge aur discharge ke dauran lithium ions ko electrodes ke beech move karati hai."}
+{"prompt":"Tell me about Lithium-ion battery.","response":"Lithium-ion battery charge aur discharge ke dauran lithium ions ko electrodes ke beech move karati hai."}
+{"prompt":"Charging a phone kya hai?","response":"Phone charger supply ki electricity ko battery ke liye suitable controlled voltage aur current mein convert karta hai. Charging circuit safety monitor karta hai."}
+{"prompt":"Explain Charging a phone in simple words.","response":"Phone charger supply ki electricity ko battery ke liye suitable controlled voltage aur current mein convert karta hai. Charging circuit safety monitor karta hai."}
+{"prompt":"Charging a phone ko aasaan Hinglish mein samjhao.","response":"Phone charger supply ki electricity ko battery ke liye suitable controlled voltage aur current mein convert karta hai. Charging circuit safety monitor karta hai."}
+{"prompt":"Define Charging a phone.","response":"Phone charger supply ki electricity ko battery ke liye suitable controlled voltage aur current mein convert karta hai. Charging circuit safety monitor karta hai."}
+{"prompt":"Tell me about Charging a phone.","response":"Phone charger supply ki electricity ko battery ke liye suitable controlled voltage aur current mein convert karta hai. Charging circuit safety monitor karta hai."}
+{"prompt":"Touchscreen kya hai?","response":"Capacitive touchscreen finger ke touch se local capacitance change detect karti hai aur touch location calculate karti hai."}
+{"prompt":"Explain Touchscreen in simple words.","response":"Capacitive touchscreen finger ke touch se local capacitance change detect karti hai aur touch location calculate karti hai."}
+{"prompt":"Touchscreen ko aasaan Hinglish mein samjhao.","response":"Capacitive touchscreen finger ke touch se local capacitance change detect karti hai aur touch location calculate karti hai."}
+{"prompt":"Define Touchscreen.","response":"Capacitive touchscreen finger ke touch se local capacitance change detect karti hai aur touch location calculate karti hai."}
+{"prompt":"Tell me about Touchscreen.","response":"Capacitive touchscreen finger ke touch se local capacitance change detect karti hai aur touch location calculate karti hai."}
+{"prompt":"Camera sensor kya hai?","response":"Digital camera sensor incoming light ko pixels par electrical signals mein convert karta hai. Processing se digital image banti hai."}
+{"prompt":"Explain Camera sensor in simple words.","response":"Digital camera sensor incoming light ko pixels par electrical signals mein convert karta hai. Processing se digital image banti hai."}
+{"prompt":"Camera sensor ko aasaan Hinglish mein samjhao.","response":"Digital camera sensor incoming light ko pixels par electrical signals mein convert karta hai. Processing se digital image banti hai."}
+{"prompt":"Define Camera sensor.","response":"Digital camera sensor incoming light ko pixels par electrical signals mein convert karta hai. Processing se digital image banti hai."}
+{"prompt":"Tell me about Camera sensor.","response":"Digital camera sensor incoming light ko pixels par electrical signals mein convert karta hai. Processing se digital image banti hai."}
+{"prompt":"Microphone kya hai?","response":"Microphone sound pressure variations ko electrical signal mein convert karta hai."}
+{"prompt":"Explain Microphone in simple words.","response":"Microphone sound pressure variations ko electrical signal mein convert karta hai."}
+{"prompt":"Microphone ko aasaan Hinglish mein samjhao.","response":"Microphone sound pressure variations ko electrical signal mein convert karta hai."}
+{"prompt":"Define Microphone.","response":"Microphone sound pressure variations ko electrical signal mein convert karta hai."}
+{"prompt":"Tell me about Microphone.","response":"Microphone sound pressure variations ko electrical signal mein convert karta hai."}
+{"prompt":"Speaker kya hai?","response":"Speaker electrical audio signal ko vibrating diaphragm ki madad se sound waves mein convert karta hai."}
+{"prompt":"Explain Speaker in simple words.","response":"Speaker electrical audio signal ko vibrating diaphragm ki madad se sound waves mein convert karta hai."}
+{"prompt":"Speaker ko aasaan Hinglish mein samjhao.","response":"Speaker electrical audio signal ko vibrating diaphragm ki madad se sound waves mein convert karta hai."}
+{"prompt":"Define Speaker.","response":"Speaker electrical audio signal ko vibrating diaphragm ki madad se sound waves mein convert karta hai."}
+{"prompt":"Tell me about Speaker.","response":"Speaker electrical audio signal ko vibrating diaphragm ki madad se sound waves mein convert karta hai."}
+{"prompt":"CPU kya hai?","response":"CPU instructions execute karta hai, calculations karta hai aur computer ke operations coordinate karta hai."}
+{"prompt":"Explain CPU in simple words.","response":"CPU instructions execute karta hai, calculations karta hai aur computer ke operations coordinate karta hai."}
+{"prompt":"CPU ko aasaan Hinglish mein samjhao.","response":"CPU instructions execute karta hai, calculations karta hai aur computer ke operations coordinate karta hai."}
+{"prompt":"Define CPU.","response":"CPU instructions execute karta hai, calculations karta hai aur computer ke operations coordinate karta hai."}
+{"prompt":"Tell me about CPU.","response":"CPU instructions execute karta hai, calculations karta hai aur computer ke operations coordinate karta hai."}
+{"prompt":"GPU kya hai?","response":"GPU bahut saare parallel calculations efficiently karta hai. Iska use graphics aur machine learning mein hota hai."}
+{"prompt":"Explain GPU in simple words.","response":"GPU bahut saare parallel calculations efficiently karta hai. Iska use graphics aur machine learning mein hota hai."}
+{"prompt":"GPU ko aasaan Hinglish mein samjhao.","response":"GPU bahut saare parallel calculations efficiently karta hai. Iska use graphics aur machine learning mein hota hai."}
+{"prompt":"Define GPU.","response":"GPU bahut saare parallel calculations efficiently karta hai. Iska use graphics aur machine learning mein hota hai."}
+{"prompt":"Tell me about GPU.","response":"GPU bahut saare parallel calculations efficiently karta hai. Iska use graphics aur machine learning mein hota hai."}
+{"prompt":"RAM kya hai?","response":"RAM fast temporary working memory hai. Power off hone par aam taur par iska data retain nahi hota."}
+{"prompt":"Explain RAM in simple words.","response":"RAM fast temporary working memory hai. Power off hone par aam taur par iska data retain nahi hota."}
+{"prompt":"RAM ko aasaan Hinglish mein samjhao.","response":"RAM fast temporary working memory hai. Power off hone par aam taur par iska data retain nahi hota."}
+{"prompt":"Define RAM.","response":"RAM fast temporary working memory hai. Power off hone par aam taur par iska data retain nahi hota."}
+{"prompt":"Tell me about RAM.","response":"RAM fast temporary working memory hai. Power off hone par aam taur par iska data retain nahi hota."}
+{"prompt":"SSD kya hai?","response":"SSD flash memory use karke data store karta hai aur moving mechanical parts ke bina files access karta hai."}
+{"prompt":"Explain SSD in simple words.","response":"SSD flash memory use karke data store karta hai aur moving mechanical parts ke bina files access karta hai."}
+{"prompt":"SSD ko aasaan Hinglish mein samjhao.","response":"SSD flash memory use karke data store karta hai aur moving mechanical parts ke bina files access karta hai."}
+{"prompt":"Define SSD.","response":"SSD flash memory use karke data store karta hai aur moving mechanical parts ke bina files access karta hai."}
+{"prompt":"Tell me about SSD.","response":"SSD flash memory use karke data store karta hai aur moving mechanical parts ke bina files access karta hai."}
+{"prompt":"Cache memory kya hai?","response":"Cache chhoti aur fast memory hai jo frequently used data ko processor ke paas rakhti hai."}
+{"prompt":"Explain Cache memory in simple words.","response":"Cache chhoti aur fast memory hai jo frequently used data ko processor ke paas rakhti hai."}
+{"prompt":"Cache memory ko aasaan Hinglish mein samjhao.","response":"Cache chhoti aur fast memory hai jo frequently used data ko processor ke paas rakhti hai."}
+{"prompt":"Define Cache memory.","response":"Cache chhoti aur fast memory hai jo frequently used data ko processor ke paas rakhti hai."}
+{"prompt":"Tell me about Cache memory.","response":"Cache chhoti aur fast memory hai jo frequently used data ko processor ke paas rakhti hai."}
+{"prompt":"Compiler kya hai?","response":"Compiler source code ko another form, jaise machine code, mein translate karta hai before execution or deployment."}
+{"prompt":"Explain Compiler in simple words.","response":"Compiler source code ko another form, jaise machine code, mein translate karta hai before execution or deployment."}
+{"prompt":"Compiler ko aasaan Hinglish mein samjhao.","response":"Compiler source code ko another form, jaise machine code, mein translate karta hai before execution or deployment."}
+{"prompt":"Define Compiler.","response":"Compiler source code ko another form, jaise machine code, mein translate karta hai before execution or deployment."}
+{"prompt":"Tell me about Compiler.","response":"Compiler source code ko another form, jaise machine code, mein translate karta hai before execution or deployment."}
+{"prompt":"Interpreter kya hai?","response":"Interpreter program instructions ko runtime par execute karta hai, often stepwise or through an intermediate representation."}
+{"prompt":"Explain Interpreter in simple words.","response":"Interpreter program instructions ko runtime par execute karta hai, often stepwise or through an intermediate representation."}
+{"prompt":"Interpreter ko aasaan Hinglish mein samjhao.","response":"Interpreter program instructions ko runtime par execute karta hai, often stepwise or through an intermediate representation."}
+{"prompt":"Define Interpreter.","response":"Interpreter program instructions ko runtime par execute karta hai, often stepwise or through an intermediate representation."}
+{"prompt":"Tell me about Interpreter.","response":"Interpreter program instructions ko runtime par execute karta hai, often stepwise or through an intermediate representation."}
+{"prompt":"Variable kya hai?","response":"Variable program mein value ko refer karne wala named reference hota hai. Python mein x = 10 ek assignment hai."}
+{"prompt":"Explain Variable in simple words.","response":"Variable program mein value ko refer karne wala named reference hota hai. Python mein x = 10 ek assignment hai."}
+{"prompt":"Variable ko aasaan Hinglish mein samjhao.","response":"Variable program mein value ko refer karne wala named reference hota hai. Python mein x = 10 ek assignment hai."}
+{"prompt":"Define Variable.","response":"Variable program mein value ko refer karne wala named reference hota hai. Python mein x = 10 ek assignment hai."}
+{"prompt":"Tell me about Variable.","response":"Variable program mein value ko refer karne wala named reference hota hai. Python mein x = 10 ek assignment hai."}
+{"prompt":"Data type kya hai?","response":"Data type batata hai ki value kis tarah ki hai aur uspe kaunse operations valid hain, jaise integer, string aur boolean."}
+{"prompt":"Explain Data type in simple words.","response":"Data type batata hai ki value kis tarah ki hai aur uspe kaunse operations valid hain, jaise integer, string aur boolean."}
+{"prompt":"Data type ko aasaan Hinglish mein samjhao.","response":"Data type batata hai ki value kis tarah ki hai aur uspe kaunse operations valid hain, jaise integer, string aur boolean."}
+{"prompt":"Define Data type.","response":"Data type batata hai ki value kis tarah ki hai aur uspe kaunse operations valid hain, jaise integer, string aur boolean."}
+{"prompt":"Tell me about Data type.","response":"Data type batata hai ki value kis tarah ki hai aur uspe kaunse operations valid hain, jaise integer, string aur boolean."}
+{"prompt":"Python dictionary kya hai?","response":"Dictionary key-value pairs ka mutable collection hai. Example: student = {'name': 'Asha', 'age': 16}."}
+{"prompt":"Explain Python dictionary in simple words.","response":"Dictionary key-value pairs ka mutable collection hai. Example: student = {'name': 'Asha', 'age': 16}."}
+{"prompt":"Python dictionary ko aasaan Hinglish mein samjhao.","response":"Dictionary key-value pairs ka mutable collection hai. Example: student = {'name': 'Asha', 'age': 16}."}
+{"prompt":"Define Python dictionary.","response":"Dictionary key-value pairs ka mutable collection hai. Example: student = {'name': 'Asha', 'age': 16}."}
+{"prompt":"Tell me about Python dictionary.","response":"Dictionary key-value pairs ka mutable collection hai. Example: student = {'name': 'Asha', 'age': 16}."}
+{"prompt":"Python tuple kya hai?","response":"Tuple ordered collection hai jo immutable hota hai. Example: point = (3, 5)."}
+{"prompt":"Explain Python tuple in simple words.","response":"Tuple ordered collection hai jo immutable hota hai. Example: point = (3, 5)."}
+{"prompt":"Python tuple ko aasaan Hinglish mein samjhao.","response":"Tuple ordered collection hai jo immutable hota hai. Example: point = (3, 5)."}
+{"prompt":"Define Python tuple.","response":"Tuple ordered collection hai jo immutable hota hai. Example: point = (3, 5)."}
+{"prompt":"Tell me about Python tuple.","response":"Tuple ordered collection hai jo immutable hota hai. Example: point = (3, 5)."}
+{"prompt":"Python set kya hai?","response":"Set unique hashable elements ka unordered collection hai. Duplicate values store nahi hoti."}
+{"prompt":"Explain Python set in simple words.","response":"Set unique hashable elements ka unordered collection hai. Duplicate values store nahi hoti."}
+{"prompt":"Python set ko aasaan Hinglish mein samjhao.","response":"Set unique hashable elements ka unordered collection hai. Duplicate values store nahi hoti."}
+{"prompt":"Define Python set.","response":"Set unique hashable elements ka unordered collection hai. Duplicate values store nahi hoti."}
+{"prompt":"Tell me about Python set.","response":"Set unique hashable elements ka unordered collection hai. Duplicate values store nahi hoti."}
+{"prompt":"Python exception kya hai?","response":"Exception runtime par aane wali error condition hai. try aur except blocks se selected exceptions handle ki ja sakti hain."}
+{"prompt":"Explain Python exception in simple words.","response":"Exception runtime par aane wali error condition hai. try aur except blocks se selected exceptions handle ki ja sakti hain."}
+{"prompt":"Python exception ko aasaan Hinglish mein samjhao.","response":"Exception runtime par aane wali error condition hai. try aur except blocks se selected exceptions handle ki ja sakti hain."}
+{"prompt":"Define Python exception.","response":"Exception runtime par aane wali error condition hai. try aur except blocks se selected exceptions handle ki ja sakti hain."}
+{"prompt":"Tell me about Python exception.","response":"Exception runtime par aane wali error condition hai. try aur except blocks se selected exceptions handle ki ja sakti hain."}
+{"prompt":"Python module kya hai?","response":"Module Python file hoti hai jisme reusable functions, classes ya variables hote hain aur import se use kiya ja sakta hai."}
+{"prompt":"Explain Python module in simple words.","response":"Module Python file hoti hai jisme reusable functions, classes ya variables hote hain aur import se use kiya ja sakta hai."}
+{"prompt":"Python module ko aasaan Hinglish mein samjhao.","response":"Module Python file hoti hai jisme reusable functions, classes ya variables hote hain aur import se use kiya ja sakta hai."}
+{"prompt":"Define Python module.","response":"Module Python file hoti hai jisme reusable functions, classes ya variables hote hain aur import se use kiya ja sakta hai."}
+{"prompt":"Tell me about Python module.","response":"Module Python file hoti hai jisme reusable functions, classes ya variables hote hain aur import se use kiya ja sakta hai."}
+{"prompt":"Python class kya hai?","response":"Class objects banane ka blueprint hai. Ismein data attributes aur methods define kiye ja sakte hain."}
+{"prompt":"Explain Python class in simple words.","response":"Class objects banane ka blueprint hai. Ismein data attributes aur methods define kiye ja sakte hain."}
+{"prompt":"Python class ko aasaan Hinglish mein samjhao.","response":"Class objects banane ka blueprint hai. Ismein data attributes aur methods define kiye ja sakte hain."}
+{"prompt":"Define Python class.","response":"Class objects banane ka blueprint hai. Ismein data attributes aur methods define kiye ja sakte hain."}
+{"prompt":"Tell me about Python class.","response":"Class objects banane ka blueprint hai. Ismein data attributes aur methods define kiye ja sakte hain."}
+{"prompt":"Object-oriented programming kya hai?","response":"OOP software design approach hai jo objects, classes, encapsulation, inheritance aur polymorphism jaise ideas use karti hai."}
+{"prompt":"Explain Object-oriented programming in simple words.","response":"OOP software design approach hai jo objects, classes, encapsulation, inheritance aur polymorphism jaise ideas use karti hai."}
+{"prompt":"Object-oriented programming ko aasaan Hinglish mein samjhao.","response":"OOP software design approach hai jo objects, classes, encapsulation, inheritance aur polymorphism jaise ideas use karti hai."}
+{"prompt":"Define Object-oriented programming.","response":"OOP software design approach hai jo objects, classes, encapsulation, inheritance aur polymorphism jaise ideas use karti hai."}
+{"prompt":"Tell me about Object-oriented programming.","response":"OOP software design approach hai jo objects, classes, encapsulation, inheritance aur polymorphism jaise ideas use karti hai."}
+{"prompt":"HTML heading kya hai?","response":"HTML headings h1 se h6 tak document ke section titles represent karti hain. Semantic order accessibility ke liye useful hai."}
+{"prompt":"Explain HTML heading in simple words.","response":"HTML headings h1 se h6 tak document ke section titles represent karti hain. Semantic order accessibility ke liye useful hai."}
+{"prompt":"HTML heading ko aasaan Hinglish mein samjhao.","response":"HTML headings h1 se h6 tak document ke section titles represent karti hain. Semantic order accessibility ke liye useful hai."}
+{"prompt":"Define HTML heading.","response":"HTML headings h1 se h6 tak document ke section titles represent karti hain. Semantic order accessibility ke liye useful hai."}
+{"prompt":"Tell me about HTML heading.","response":"HTML headings h1 se h6 tak document ke section titles represent karti hain. Semantic order accessibility ke liye useful hai."}
+{"prompt":"HTML form kya hai?","response":"HTML form user input collect karta hai aur submit hone par data configured endpoint ko bhej sakta hai."}
+{"prompt":"Explain HTML form in simple words.","response":"HTML form user input collect karta hai aur submit hone par data configured endpoint ko bhej sakta hai."}
+{"prompt":"HTML form ko aasaan Hinglish mein samjhao.","response":"HTML form user input collect karta hai aur submit hone par data configured endpoint ko bhej sakta hai."}
+{"prompt":"Define HTML form.","response":"HTML form user input collect karta hai aur submit hone par data configured endpoint ko bhej sakta hai."}
+{"prompt":"Tell me about HTML form.","response":"HTML form user input collect karta hai aur submit hone par data configured endpoint ko bhej sakta hai."}
+{"prompt":"CSS flexbox kya hai?","response":"Flexbox one-dimensional CSS layout system hai jo row ya column mein items align aur distribute karta hai."}
+{"prompt":"Explain CSS flexbox in simple words.","response":"Flexbox one-dimensional CSS layout system hai jo row ya column mein items align aur distribute karta hai."}
+{"prompt":"CSS flexbox ko aasaan Hinglish mein samjhao.","response":"Flexbox one-dimensional CSS layout system hai jo row ya column mein items align aur distribute karta hai."}
+{"prompt":"Define CSS flexbox.","response":"Flexbox one-dimensional CSS layout system hai jo row ya column mein items align aur distribute karta hai."}
+{"prompt":"Tell me about CSS flexbox.","response":"Flexbox one-dimensional CSS layout system hai jo row ya column mein items align aur distribute karta hai."}
+{"prompt":"CSS grid kya hai?","response":"CSS Grid two-dimensional layout system hai jo rows aur columns dono ko control kar sakta hai."}
+{"prompt":"Explain CSS grid in simple words.","response":"CSS Grid two-dimensional layout system hai jo rows aur columns dono ko control kar sakta hai."}
+{"prompt":"CSS grid ko aasaan Hinglish mein samjhao.","response":"CSS Grid two-dimensional layout system hai jo rows aur columns dono ko control kar sakta hai."}
+{"prompt":"Define CSS grid.","response":"CSS Grid two-dimensional layout system hai jo rows aur columns dono ko control kar sakta hai."}
+{"prompt":"Tell me about CSS grid.","response":"CSS Grid two-dimensional layout system hai jo rows aur columns dono ko control kar sakta hai."}
+{"prompt":"JavaScript event kya hai?","response":"Event browser mein hone wali activity hai, jaise click ya keypress. Event listener response code run karta hai."}
+{"prompt":"Explain JavaScript event in simple words.","response":"Event browser mein hone wali activity hai, jaise click ya keypress. Event listener response code run karta hai."}
+{"prompt":"JavaScript event ko aasaan Hinglish mein samjhao.","response":"Event browser mein hone wali activity hai, jaise click ya keypress. Event listener response code run karta hai."}
+{"prompt":"Define JavaScript event.","response":"Event browser mein hone wali activity hai, jaise click ya keypress. Event listener response code run karta hai."}
+{"prompt":"Tell me about JavaScript event.","response":"Event browser mein hone wali activity hai, jaise click ya keypress. Event listener response code run karta hai."}
+{"prompt":"JSON kya hai?","response":"JSON lightweight text data format hai jo objects, arrays, strings, numbers, booleans aur null represent karta hai."}
+{"prompt":"Explain JSON in simple words.","response":"JSON lightweight text data format hai jo objects, arrays, strings, numbers, booleans aur null represent karta hai."}
+{"prompt":"JSON ko aasaan Hinglish mein samjhao.","response":"JSON lightweight text data format hai jo objects, arrays, strings, numbers, booleans aur null represent karta hai."}
+{"prompt":"Define JSON.","response":"JSON lightweight text data format hai jo objects, arrays, strings, numbers, booleans aur null represent karta hai."}
+{"prompt":"Tell me about JSON.","response":"JSON lightweight text data format hai jo objects, arrays, strings, numbers, booleans aur null represent karta hai."}
+{"prompt":"Database kya hai?","response":"Database organized data collection hai jise software store, query aur update kar sakta hai."}
+{"prompt":"Explain Database in simple words.","response":"Database organized data collection hai jise software store, query aur update kar sakta hai."}
+{"prompt":"Database ko aasaan Hinglish mein samjhao.","response":"Database organized data collection hai jise software store, query aur update kar sakta hai."}
+{"prompt":"Define Database.","response":"Database organized data collection hai jise software store, query aur update kar sakta hai."}
+{"prompt":"Tell me about Database.","response":"Database organized data collection hai jise software store, query aur update kar sakta hai."}
+{"prompt":"SQL kya hai?","response":"SQL relational databases mein data query, insert, update aur manage karne ki language hai."}
+{"prompt":"Explain SQL in simple words.","response":"SQL relational databases mein data query, insert, update aur manage karne ki language hai."}
+{"prompt":"SQL ko aasaan Hinglish mein samjhao.","response":"SQL relational databases mein data query, insert, update aur manage karne ki language hai."}
+{"prompt":"Define SQL.","response":"SQL relational databases mein data query, insert, update aur manage karne ki language hai."}
+{"prompt":"Tell me about SQL.","response":"SQL relational databases mein data query, insert, update aur manage karne ki language hai."}
+{"prompt":"Primary key kya hai?","response":"Primary key table ki har row ko uniquely identify karti hai. Iski value unique aur non-null honi chahiye."}
+{"prompt":"Explain Primary key in simple words.","response":"Primary key table ki har row ko uniquely identify karti hai. Iski value unique aur non-null honi chahiye."}
+{"prompt":"Primary key ko aasaan Hinglish mein samjhao.","response":"Primary key table ki har row ko uniquely identify karti hai. Iski value unique aur non-null honi chahiye."}
+{"prompt":"Define Primary key.","response":"Primary key table ki har row ko uniquely identify karti hai. Iski value unique aur non-null honi chahiye."}
+{"prompt":"Tell me about Primary key.","response":"Primary key table ki har row ko uniquely identify karti hai. Iski value unique aur non-null honi chahiye."}
+{"prompt":"Foreign key kya hai?","response":"Foreign key ek table ke column ko doosre table ki key se link karti hai aur referential integrity support karti hai."}
+{"prompt":"Explain Foreign key in simple words.","response":"Foreign key ek table ke column ko doosre table ki key se link karti hai aur referential integrity support karti hai."}
+{"prompt":"Foreign key ko aasaan Hinglish mein samjhao.","response":"Foreign key ek table ke column ko doosre table ki key se link karti hai aur referential integrity support karti hai."}
+{"prompt":"Define Foreign key.","response":"Foreign key ek table ke column ko doosre table ki key se link karti hai aur referential integrity support karti hai."}
+{"prompt":"Tell me about Foreign key.","response":"Foreign key ek table ke column ko doosre table ki key se link karti hai aur referential integrity support karti hai."}
+{"prompt":"Machine learning kya hai?","response":"Machine learning algorithms data se patterns learn karte hain aur un patterns ka use prediction ya decision ke liye karte hain."}
+{"prompt":"Explain Machine learning in simple words.","response":"Machine learning algorithms data se patterns learn karte hain aur un patterns ka use prediction ya decision ke liye karte hain."}
+{"prompt":"Machine learning ko aasaan Hinglish mein samjhao.","response":"Machine learning algorithms data se patterns learn karte hain aur un patterns ka use prediction ya decision ke liye karte hain."}
+{"prompt":"Define Machine learning.","response":"Machine learning algorithms data se patterns learn karte hain aur un patterns ka use prediction ya decision ke liye karte hain."}
+{"prompt":"Tell me about Machine learning.","response":"Machine learning algorithms data se patterns learn karte hain aur un patterns ka use prediction ya decision ke liye karte hain."}
+{"prompt":"Supervised learning kya hai?","response":"Supervised learning labelled examples se learn karta hai, jahan har training input ke saath target answer diya hota hai."}
+{"prompt":"Explain Supervised learning in simple words.","response":"Supervised learning labelled examples se learn karta hai, jahan har training input ke saath target answer diya hota hai."}
+{"prompt":"Supervised learning ko aasaan Hinglish mein samjhao.","response":"Supervised learning labelled examples se learn karta hai, jahan har training input ke saath target answer diya hota hai."}
+{"prompt":"Define Supervised learning.","response":"Supervised learning labelled examples se learn karta hai, jahan har training input ke saath target answer diya hota hai."}
+{"prompt":"Tell me about Supervised learning.","response":"Supervised learning labelled examples se learn karta hai, jahan har training input ke saath target answer diya hota hai."}
+{"prompt":"Unsupervised learning kya hai?","response":"Unsupervised learning unlabelled data mein structure ya groups identify karta hai."}
+{"prompt":"Explain Unsupervised learning in simple words.","response":"Unsupervised learning unlabelled data mein structure ya groups identify karta hai."}
+{"prompt":"Unsupervised learning ko aasaan Hinglish mein samjhao.","response":"Unsupervised learning unlabelled data mein structure ya groups identify karta hai."}
+{"prompt":"Define Unsupervised learning.","response":"Unsupervised learning unlabelled data mein structure ya groups identify karta hai."}
+{"prompt":"Tell me about Unsupervised learning.","response":"Unsupervised learning unlabelled data mein structure ya groups identify karta hai."}
+{"prompt":"Reinforcement learning kya hai?","response":"Reinforcement learning agent environment mein actions leta hai aur rewards ke feedback se policy learn karta hai."}
+{"prompt":"Explain Reinforcement learning in simple words.","response":"Reinforcement learning agent environment mein actions leta hai aur rewards ke feedback se policy learn karta hai."}
+{"prompt":"Reinforcement learning ko aasaan Hinglish mein samjhao.","response":"Reinforcement learning agent environment mein actions leta hai aur rewards ke feedback se policy learn karta hai."}
+{"prompt":"Define Reinforcement learning.","response":"Reinforcement learning agent environment mein actions leta hai aur rewards ke feedback se policy learn karta hai."}
+{"prompt":"Tell me about Reinforcement learning.","response":"Reinforcement learning agent environment mein actions leta hai aur rewards ke feedback se policy learn karta hai."}
+{"prompt":"Overfitting kya hai?","response":"Overfitting tab hoti hai jab model training examples ko bahut closely fit karta hai aur unseen data par weak perform karta hai."}
+{"prompt":"Explain Overfitting in simple words.","response":"Overfitting tab hoti hai jab model training examples ko bahut closely fit karta hai aur unseen data par weak perform karta hai."}
+{"prompt":"Overfitting ko aasaan Hinglish mein samjhao.","response":"Overfitting tab hoti hai jab model training examples ko bahut closely fit karta hai aur unseen data par weak perform karta hai."}
+{"prompt":"Define Overfitting.","response":"Overfitting tab hoti hai jab model training examples ko bahut closely fit karta hai aur unseen data par weak perform karta hai."}
+{"prompt":"Tell me about Overfitting.","response":"Overfitting tab hoti hai jab model training examples ko bahut closely fit karta hai aur unseen data par weak perform karta hai."}
+{"prompt":"Underfitting kya hai?","response":"Underfitting tab hoti hai jab model data ke important patterns bhi learn nahi kar pata, aksar insufficient capacity ya training ke karan."}
+{"prompt":"Explain Underfitting in simple words.","response":"Underfitting tab hoti hai jab model data ke important patterns bhi learn nahi kar pata, aksar insufficient capacity ya training ke karan."}
+{"prompt":"Underfitting ko aasaan Hinglish mein samjhao.","response":"Underfitting tab hoti hai jab model data ke important patterns bhi learn nahi kar pata, aksar insufficient capacity ya training ke karan."}
+{"prompt":"Define Underfitting.","response":"Underfitting tab hoti hai jab model data ke important patterns bhi learn nahi kar pata, aksar insufficient capacity ya training ke karan."}
+{"prompt":"Tell me about Underfitting.","response":"Underfitting tab hoti hai jab model data ke important patterns bhi learn nahi kar pata, aksar insufficient capacity ya training ke karan."}
+{"prompt":"Learning rate kya hai?","response":"Learning rate optimizer ke parameter updates ka step size control karta hai. Bahut high ya low value training ko difficult bana sakti hai."}
+{"prompt":"Explain Learning rate in simple words.","response":"Learning rate optimizer ke parameter updates ka step size control karta hai. Bahut high ya low value training ko difficult bana sakti hai."}
+{"prompt":"Learning rate ko aasaan Hinglish mein samjhao.","response":"Learning rate optimizer ke parameter updates ka step size control karta hai. Bahut high ya low value training ko difficult bana sakti hai."}
+{"prompt":"Define Learning rate.","response":"Learning rate optimizer ke parameter updates ka step size control karta hai. Bahut high ya low value training ko difficult bana sakti hai."}
+{"prompt":"Tell me about Learning rate.","response":"Learning rate optimizer ke parameter updates ka step size control karta hai. Bahut high ya low value training ko difficult bana sakti hai."}
+{"prompt":"Batch size kya hai?","response":"Batch size ek optimizer update se pehle process kiye gaye training examples ki sankhya hai."}
+{"prompt":"Explain Batch size in simple words.","response":"Batch size ek optimizer update se pehle process kiye gaye training examples ki sankhya hai."}
+{"prompt":"Batch size ko aasaan Hinglish mein samjhao.","response":"Batch size ek optimizer update se pehle process kiye gaye training examples ki sankhya hai."}
+{"prompt":"Define Batch size.","response":"Batch size ek optimizer update se pehle process kiye gaye training examples ki sankhya hai."}
+{"prompt":"Tell me about Batch size.","response":"Batch size ek optimizer update se pehle process kiye gaye training examples ki sankhya hai."}
+{"prompt":"Loss function kya hai?","response":"Loss function model predictions aur target values ke beech error quantify karta hai. Training loss minimize karne ki koshish karti hai."}
+{"prompt":"Explain Loss function in simple words.","response":"Loss function model predictions aur target values ke beech error quantify karta hai. Training loss minimize karne ki koshish karti hai."}
+{"prompt":"Loss function ko aasaan Hinglish mein samjhao.","response":"Loss function model predictions aur target values ke beech error quantify karta hai. Training loss minimize karne ki koshish karti hai."}
+{"prompt":"Define Loss function.","response":"Loss function model predictions aur target values ke beech error quantify karta hai. Training loss minimize karne ki koshish karti hai."}
+{"prompt":"Tell me about Loss function.","response":"Loss function model predictions aur target values ke beech error quantify karta hai. Training loss minimize karne ki koshish karti hai."}
+{"prompt":"Backpropagation kya hai?","response":"Backpropagation chain rule se loss ke gradients network ke parameters tak calculate karta hai."}
+{"prompt":"Explain Backpropagation in simple words.","response":"Backpropagation chain rule se loss ke gradients network ke parameters tak calculate karta hai."}
+{"prompt":"Backpropagation ko aasaan Hinglish mein samjhao.","response":"Backpropagation chain rule se loss ke gradients network ke parameters tak calculate karta hai."}
+{"prompt":"Define Backpropagation.","response":"Backpropagation chain rule se loss ke gradients network ke parameters tak calculate karta hai."}
+{"prompt":"Tell me about Backpropagation.","response":"Backpropagation chain rule se loss ke gradients network ke parameters tak calculate karta hai."}
+{"prompt":"Optimizer kya hai?","response":"Optimizer gradients ka use karke model parameters update karta hai. Adam aur SGD common examples hain."}
+{"prompt":"Explain Optimizer in simple words.","response":"Optimizer gradients ka use karke model parameters update karta hai. Adam aur SGD common examples hain."}
+{"prompt":"Optimizer ko aasaan Hinglish mein samjhao.","response":"Optimizer gradients ka use karke model parameters update karta hai. Adam aur SGD common examples hain."}
+{"prompt":"Define Optimizer.","response":"Optimizer gradients ka use karke model parameters update karta hai. Adam aur SGD common examples hain."}
+{"prompt":"Tell me about Optimizer.","response":"Optimizer gradients ka use karke model parameters update karta hai. Adam aur SGD common examples hain."}
+{"prompt":"Tokenization kya hai?","response":"Tokenization text ko smaller units mein convert karti hai, jaise words, subwords ya bytes, jinhe model process kar sake."}
+{"prompt":"Explain Tokenization in simple words.","response":"Tokenization text ko smaller units mein convert karti hai, jaise words, subwords ya bytes, jinhe model process kar sake."}
+{"prompt":"Tokenization ko aasaan Hinglish mein samjhao.","response":"Tokenization text ko smaller units mein convert karti hai, jaise words, subwords ya bytes, jinhe model process kar sake."}
+{"prompt":"Define Tokenization.","response":"Tokenization text ko smaller units mein convert karti hai, jaise words, subwords ya bytes, jinhe model process kar sake."}
+{"prompt":"Tell me about Tokenization.","response":"Tokenization text ko smaller units mein convert karti hai, jaise words, subwords ya bytes, jinhe model process kar sake."}
+{"prompt":"Embedding kya hai?","response":"Embedding discrete token ko learned numerical vector mein map karti hai."}
+{"prompt":"Explain Embedding in simple words.","response":"Embedding discrete token ko learned numerical vector mein map karti hai."}
+{"prompt":"Embedding ko aasaan Hinglish mein samjhao.","response":"Embedding discrete token ko learned numerical vector mein map karti hai."}
+{"prompt":"Define Embedding.","response":"Embedding discrete token ko learned numerical vector mein map karti hai."}
+{"prompt":"Tell me about Embedding.","response":"Embedding discrete token ko learned numerical vector mein map karti hai."}
+{"prompt":"Attention mechanism kya hai?","response":"Attention mechanism model ko context ke relevant tokens par different weights dene deta hai."}
+{"prompt":"Explain Attention mechanism in simple words.","response":"Attention mechanism model ko context ke relevant tokens par different weights dene deta hai."}
+{"prompt":"Attention mechanism ko aasaan Hinglish mein samjhao.","response":"Attention mechanism model ko context ke relevant tokens par different weights dene deta hai."}
+{"prompt":"Define Attention mechanism.","response":"Attention mechanism model ko context ke relevant tokens par different weights dene deta hai."}
+{"prompt":"Tell me about Attention mechanism.","response":"Attention mechanism model ko context ke relevant tokens par different weights dene deta hai."}
+{"prompt":"Language model kya hai?","response":"Language model text sequences ke statistical patterns learn karta hai aur context ke basis par next token predict kar sakta hai."}
+{"prompt":"Explain Language model in simple words.","response":"Language model text sequences ke statistical patterns learn karta hai aur context ke basis par next token predict kar sakta hai."}
+{"prompt":"Language model ko aasaan Hinglish mein samjhao.","response":"Language model text sequences ke statistical patterns learn karta hai aur context ke basis par next token predict kar sakta hai."}
+{"prompt":"Define Language model.","response":"Language model text sequences ke statistical patterns learn karta hai aur context ke basis par next token predict kar sakta hai."}
+{"prompt":"Tell me about Language model.","response":"Language model text sequences ke statistical patterns learn karta hai aur context ke basis par next token predict kar sakta hai."}
+{"prompt":"Hallucination in AI kya hai?","response":"AI hallucination tab hoti hai jab model confident-sounding lekin incorrect ya unsupported information generate karta hai."}
+{"prompt":"Explain Hallucination in AI in simple words.","response":"AI hallucination tab hoti hai jab model confident-sounding lekin incorrect ya unsupported information generate karta hai."}
+{"prompt":"Hallucination in AI ko aasaan Hinglish mein samjhao.","response":"AI hallucination tab hoti hai jab model confident-sounding lekin incorrect ya unsupported information generate karta hai."}
+{"prompt":"Define Hallucination in AI.","response":"AI hallucination tab hoti hai jab model confident-sounding lekin incorrect ya unsupported information generate karta hai."}
+{"prompt":"Tell me about Hallucination in AI.","response":"AI hallucination tab hoti hai jab model confident-sounding lekin incorrect ya unsupported information generate karta hai."}
+{"prompt":"Evaluation dataset kya hai?","response":"Evaluation dataset model ki performance ko training se alag examples par measure karne ke liye hota hai."}
+{"prompt":"Explain Evaluation dataset in simple words.","response":"Evaluation dataset model ki performance ko training se alag examples par measure karne ke liye hota hai."}
+{"prompt":"Evaluation dataset ko aasaan Hinglish mein samjhao.","response":"Evaluation dataset model ki performance ko training se alag examples par measure karne ke liye hota hai."}
+{"prompt":"Define Evaluation dataset.","response":"Evaluation dataset model ki performance ko training se alag examples par measure karne ke liye hota hai."}
+{"prompt":"Tell me about Evaluation dataset.","response":"Evaluation dataset model ki performance ko training se alag examples par measure karne ke liye hota hai."}
+{"prompt":"Precision kya hai?","response":"Precision predicted positive cases mein correct positive cases ka fraction hai. Precision = TP/(TP+FP)."}
+{"prompt":"Explain Precision in simple words.","response":"Precision predicted positive cases mein correct positive cases ka fraction hai. Precision = TP/(TP+FP)."}
+{"prompt":"Precision ko aasaan Hinglish mein samjhao.","response":"Precision predicted positive cases mein correct positive cases ka fraction hai. Precision = TP/(TP+FP)."}
+{"prompt":"Define Precision.","response":"Precision predicted positive cases mein correct positive cases ka fraction hai. Precision = TP/(TP+FP)."}
+{"prompt":"Tell me about Precision.","response":"Precision predicted positive cases mein correct positive cases ka fraction hai. Precision = TP/(TP+FP)."}
+{"prompt":"Recall kya hai?","response":"Recall actual positive cases mein correctly identified positive cases ka fraction hai. Recall = TP/(TP+FN)."}
+{"prompt":"Explain Recall in simple words.","response":"Recall actual positive cases mein correctly identified positive cases ka fraction hai. Recall = TP/(TP+FN)."}
+{"prompt":"Recall ko aasaan Hinglish mein samjhao.","response":"Recall actual positive cases mein correctly identified positive cases ka fraction hai. Recall = TP/(TP+FN)."}
+{"prompt":"Define Recall.","response":"Recall actual positive cases mein correctly identified positive cases ka fraction hai. Recall = TP/(TP+FN)."}
+{"prompt":"Tell me about Recall.","response":"Recall actual positive cases mein correctly identified positive cases ka fraction hai. Recall = TP/(TP+FN)."}
+{"prompt":"F1 score kya hai?","response":"F1 score precision aur recall ka harmonic mean hai. F1 = 2PR/(P+R), jab denominator nonzero ho."}
+{"prompt":"Explain F1 score in simple words.","response":"F1 score precision aur recall ka harmonic mean hai. F1 = 2PR/(P+R), jab denominator nonzero ho."}
+{"prompt":"F1 score ko aasaan Hinglish mein samjhao.","response":"F1 score precision aur recall ka harmonic mean hai. F1 = 2PR/(P+R), jab denominator nonzero ho."}
+{"prompt":"Define F1 score.","response":"F1 score precision aur recall ka harmonic mean hai. F1 = 2PR/(P+R), jab denominator nonzero ho."}
+{"prompt":"Tell me about F1 score.","response":"F1 score precision aur recall ka harmonic mean hai. F1 = 2PR/(P+R), jab denominator nonzero ho."}
+{"prompt":"Classification kya hai?","response":"Classification model input ko predefined categories ya labels mein assign karta hai."}
+{"prompt":"Explain Classification in simple words.","response":"Classification model input ko predefined categories ya labels mein assign karta hai."}
+{"prompt":"Classification ko aasaan Hinglish mein samjhao.","response":"Classification model input ko predefined categories ya labels mein assign karta hai."}
+{"prompt":"Define Classification.","response":"Classification model input ko predefined categories ya labels mein assign karta hai."}
+{"prompt":"Tell me about Classification.","response":"Classification model input ko predefined categories ya labels mein assign karta hai."}
+{"prompt":"Regression kya hai?","response":"Regression model continuous numerical target predict karta hai, jaise temperature ya house price."}
+{"prompt":"Explain Regression in simple words.","response":"Regression model continuous numerical target predict karta hai, jaise temperature ya house price."}
+{"prompt":"Regression ko aasaan Hinglish mein samjhao.","response":"Regression model continuous numerical target predict karta hai, jaise temperature ya house price."}
+{"prompt":"Define Regression.","response":"Regression model continuous numerical target predict karta hai, jaise temperature ya house price."}
+{"prompt":"Tell me about Regression.","response":"Regression model continuous numerical target predict karta hai, jaise temperature ya house price."}
+{"prompt":"Clustering kya hai?","response":"Clustering similar data points ko groups mein organize karta hai bina predefined labels ke."}
+{"prompt":"Explain Clustering in simple words.","response":"Clustering similar data points ko groups mein organize karta hai bina predefined labels ke."}
+{"prompt":"Clustering ko aasaan Hinglish mein samjhao.","response":"Clustering similar data points ko groups mein organize karta hai bina predefined labels ke."}
+{"prompt":"Define Clustering.","response":"Clustering similar data points ko groups mein organize karta hai bina predefined labels ke."}
+{"prompt":"Tell me about Clustering.","response":"Clustering similar data points ko groups mein organize karta hai bina predefined labels ke."}
+{"prompt":"Gradient descent kya hai?","response":"Gradient descent loss ke gradient ki opposite direction mein parameters update karke loss kam karne ki optimization method hai."}
+{"prompt":"Explain Gradient descent in simple words.","response":"Gradient descent loss ke gradient ki opposite direction mein parameters update karke loss kam karne ki optimization method hai."}
+{"prompt":"Gradient descent ko aasaan Hinglish mein samjhao.","response":"Gradient descent loss ke gradient ki opposite direction mein parameters update karke loss kam karne ki optimization method hai."}
+{"prompt":"Define Gradient descent.","response":"Gradient descent loss ke gradient ki opposite direction mein parameters update karke loss kam karne ki optimization method hai."}
+{"prompt":"Tell me about Gradient descent.","response":"Gradient descent loss ke gradient ki opposite direction mein parameters update karke loss kam karne ki optimization method hai."}
+{"prompt":"Neural network epoch kya hai?","response":"Epoch training dataset ke har example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Explain Neural network epoch in simple words.","response":"Epoch training dataset ke har example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Neural network epoch ko aasaan Hinglish mein samjhao.","response":"Epoch training dataset ke har example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Define Neural network epoch.","response":"Epoch training dataset ke har example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Tell me about Neural network epoch.","response":"Epoch training dataset ke har example ko ek baar process karne ka complete pass hai."}
+{"prompt":"Train validation test kya hai?","response":"Training set weights learn karne ke liye, validation set model choices tune karne ke liye aur test set final evaluation ke liye use hota hai."}
+{"prompt":"Explain Train validation test in simple words.","response":"Training set weights learn karne ke liye, validation set model choices tune karne ke liye aur test set final evaluation ke liye use hota hai."}
+{"prompt":"Train validation test ko aasaan Hinglish mein samjhao.","response":"Training set weights learn karne ke liye, validation set model choices tune karne ke liye aur test set final evaluation ke liye use hota hai."}
+{"prompt":"Define Train validation test.","response":"Training set weights learn karne ke liye, validation set model choices tune karne ke liye aur test set final evaluation ke liye use hota hai."}
+{"prompt":"Tell me about Train validation test.","response":"Training set weights learn karne ke liye, validation set model choices tune karne ke liye aur test set final evaluation ke liye use hota hai."}
+{"prompt":"Explain Cybersecurity in simple words.","response":"Cybersecurity systems, networks aur data ko unauthorized access, damage aur disruption se protect karne ka practice hai."}
+{"prompt":"Cybersecurity ko aasaan Hinglish mein samjhao.","response":"Cybersecurity systems, networks aur data ko unauthorized access, damage aur disruption se protect karne ka practice hai."}
+{"prompt":"Define Cybersecurity.","response":"Cybersecurity systems, networks aur data ko unauthorized access, damage aur disruption se protect karne ka practice hai."}
+{"prompt":"Tell me about Cybersecurity.","response":"Cybersecurity systems, networks aur data ko unauthorized access, damage aur disruption se protect karne ka practice hai."}
+{"prompt":"Phishing kya hai?","response":"Phishing deceptive message ya website ke through passwords ya personal information churaane ki koshish hoti hai. Unknown links ko verify karo."}
+{"prompt":"Explain Phishing in simple words.","response":"Phishing deceptive message ya website ke through passwords ya personal information churaane ki koshish hoti hai. Unknown links ko verify karo."}
+{"prompt":"Phishing ko aasaan Hinglish mein samjhao.","response":"Phishing deceptive message ya website ke through passwords ya personal information churaane ki koshish hoti hai. Unknown links ko verify karo."}
+{"prompt":"Define Phishing.","response":"Phishing deceptive message ya website ke through passwords ya personal information churaane ki koshish hoti hai. Unknown links ko verify karo."}
+{"prompt":"Tell me about Phishing.","response":"Phishing deceptive message ya website ke through passwords ya personal information churaane ki koshish hoti hai. Unknown links ko verify karo."}
+{"prompt":"Malware kya hai?","response":"Malware harmful software ka general naam hai, jaise virus, worm, trojan aur ransomware."}
+{"prompt":"Explain Malware in simple words.","response":"Malware harmful software ka general naam hai, jaise virus, worm, trojan aur ransomware."}
+{"prompt":"Malware ko aasaan Hinglish mein samjhao.","response":"Malware harmful software ka general naam hai, jaise virus, worm, trojan aur ransomware."}
+{"prompt":"Define Malware.","response":"Malware harmful software ka general naam hai, jaise virus, worm, trojan aur ransomware."}
+{"prompt":"Tell me about Malware.","response":"Malware harmful software ka general naam hai, jaise virus, worm, trojan aur ransomware."}
+{"prompt":"Ransomware kya hai?","response":"Ransomware files ya systems ko inaccessible karke payment demand karne wala malware hai. Offline backups aur updates protection mein madad karte hain."}
+{"prompt":"Explain Ransomware in simple words.","response":"Ransomware files ya systems ko inaccessible karke payment demand karne wala malware hai. Offline backups aur updates protection mein madad karte hain."}
+{"prompt":"Ransomware ko aasaan Hinglish mein samjhao.","response":"Ransomware files ya systems ko inaccessible karke payment demand karne wala malware hai. Offline backups aur updates protection mein madad karte hain."}
+{"prompt":"Define Ransomware.","response":"Ransomware files ya systems ko inaccessible karke payment demand karne wala malware hai. Offline backups aur updates protection mein madad karte hain."}
+{"prompt":"Tell me about Ransomware.","response":"Ransomware files ya systems ko inaccessible karke payment demand karne wala malware hai. Offline backups aur updates protection mein madad karte hain."}
+{"prompt":"Password manager kya hai?","response":"Password manager unique strong passwords generate aur securely store karta hai. Account ke liye MFA bhi enable karna useful hai."}
+{"prompt":"Explain Password manager in simple words.","response":"Password manager unique strong passwords generate aur securely store karta hai. Account ke liye MFA bhi enable karna useful hai."}
+{"prompt":"Password manager ko aasaan Hinglish mein samjhao.","response":"Password manager unique strong passwords generate aur securely store karta hai. Account ke liye MFA bhi enable karna useful hai."}
+{"prompt":"Define Password manager.","response":"Password manager unique strong passwords generate aur securely store karta hai. Account ke liye MFA bhi enable karna useful hai."}
+{"prompt":"Tell me about Password manager.","response":"Password manager unique strong passwords generate aur securely store karta hai. Account ke liye MFA bhi enable karna useful hai."}
+{"prompt":"Two-factor authentication kya hai?","response":"Two-factor authentication login mein do different factor categories maangta hai, jaise password aur authenticator app code."}
+{"prompt":"Explain Two-factor authentication in simple words.","response":"Two-factor authentication login mein do different factor categories maangta hai, jaise password aur authenticator app code."}
+{"prompt":"Two-factor authentication ko aasaan Hinglish mein samjhao.","response":"Two-factor authentication login mein do different factor categories maangta hai, jaise password aur authenticator app code."}
+{"prompt":"Define Two-factor authentication.","response":"Two-factor authentication login mein do different factor categories maangta hai, jaise password aur authenticator app code."}
+{"prompt":"Tell me about Two-factor authentication.","response":"Two-factor authentication login mein do different factor categories maangta hai, jaise password aur authenticator app code."}
+{"prompt":"Encryption kya hai?","response":"Encryption cryptographic key ke through readable data ko protected ciphertext mein convert karti hai."}
+{"prompt":"Explain Encryption in simple words.","response":"Encryption cryptographic key ke through readable data ko protected ciphertext mein convert karti hai."}
+{"prompt":"Encryption ko aasaan Hinglish mein samjhao.","response":"Encryption cryptographic key ke through readable data ko protected ciphertext mein convert karti hai."}
+{"prompt":"Define Encryption.","response":"Encryption cryptographic key ke through readable data ko protected ciphertext mein convert karti hai."}
+{"prompt":"Tell me about Encryption.","response":"Encryption cryptographic key ke through readable data ko protected ciphertext mein convert karti hai."}
+{"prompt":"Hashing kya hai?","response":"Hash function input ko fixed-size digest mein map karta hai. Secure password storage ke liye salted password-hashing algorithms use hote hain."}
+{"prompt":"Explain Hashing in simple words.","response":"Hash function input ko fixed-size digest mein map karta hai. Secure password storage ke liye salted password-hashing algorithms use hote hain."}
+{"prompt":"Hashing ko aasaan Hinglish mein samjhao.","response":"Hash function input ko fixed-size digest mein map karta hai. Secure password storage ke liye salted password-hashing algorithms use hote hain."}
+{"prompt":"Define Hashing.","response":"Hash function input ko fixed-size digest mein map karta hai. Secure password storage ke liye salted password-hashing algorithms use hote hain."}
+{"prompt":"Tell me about Hashing.","response":"Hash function input ko fixed-size digest mein map karta hai. Secure password storage ke liye salted password-hashing algorithms use hote hain."}
+{"prompt":"HTTPS kya hai?","response":"HTTPS HTTP communication ko TLS se encrypt aur authenticate karta hai, jisse network par data protection improve hoti hai."}
+{"prompt":"Explain HTTPS in simple words.","response":"HTTPS HTTP communication ko TLS se encrypt aur authenticate karta hai, jisse network par data protection improve hoti hai."}
+{"prompt":"HTTPS ko aasaan Hinglish mein samjhao.","response":"HTTPS HTTP communication ko TLS se encrypt aur authenticate karta hai, jisse network par data protection improve hoti hai."}
+{"prompt":"Define HTTPS.","response":"HTTPS HTTP communication ko TLS se encrypt aur authenticate karta hai, jisse network par data protection improve hoti hai."}
+{"prompt":"Tell me about HTTPS.","response":"HTTPS HTTP communication ko TLS se encrypt aur authenticate karta hai, jisse network par data protection improve hoti hai."}
+{"prompt":"Firewall kya hai?","response":"Firewall network traffic ko configured security rules ke basis par allow ya block karta hai."}
+{"prompt":"Explain Firewall in simple words.","response":"Firewall network traffic ko configured security rules ke basis par allow ya block karta hai."}
+{"prompt":"Firewall ko aasaan Hinglish mein samjhao.","response":"Firewall network traffic ko configured security rules ke basis par allow ya block karta hai."}
+{"prompt":"Define Firewall.","response":"Firewall network traffic ko configured security rules ke basis par allow ya block karta hai."}
+{"prompt":"Tell me about Firewall.","response":"Firewall network traffic ko configured security rules ke basis par allow ya block karta hai."}
+{"prompt":"Software update kya hai?","response":"Software update bugs fix, security vulnerabilities patch aur kabhi naye features add karta hai."}
+{"prompt":"Explain Software update in simple words.","response":"Software update bugs fix, security vulnerabilities patch aur kabhi naye features add karta hai."}
+{"prompt":"Software update ko aasaan Hinglish mein samjhao.","response":"Software update bugs fix, security vulnerabilities patch aur kabhi naye features add karta hai."}
+{"prompt":"Define Software update.","response":"Software update bugs fix, security vulnerabilities patch aur kabhi naye features add karta hai."}
+{"prompt":"Tell me about Software update.","response":"Software update bugs fix, security vulnerabilities patch aur kabhi naye features add karta hai."}
+{"prompt":"Backup strategy kya hai?","response":"Important data ki multiple backups rakho, ek copy offline ya separate location par rakho, aur restore process test karo."}
+{"prompt":"Explain Backup strategy in simple words.","response":"Important data ki multiple backups rakho, ek copy offline ya separate location par rakho, aur restore process test karo."}
+{"prompt":"Backup strategy ko aasaan Hinglish mein samjhao.","response":"Important data ki multiple backups rakho, ek copy offline ya separate location par rakho, aur restore process test karo."}
+{"prompt":"Define Backup strategy.","response":"Important data ki multiple backups rakho, ek copy offline ya separate location par rakho, aur restore process test karo."}
+{"prompt":"Tell me about Backup strategy.","response":"Important data ki multiple backups rakho, ek copy offline ya separate location par rakho, aur restore process test karo."}
+{"prompt":"Explain Photosynthesis in simple words.","response":"Photosynthesis mein plants light energy use karke carbon dioxide aur water se sugars banate hain aur oxygen release karte hain."}
+{"prompt":"Photosynthesis ko aasaan Hinglish mein samjhao.","response":"Photosynthesis mein plants light energy use karke carbon dioxide aur water se sugars banate hain aur oxygen release karte hain."}
+{"prompt":"Define Photosynthesis.","response":"Photosynthesis mein plants light energy use karke carbon dioxide aur water se sugars banate hain aur oxygen release karte hain."}
+{"prompt":"Tell me about Photosynthesis.","response":"Photosynthesis mein plants light energy use karke carbon dioxide aur water se sugars banate hain aur oxygen release karte hain."}
+{"prompt":"Cell nucleus kya hai?","response":"Nucleus eukaryotic cell ka compartment hai jisme most genetic DNA hota hai aur gene expression regulate hoti hai."}
+{"prompt":"Explain Cell nucleus in simple words.","response":"Nucleus eukaryotic cell ka compartment hai jisme most genetic DNA hota hai aur gene expression regulate hoti hai."}
+{"prompt":"Cell nucleus ko aasaan Hinglish mein samjhao.","response":"Nucleus eukaryotic cell ka compartment hai jisme most genetic DNA hota hai aur gene expression regulate hoti hai."}
+{"prompt":"Define Cell nucleus.","response":"Nucleus eukaryotic cell ka compartment hai jisme most genetic DNA hota hai aur gene expression regulate hoti hai."}
+{"prompt":"Tell me about Cell nucleus.","response":"Nucleus eukaryotic cell ka compartment hai jisme most genetic DNA hota hai aur gene expression regulate hoti hai."}
+{"prompt":"Mitochondria kya hai?","response":"Mitochondria cellular respiration ke through cells ke liye ATP production mein major role play karte hain."}
+{"prompt":"Explain Mitochondria in simple words.","response":"Mitochondria cellular respiration ke through cells ke liye ATP production mein major role play karte hain."}
+{"prompt":"Mitochondria ko aasaan Hinglish mein samjhao.","response":"Mitochondria cellular respiration ke through cells ke liye ATP production mein major role play karte hain."}
+{"prompt":"Define Mitochondria.","response":"Mitochondria cellular respiration ke through cells ke liye ATP production mein major role play karte hain."}
+{"prompt":"Tell me about Mitochondria.","response":"Mitochondria cellular respiration ke through cells ke liye ATP production mein major role play karte hain."}
+{"prompt":"Ribosome kya hai?","response":"Ribosome mRNA instructions ko read karke amino acids ko protein chain mein assemble karta hai."}
+{"prompt":"Explain Ribosome in simple words.","response":"Ribosome mRNA instructions ko read karke amino acids ko protein chain mein assemble karta hai."}
+{"prompt":"Ribosome ko aasaan Hinglish mein samjhao.","response":"Ribosome mRNA instructions ko read karke amino acids ko protein chain mein assemble karta hai."}
+{"prompt":"Define Ribosome.","response":"Ribosome mRNA instructions ko read karke amino acids ko protein chain mein assemble karta hai."}
+{"prompt":"Tell me about Ribosome.","response":"Ribosome mRNA instructions ko read karke amino acids ko protein chain mein assemble karta hai."}
+{"prompt":"Cell membrane kya hai?","response":"Cell membrane selectively permeable boundary hai jo cell ke andar aur bahar substances ke movement ko regulate karti hai."}
+{"prompt":"Explain Cell membrane in simple words.","response":"Cell membrane selectively permeable boundary hai jo cell ke andar aur bahar substances ke movement ko regulate karti hai."}
+{"prompt":"Cell membrane ko aasaan Hinglish mein samjhao.","response":"Cell membrane selectively permeable boundary hai jo cell ke andar aur bahar substances ke movement ko regulate karti hai."}
+{"prompt":"Define Cell membrane.","response":"Cell membrane selectively permeable boundary hai jo cell ke andar aur bahar substances ke movement ko regulate karti hai."}
+{"prompt":"Tell me about Cell membrane.","response":"Cell membrane selectively permeable boundary hai jo cell ke andar aur bahar substances ke movement ko regulate karti hai."}
+{"prompt":"DNA kya hai?","response":"DNA genetic instructions store karne wala molecule hai. Iski common cellular form double helix hoti hai."}
+{"prompt":"Explain DNA in simple words.","response":"DNA genetic instructions store karne wala molecule hai. Iski common cellular form double helix hoti hai."}
+{"prompt":"DNA ko aasaan Hinglish mein samjhao.","response":"DNA genetic instructions store karne wala molecule hai. Iski common cellular form double helix hoti hai."}
+{"prompt":"Define DNA.","response":"DNA genetic instructions store karne wala molecule hai. Iski common cellular form double helix hoti hai."}
+{"prompt":"Tell me about DNA.","response":"DNA genetic instructions store karne wala molecule hai. Iski common cellular form double helix hoti hai."}
+{"prompt":"RNA kya hai?","response":"RNA nucleic acid hai jo gene expression aur protein synthesis mein multiple roles play karta hai."}
+{"prompt":"Explain RNA in simple words.","response":"RNA nucleic acid hai jo gene expression aur protein synthesis mein multiple roles play karta hai."}
+{"prompt":"RNA ko aasaan Hinglish mein samjhao.","response":"RNA nucleic acid hai jo gene expression aur protein synthesis mein multiple roles play karta hai."}
+{"prompt":"Define RNA.","response":"RNA nucleic acid hai jo gene expression aur protein synthesis mein multiple roles play karta hai."}
+{"prompt":"Tell me about RNA.","response":"RNA nucleic acid hai jo gene expression aur protein synthesis mein multiple roles play karta hai."}
+{"prompt":"Gene kya hai?","response":"Gene DNA ka region hai jo functional RNA ya protein product banane ki information rakhta hai."}
+{"prompt":"Explain Gene in simple words.","response":"Gene DNA ka region hai jo functional RNA ya protein product banane ki information rakhta hai."}
+{"prompt":"Gene ko aasaan Hinglish mein samjhao.","response":"Gene DNA ka region hai jo functional RNA ya protein product banane ki information rakhta hai."}
+{"prompt":"Define Gene.","response":"Gene DNA ka region hai jo functional RNA ya protein product banane ki information rakhta hai."}
+{"prompt":"Tell me about Gene.","response":"Gene DNA ka region hai jo functional RNA ya protein product banane ki information rakhta hai."}
+{"prompt":"Evolution kya hai?","response":"Evolution populations mein inherited characteristics ke generations ke across change hone ka process hai."}
+{"prompt":"Explain Evolution in simple words.","response":"Evolution populations mein inherited characteristics ke generations ke across change hone ka process hai."}
+{"prompt":"Evolution ko aasaan Hinglish mein samjhao.","response":"Evolution populations mein inherited characteristics ke generations ke across change hone ka process hai."}
+{"prompt":"Define Evolution.","response":"Evolution populations mein inherited characteristics ke generations ke across change hone ka process hai."}
+{"prompt":"Tell me about Evolution.","response":"Evolution populations mein inherited characteristics ke generations ke across change hone ka process hai."}
+{"prompt":"Ecosystem kya hai?","response":"Ecosystem living organisms aur unke physical environment ka interacting system hai."}
+{"prompt":"Explain Ecosystem in simple words.","response":"Ecosystem living organisms aur unke physical environment ka interacting system hai."}
+{"prompt":"Ecosystem ko aasaan Hinglish mein samjhao.","response":"Ecosystem living organisms aur unke physical environment ka interacting system hai."}
+{"prompt":"Define Ecosystem.","response":"Ecosystem living organisms aur unke physical environment ka interacting system hai."}
+{"prompt":"Tell me about Ecosystem.","response":"Ecosystem living organisms aur unke physical environment ka interacting system hai."}
+{"prompt":"Food chain kya hai?","response":"Food chain organisms ke beech energy transfer ka simplified sequence dikhati hai."}
+{"prompt":"Explain Food chain in simple words.","response":"Food chain organisms ke beech energy transfer ka simplified sequence dikhati hai."}
+{"prompt":"Food chain ko aasaan Hinglish mein samjhao.","response":"Food chain organisms ke beech energy transfer ka simplified sequence dikhati hai."}
+{"prompt":"Define Food chain.","response":"Food chain organisms ke beech energy transfer ka simplified sequence dikhati hai."}
+{"prompt":"Tell me about Food chain.","response":"Food chain organisms ke beech energy transfer ka simplified sequence dikhati hai."}
+{"prompt":"Water cycle kya hai?","response":"Water cycle evaporation, condensation, precipitation aur runoff ke through water ka continuous movement hai."}
+{"prompt":"Explain Water cycle in simple words.","response":"Water cycle evaporation, condensation, precipitation aur runoff ke through water ka continuous movement hai."}
+{"prompt":"Water cycle ko aasaan Hinglish mein samjhao.","response":"Water cycle evaporation, condensation, precipitation aur runoff ke through water ka continuous movement hai."}
+{"prompt":"Define Water cycle.","response":"Water cycle evaporation, condensation, precipitation aur runoff ke through water ka continuous movement hai."}
+{"prompt":"Tell me about Water cycle.","response":"Water cycle evaporation, condensation, precipitation aur runoff ke through water ka continuous movement hai."}
+{"prompt":"Greenhouse effect kya hai?","response":"Greenhouse gases Earth se emitted infrared radiation ka kuch hissa absorb aur re-emit karti hain, jisse lower atmosphere warm hota hai."}
+{"prompt":"Explain Greenhouse effect in simple words.","response":"Greenhouse gases Earth se emitted infrared radiation ka kuch hissa absorb aur re-emit karti hain, jisse lower atmosphere warm hota hai."}
+{"prompt":"Greenhouse effect ko aasaan Hinglish mein samjhao.","response":"Greenhouse gases Earth se emitted infrared radiation ka kuch hissa absorb aur re-emit karti hain, jisse lower atmosphere warm hota hai."}
+{"prompt":"Define Greenhouse effect.","response":"Greenhouse gases Earth se emitted infrared radiation ka kuch hissa absorb aur re-emit karti hain, jisse lower atmosphere warm hota hai."}
+{"prompt":"Tell me about Greenhouse effect.","response":"Greenhouse gases Earth se emitted infrared radiation ka kuch hissa absorb aur re-emit karti hain, jisse lower atmosphere warm hota hai."}
+{"prompt":"Climate change kya hai?","response":"Current global warming ka main cause human activities se greenhouse gases ka increase hai, especially fossil fuel burning."}
+{"prompt":"Explain Climate change in simple words.","response":"Current global warming ka main cause human activities se greenhouse gases ka increase hai, especially fossil fuel burning."}
+{"prompt":"Climate change ko aasaan Hinglish mein samjhao.","response":"Current global warming ka main cause human activities se greenhouse gases ka increase hai, especially fossil fuel burning."}
+{"prompt":"Define Climate change.","response":"Current global warming ka main cause human activities se greenhouse gases ka increase hai, especially fossil fuel burning."}
+{"prompt":"Tell me about Climate change.","response":"Current global warming ka main cause human activities se greenhouse gases ka increase hai, especially fossil fuel burning."}
+{"prompt":"Acid and base kya hai?","response":"Arrhenius definition ke mutabik acid water mein H+ concentration badhata hai aur base OH- concentration badhata hai."}
+{"prompt":"Explain Acid and base in simple words.","response":"Arrhenius definition ke mutabik acid water mein H+ concentration badhata hai aur base OH- concentration badhata hai."}
+{"prompt":"Acid and base ko aasaan Hinglish mein samjhao.","response":"Arrhenius definition ke mutabik acid water mein H+ concentration badhata hai aur base OH- concentration badhata hai."}
+{"prompt":"Define Acid and base.","response":"Arrhenius definition ke mutabik acid water mein H+ concentration badhata hai aur base OH- concentration badhata hai."}
+{"prompt":"Tell me about Acid and base.","response":"Arrhenius definition ke mutabik acid water mein H+ concentration badhata hai aur base OH- concentration badhata hai."}
+{"prompt":"Neutralization kya hai?","response":"Acid aur base ki reaction se generally salt aur water bante hain, depending on reactants."}
+{"prompt":"Explain Neutralization in simple words.","response":"Acid aur base ki reaction se generally salt aur water bante hain, depending on reactants."}
+{"prompt":"Neutralization ko aasaan Hinglish mein samjhao.","response":"Acid aur base ki reaction se generally salt aur water bante hain, depending on reactants."}
+{"prompt":"Define Neutralization.","response":"Acid aur base ki reaction se generally salt aur water bante hain, depending on reactants."}
+{"prompt":"Tell me about Neutralization.","response":"Acid aur base ki reaction se generally salt aur water bante hain, depending on reactants."}
+{"prompt":"Periodic table kya hai?","response":"Periodic table elements ko increasing atomic number ke order mein arrange karti hai aur similar chemical properties ko groups mein rakhti hai."}
+{"prompt":"Explain Periodic table in simple words.","response":"Periodic table elements ko increasing atomic number ke order mein arrange karti hai aur similar chemical properties ko groups mein rakhti hai."}
+{"prompt":"Periodic table ko aasaan Hinglish mein samjhao.","response":"Periodic table elements ko increasing atomic number ke order mein arrange karti hai aur similar chemical properties ko groups mein rakhti hai."}
+{"prompt":"Define Periodic table.","response":"Periodic table elements ko increasing atomic number ke order mein arrange karti hai aur similar chemical properties ko groups mein rakhti hai."}
+{"prompt":"Tell me about Periodic table.","response":"Periodic table elements ko increasing atomic number ke order mein arrange karti hai aur similar chemical properties ko groups mein rakhti hai."}
+{"prompt":"Atomic number kya hai?","response":"Atomic number atom ke nucleus mein protons ki sankhya hoti hai aur element ki identity define karti hai."}
+{"prompt":"Explain Atomic number in simple words.","response":"Atomic number atom ke nucleus mein protons ki sankhya hoti hai aur element ki identity define karti hai."}
+{"prompt":"Atomic number ko aasaan Hinglish mein samjhao.","response":"Atomic number atom ke nucleus mein protons ki sankhya hoti hai aur element ki identity define karti hai."}
+{"prompt":"Define Atomic number.","response":"Atomic number atom ke nucleus mein protons ki sankhya hoti hai aur element ki identity define karti hai."}
+{"prompt":"Tell me about Atomic number.","response":"Atomic number atom ke nucleus mein protons ki sankhya hoti hai aur element ki identity define karti hai."}
+{"prompt":"Isotope kya hai?","response":"Isotopes same element ke atoms hain jinke proton same aur neutron count different hote hain."}
+{"prompt":"Explain Isotope in simple words.","response":"Isotopes same element ke atoms hain jinke proton same aur neutron count different hote hain."}
+{"prompt":"Isotope ko aasaan Hinglish mein samjhao.","response":"Isotopes same element ke atoms hain jinke proton same aur neutron count different hote hain."}
+{"prompt":"Define Isotope.","response":"Isotopes same element ke atoms hain jinke proton same aur neutron count different hote hain."}
+{"prompt":"Tell me about Isotope.","response":"Isotopes same element ke atoms hain jinke proton same aur neutron count different hote hain."}
+{"prompt":"Chemical bond kya hai?","response":"Chemical bond atoms ya ions ke beech attractive interaction hai jo substances ko together rakhta hai."}
+{"prompt":"Explain Chemical bond in simple words.","response":"Chemical bond atoms ya ions ke beech attractive interaction hai jo substances ko together rakhta hai."}
+{"prompt":"Chemical bond ko aasaan Hinglish mein samjhao.","response":"Chemical bond atoms ya ions ke beech attractive interaction hai jo substances ko together rakhta hai."}
+{"prompt":"Define Chemical bond.","response":"Chemical bond atoms ya ions ke beech attractive interaction hai jo substances ko together rakhta hai."}
+{"prompt":"Tell me about Chemical bond.","response":"Chemical bond atoms ya ions ke beech attractive interaction hai jo substances ko together rakhta hai."}
+{"prompt":"Covalent bond kya hai?","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"Explain Covalent bond in simple words.","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"Covalent bond ko aasaan Hinglish mein samjhao.","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"Define Covalent bond.","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"Tell me about Covalent bond.","response":"Covalent bond mein atoms electron pairs share karte hain."}
+{"prompt":"Ionic bond kya hai?","response":"Ionic bonding oppositely charged ions ke beech electrostatic attraction se hoti hai."}
+{"prompt":"Explain Ionic bond in simple words.","response":"Ionic bonding oppositely charged ions ke beech electrostatic attraction se hoti hai."}
+{"prompt":"Ionic bond ko aasaan Hinglish mein samjhao.","response":"Ionic bonding oppositely charged ions ke beech electrostatic attraction se hoti hai."}
+{"prompt":"Define Ionic bond.","response":"Ionic bonding oppositely charged ions ke beech electrostatic attraction se hoti hai."}
+{"prompt":"Tell me about Ionic bond.","response":"Ionic bonding oppositely charged ions ke beech electrostatic attraction se hoti hai."}
+{"prompt":"Catalyst kya hai?","response":"Catalyst alternate reaction pathway provide karke reaction rate change karta hai aur overall reaction mein permanently consume nahi hota."}
+{"prompt":"Explain Catalyst in simple words.","response":"Catalyst alternate reaction pathway provide karke reaction rate change karta hai aur overall reaction mein permanently consume nahi hota."}
+{"prompt":"Catalyst ko aasaan Hinglish mein samjhao.","response":"Catalyst alternate reaction pathway provide karke reaction rate change karta hai aur overall reaction mein permanently consume nahi hota."}
+{"prompt":"Define Catalyst.","response":"Catalyst alternate reaction pathway provide karke reaction rate change karta hai aur overall reaction mein permanently consume nahi hota."}
+{"prompt":"Tell me about Catalyst.","response":"Catalyst alternate reaction pathway provide karke reaction rate change karta hai aur overall reaction mein permanently consume nahi hota."}
+{"prompt":"Oxidation kya hai?","response":"Oxidation electron loss ya oxidation number increase hone ko kehte hain."}
+{"prompt":"Explain Oxidation in simple words.","response":"Oxidation electron loss ya oxidation number increase hone ko kehte hain."}
+{"prompt":"Oxidation ko aasaan Hinglish mein samjhao.","response":"Oxidation electron loss ya oxidation number increase hone ko kehte hain."}
+{"prompt":"Define Oxidation.","response":"Oxidation electron loss ya oxidation number increase hone ko kehte hain."}
+{"prompt":"Tell me about Oxidation.","response":"Oxidation electron loss ya oxidation number increase hone ko kehte hain."}
+{"prompt":"Reduction kya hai?","response":"Reduction electron gain ya oxidation number decrease hone ko kehte hain."}
+{"prompt":"Explain Reduction in simple words.","response":"Reduction electron gain ya oxidation number decrease hone ko kehte hain."}
+{"prompt":"Reduction ko aasaan Hinglish mein samjhao.","response":"Reduction electron gain ya oxidation number decrease hone ko kehte hain."}
+{"prompt":"Define Reduction.","response":"Reduction electron gain ya oxidation number decrease hone ko kehte hain."}
+{"prompt":"Tell me about Reduction.","response":"Reduction electron gain ya oxidation number decrease hone ko kehte hain."}
+{"prompt":"Mole concept kya hai?","response":"One mole mein exactly 6.02214076 × 10^23 specified elementary entities hote hain."}
+{"prompt":"Explain Mole concept in simple words.","response":"One mole mein exactly 6.02214076 × 10^23 specified elementary entities hote hain."}
+{"prompt":"Mole concept ko aasaan Hinglish mein samjhao.","response":"One mole mein exactly 6.02214076 × 10^23 specified elementary entities hote hain."}
+{"prompt":"Define Mole concept.","response":"One mole mein exactly 6.02214076 × 10^23 specified elementary entities hote hain."}
+{"prompt":"Tell me about Mole concept.","response":"One mole mein exactly 6.02214076 × 10^23 specified elementary entities hote hain."}
+{"prompt":"Molarity kya hai?","response":"Molarity solution ke per litre volume mein solute ke moles ki sankhya hai. Unit mol/L hai."}
+{"prompt":"Explain Molarity in simple words.","response":"Molarity solution ke per litre volume mein solute ke moles ki sankhya hai. Unit mol/L hai."}
+{"prompt":"Molarity ko aasaan Hinglish mein samjhao.","response":"Molarity solution ke per litre volume mein solute ke moles ki sankhya hai. Unit mol/L hai."}
+{"prompt":"Define Molarity.","response":"Molarity solution ke per litre volume mein solute ke moles ki sankhya hai. Unit mol/L hai."}
+{"prompt":"Tell me about Molarity.","response":"Molarity solution ke per litre volume mein solute ke moles ki sankhya hai. Unit mol/L hai."}
+{"prompt":"Organic functional group kya hai?","response":"Functional group molecule ka atom ya atom group hai jo characteristic chemical reactions aur properties deta hai."}
+{"prompt":"Explain Organic functional group in simple words.","response":"Functional group molecule ka atom ya atom group hai jo characteristic chemical reactions aur properties deta hai."}
+{"prompt":"Organic functional group ko aasaan Hinglish mein samjhao.","response":"Functional group molecule ka atom ya atom group hai jo characteristic chemical reactions aur properties deta hai."}
+{"prompt":"Define Organic functional group.","response":"Functional group molecule ka atom ya atom group hai jo characteristic chemical reactions aur properties deta hai."}
+{"prompt":"Tell me about Organic functional group.","response":"Functional group molecule ka atom ya atom group hai jo characteristic chemical reactions aur properties deta hai."}
+{"prompt":"Aldehyde kya hai?","response":"Aldehyde mein terminal carbonyl functional group -CHO hota hai."}
+{"prompt":"Explain Aldehyde in simple words.","response":"Aldehyde mein terminal carbonyl functional group -CHO hota hai."}
+{"prompt":"Aldehyde ko aasaan Hinglish mein samjhao.","response":"Aldehyde mein terminal carbonyl functional group -CHO hota hai."}
+{"prompt":"Define Aldehyde.","response":"Aldehyde mein terminal carbonyl functional group -CHO hota hai."}
+{"prompt":"Tell me about Aldehyde.","response":"Aldehyde mein terminal carbonyl functional group -CHO hota hai."}
+{"prompt":"Ketone kya hai?","response":"Ketone mein carbonyl group do carbon-containing groups ke beech hota hai."}
+{"prompt":"Explain Ketone in simple words.","response":"Ketone mein carbonyl group do carbon-containing groups ke beech hota hai."}
+{"prompt":"Ketone ko aasaan Hinglish mein samjhao.","response":"Ketone mein carbonyl group do carbon-containing groups ke beech hota hai."}
+{"prompt":"Define Ketone.","response":"Ketone mein carbonyl group do carbon-containing groups ke beech hota hai."}
+{"prompt":"Tell me about Ketone.","response":"Ketone mein carbonyl group do carbon-containing groups ke beech hota hai."}
+{"prompt":"Carboxylic acid kya hai?","response":"Carboxylic acid mein carboxyl functional group -COOH hota hai."}
+{"prompt":"Explain Carboxylic acid in simple words.","response":"Carboxylic acid mein carboxyl functional group -COOH hota hai."}
+{"prompt":"Carboxylic acid ko aasaan Hinglish mein samjhao.","response":"Carboxylic acid mein carboxyl functional group -COOH hota hai."}
+{"prompt":"Define Carboxylic acid.","response":"Carboxylic acid mein carboxyl functional group -COOH hota hai."}
+{"prompt":"Tell me about Carboxylic acid.","response":"Carboxylic acid mein carboxyl functional group -COOH hota hai."}
+{"prompt":"Alcohol kya hai?","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai."}
+{"prompt":"Explain Alcohol in simple words.","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai."}
+{"prompt":"Alcohol ko aasaan Hinglish mein samjhao.","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai."}
+{"prompt":"Define Alcohol.","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai."}
+{"prompt":"Tell me about Alcohol.","response":"Alcohol mein hydroxyl group -OH saturated carbon atom se attached hota hai."}
+{"prompt":"Phenol kya hai?","response":"Phenol mein hydroxyl group directly aromatic ring se attached hota hai."}
+{"prompt":"Explain Phenol in simple words.","response":"Phenol mein hydroxyl group directly aromatic ring se attached hota hai."}
+{"prompt":"Phenol ko aasaan Hinglish mein samjhao.","response":"Phenol mein hydroxyl group directly aromatic ring se attached hota hai."}
+{"prompt":"Define Phenol.","response":"Phenol mein hydroxyl group directly aromatic ring se attached hota hai."}
+{"prompt":"Tell me about Phenol.","response":"Phenol mein hydroxyl group directly aromatic ring se attached hota hai."}
+{"prompt":"Ether kya hai?","response":"Ether mein oxygen atom do carbon groups ke beech hota hai; general structure R-O-R' hai."}
+{"prompt":"Explain Ether in simple words.","response":"Ether mein oxygen atom do carbon groups ke beech hota hai; general structure R-O-R' hai."}
+{"prompt":"Ether ko aasaan Hinglish mein samjhao.","response":"Ether mein oxygen atom do carbon groups ke beech hota hai; general structure R-O-R' hai."}
+{"prompt":"Define Ether.","response":"Ether mein oxygen atom do carbon groups ke beech hota hai; general structure R-O-R' hai."}
+{"prompt":"Tell me about Ether.","response":"Ether mein oxygen atom do carbon groups ke beech hota hai; general structure R-O-R' hai."}
+{"prompt":"Grignard reagent kya hai?","response":"Grignard reagent organomagnesium halide hai jiska general formula R-Mg-X hota hai."}
+{"prompt":"Explain Grignard reagent in simple words.","response":"Grignard reagent organomagnesium halide hai jiska general formula R-Mg-X hota hai."}
+{"prompt":"Grignard reagent ko aasaan Hinglish mein samjhao.","response":"Grignard reagent organomagnesium halide hai jiska general formula R-Mg-X hota hai."}
+{"prompt":"Define Grignard reagent.","response":"Grignard reagent organomagnesium halide hai jiska general formula R-Mg-X hota hai."}
+{"prompt":"Tell me about Grignard reagent.","response":"Grignard reagent organomagnesium halide hai jiska general formula R-Mg-X hota hai."}
+{"prompt":"Electrophile kya hai?","response":"Electrophile electron pair accept karta hai aur electron-rich site ki taraf attract hota hai."}
+{"prompt":"Explain Electrophile in simple words.","response":"Electrophile electron pair accept karta hai aur electron-rich site ki taraf attract hota hai."}
+{"prompt":"Electrophile ko aasaan Hinglish mein samjhao.","response":"Electrophile electron pair accept karta hai aur electron-rich site ki taraf attract hota hai."}
+{"prompt":"Define Electrophile.","response":"Electrophile electron pair accept karta hai aur electron-rich site ki taraf attract hota hai."}
+{"prompt":"Tell me about Electrophile.","response":"Electrophile electron pair accept karta hai aur electron-rich site ki taraf attract hota hai."}
+{"prompt":"Nucleophile kya hai?","response":"Nucleophile electron pair donate karta hai aur electron-deficient centre par attack kar sakta hai."}
+{"prompt":"Explain Nucleophile in simple words.","response":"Nucleophile electron pair donate karta hai aur electron-deficient centre par attack kar sakta hai."}
+{"prompt":"Nucleophile ko aasaan Hinglish mein samjhao.","response":"Nucleophile electron pair donate karta hai aur electron-deficient centre par attack kar sakta hai."}
+{"prompt":"Define Nucleophile.","response":"Nucleophile electron pair donate karta hai aur electron-deficient centre par attack kar sakta hai."}
+{"prompt":"Tell me about Nucleophile.","response":"Nucleophile electron pair donate karta hai aur electron-deficient centre par attack kar sakta hai."}
+{"prompt":"Equilibrium kya hai?","response":"Chemical equilibrium dynamic state hai jahan forward aur reverse reaction rates equal hoti hain."}
+{"prompt":"Explain Equilibrium in simple words.","response":"Chemical equilibrium dynamic state hai jahan forward aur reverse reaction rates equal hoti hain."}
+{"prompt":"Equilibrium ko aasaan Hinglish mein samjhao.","response":"Chemical equilibrium dynamic state hai jahan forward aur reverse reaction rates equal hoti hain."}
+{"prompt":"Define Equilibrium.","response":"Chemical equilibrium dynamic state hai jahan forward aur reverse reaction rates equal hoti hain."}
+{"prompt":"Tell me about Equilibrium.","response":"Chemical equilibrium dynamic state hai jahan forward aur reverse reaction rates equal hoti hain."}
+{"prompt":"Reaction rate kya hai?","response":"Reaction rate reactant ya product concentration ke time ke saath change hone ki speed hai."}
+{"prompt":"Explain Reaction rate in simple words.","response":"Reaction rate reactant ya product concentration ke time ke saath change hone ki speed hai."}
+{"prompt":"Reaction rate ko aasaan Hinglish mein samjhao.","response":"Reaction rate reactant ya product concentration ke time ke saath change hone ki speed hai."}
+{"prompt":"Define Reaction rate.","response":"Reaction rate reactant ya product concentration ke time ke saath change hone ki speed hai."}
+{"prompt":"Tell me about Reaction rate.","response":"Reaction rate reactant ya product concentration ke time ke saath change hone ki speed hai."}
+{"prompt":"Refraction kya hai?","response":"Refraction light ki direction change hone ko kehte hain jab woh different refractive index wale medium mein enter karti hai."}
+{"prompt":"Explain Refraction in simple words.","response":"Refraction light ki direction change hone ko kehte hain jab woh different refractive index wale medium mein enter karti hai."}
+{"prompt":"Refraction ko aasaan Hinglish mein samjhao.","response":"Refraction light ki direction change hone ko kehte hain jab woh different refractive index wale medium mein enter karti hai."}
+{"prompt":"Define Refraction.","response":"Refraction light ki direction change hone ko kehte hain jab woh different refractive index wale medium mein enter karti hai."}
+{"prompt":"Tell me about Refraction.","response":"Refraction light ki direction change hone ko kehte hain jab woh different refractive index wale medium mein enter karti hai."}
+{"prompt":"Reflection kya hai?","response":"Reflection mein light surface se takra kar original medium mein wapas lautti hai."}
+{"prompt":"Explain Reflection in simple words.","response":"Reflection mein light surface se takra kar original medium mein wapas lautti hai."}
+{"prompt":"Reflection ko aasaan Hinglish mein samjhao.","response":"Reflection mein light surface se takra kar original medium mein wapas lautti hai."}
+{"prompt":"Define Reflection.","response":"Reflection mein light surface se takra kar original medium mein wapas lautti hai."}
+{"prompt":"Tell me about Reflection.","response":"Reflection mein light surface se takra kar original medium mein wapas lautti hai."}
+{"prompt":"Lens kya hai?","response":"Lens refract karke light rays ko converge ya diverge karta hai."}
+{"prompt":"Explain Lens in simple words.","response":"Lens refract karke light rays ko converge ya diverge karta hai."}
+{"prompt":"Lens ko aasaan Hinglish mein samjhao.","response":"Lens refract karke light rays ko converge ya diverge karta hai."}
+{"prompt":"Define Lens.","response":"Lens refract karke light rays ko converge ya diverge karta hai."}
+{"prompt":"Tell me about Lens.","response":"Lens refract karke light rays ko converge ya diverge karta hai."}
+{"prompt":"Sound wave kya hai?","response":"Sound mechanical wave hai jo medium ke particles ke vibration se travel karti hai aur vacuum mein travel nahi kar sakti."}
+{"prompt":"Explain Sound wave in simple words.","response":"Sound mechanical wave hai jo medium ke particles ke vibration se travel karti hai aur vacuum mein travel nahi kar sakti."}
+{"prompt":"Sound wave ko aasaan Hinglish mein samjhao.","response":"Sound mechanical wave hai jo medium ke particles ke vibration se travel karti hai aur vacuum mein travel nahi kar sakti."}
+{"prompt":"Define Sound wave.","response":"Sound mechanical wave hai jo medium ke particles ke vibration se travel karti hai aur vacuum mein travel nahi kar sakti."}
+{"prompt":"Tell me about Sound wave.","response":"Sound mechanical wave hai jo medium ke particles ke vibration se travel karti hai aur vacuum mein travel nahi kar sakti."}
+{"prompt":"Frequency kya hai?","response":"Frequency ek second mein complete oscillations ya cycles ki sankhya hai. Unit hertz hai."}
+{"prompt":"Explain Frequency in simple words.","response":"Frequency ek second mein complete oscillations ya cycles ki sankhya hai. Unit hertz hai."}
+{"prompt":"Frequency ko aasaan Hinglish mein samjhao.","response":"Frequency ek second mein complete oscillations ya cycles ki sankhya hai. Unit hertz hai."}
+{"prompt":"Define Frequency.","response":"Frequency ek second mein complete oscillations ya cycles ki sankhya hai. Unit hertz hai."}
+{"prompt":"Tell me about Frequency.","response":"Frequency ek second mein complete oscillations ya cycles ki sankhya hai. Unit hertz hai."}
+{"prompt":"Wavelength kya hai?","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai."}
+{"prompt":"Explain Wavelength in simple words.","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai."}
+{"prompt":"Wavelength ko aasaan Hinglish mein samjhao.","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai."}
+{"prompt":"Define Wavelength.","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai."}
+{"prompt":"Tell me about Wavelength.","response":"Wavelength wave ke do consecutive same-phase points ke beech ki distance hai."}
+{"prompt":"Heat and temperature kya hai?","response":"Temperature particles ki thermal state ka measure hai; heat temperature difference ke karan transfer hone wali energy hai."}
+{"prompt":"Explain Heat and temperature in simple words.","response":"Temperature particles ki thermal state ka measure hai; heat temperature difference ke karan transfer hone wali energy hai."}
+{"prompt":"Heat and temperature ko aasaan Hinglish mein samjhao.","response":"Temperature particles ki thermal state ka measure hai; heat temperature difference ke karan transfer hone wali energy hai."}
+{"prompt":"Define Heat and temperature.","response":"Temperature particles ki thermal state ka measure hai; heat temperature difference ke karan transfer hone wali energy hai."}
+{"prompt":"Tell me about Heat and temperature.","response":"Temperature particles ki thermal state ka measure hai; heat temperature difference ke karan transfer hone wali energy hai."}
+{"prompt":"Conduction kya hai?","response":"Conduction direct microscopic interactions ke through heat transfer hai, without bulk movement of material."}
+{"prompt":"Explain Conduction in simple words.","response":"Conduction direct microscopic interactions ke through heat transfer hai, without bulk movement of material."}
+{"prompt":"Conduction ko aasaan Hinglish mein samjhao.","response":"Conduction direct microscopic interactions ke through heat transfer hai, without bulk movement of material."}
+{"prompt":"Define Conduction.","response":"Conduction direct microscopic interactions ke through heat transfer hai, without bulk movement of material."}
+{"prompt":"Tell me about Conduction.","response":"Conduction direct microscopic interactions ke through heat transfer hai, without bulk movement of material."}
+{"prompt":"Convection kya hai?","response":"Convection fluid ke bulk movement ke through heat transfer hai."}
+{"prompt":"Explain Convection in simple words.","response":"Convection fluid ke bulk movement ke through heat transfer hai."}
+{"prompt":"Convection ko aasaan Hinglish mein samjhao.","response":"Convection fluid ke bulk movement ke through heat transfer hai."}
+{"prompt":"Define Convection.","response":"Convection fluid ke bulk movement ke through heat transfer hai."}
+{"prompt":"Tell me about Convection.","response":"Convection fluid ke bulk movement ke through heat transfer hai."}
+{"prompt":"Radiation kya hai?","response":"Thermal radiation electromagnetic waves ke through energy transfer karti hai aur medium ki zaroorat nahi hoti."}
+{"prompt":"Explain Radiation in simple words.","response":"Thermal radiation electromagnetic waves ke through energy transfer karti hai aur medium ki zaroorat nahi hoti."}
+{"prompt":"Radiation ko aasaan Hinglish mein samjhao.","response":"Thermal radiation electromagnetic waves ke through energy transfer karti hai aur medium ki zaroorat nahi hoti."}
+{"prompt":"Define Radiation.","response":"Thermal radiation electromagnetic waves ke through energy transfer karti hai aur medium ki zaroorat nahi hoti."}
+{"prompt":"Tell me about Radiation.","response":"Thermal radiation electromagnetic waves ke through energy transfer karti hai aur medium ki zaroorat nahi hoti."}
+{"prompt":"Solar cell kya hai?","response":"Solar cell photovoltaic effect se light energy ko electrical energy mein convert karta hai."}
+{"prompt":"Explain Solar cell in simple words.","response":"Solar cell photovoltaic effect se light energy ko electrical energy mein convert karta hai."}
+{"prompt":"Solar cell ko aasaan Hinglish mein samjhao.","response":"Solar cell photovoltaic effect se light energy ko electrical energy mein convert karta hai."}
+{"prompt":"Define Solar cell.","response":"Solar cell photovoltaic effect se light energy ko electrical energy mein convert karta hai."}
+{"prompt":"Tell me about Solar cell.","response":"Solar cell photovoltaic effect se light energy ko electrical energy mein convert karta hai."}
+{"prompt":"Electric motor kya hai?","response":"Electric motor magnetic effects of current ka use karke electrical energy ko mechanical energy mein convert karta hai."}
+{"prompt":"Explain Electric motor in simple words.","response":"Electric motor magnetic effects of current ka use karke electrical energy ko mechanical energy mein convert karta hai."}
+{"prompt":"Electric motor ko aasaan Hinglish mein samjhao.","response":"Electric motor magnetic effects of current ka use karke electrical energy ko mechanical energy mein convert karta hai."}
+{"prompt":"Define Electric motor.","response":"Electric motor magnetic effects of current ka use karke electrical energy ko mechanical energy mein convert karta hai."}
+{"prompt":"Tell me about Electric motor.","response":"Electric motor magnetic effects of current ka use karke electrical energy ko mechanical energy mein convert karta hai."}
+{"prompt":"Electric generator kya hai?","response":"Generator electromagnetic induction se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"Explain Electric generator in simple words.","response":"Generator electromagnetic induction se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"Electric generator ko aasaan Hinglish mein samjhao.","response":"Generator electromagnetic induction se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"Define Electric generator.","response":"Generator electromagnetic induction se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"Tell me about Electric generator.","response":"Generator electromagnetic induction se mechanical energy ko electrical energy mein convert karta hai."}
+{"prompt":"Explain Transformer in simple words.","response":"Transformer changing magnetic flux ke through AC voltage ko step up ya step down karta hai."}
+{"prompt":"Transformer ko aasaan Hinglish mein samjhao.","response":"Transformer changing magnetic flux ke through AC voltage ko step up ya step down karta hai."}
+{"prompt":"Define Transformer.","response":"Transformer changing magnetic flux ke through AC voltage ko step up ya step down karta hai."}
+{"prompt":"Tell me about Transformer.","response":"Transformer changing magnetic flux ke through AC voltage ko step up ya step down karta hai."}
+{"prompt":"LED kya hai?","response":"LED forward biased semiconductor diode hai jo current flow par light emit karta hai."}
+{"prompt":"Explain LED in simple words.","response":"LED forward biased semiconductor diode hai jo current flow par light emit karta hai."}
+{"prompt":"LED ko aasaan Hinglish mein samjhao.","response":"LED forward biased semiconductor diode hai jo current flow par light emit karta hai."}
+{"prompt":"Define LED.","response":"LED forward biased semiconductor diode hai jo current flow par light emit karta hai."}
+{"prompt":"Tell me about LED.","response":"LED forward biased semiconductor diode hai jo current flow par light emit karta hai."}
+{"prompt":"Semiconductor kya hai?","response":"Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai aur doping se control ki ja sakti hai."}
+{"prompt":"Explain Semiconductor in simple words.","response":"Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai aur doping se control ki ja sakti hai."}
+{"prompt":"Semiconductor ko aasaan Hinglish mein samjhao.","response":"Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai aur doping se control ki ja sakti hai."}
+{"prompt":"Define Semiconductor.","response":"Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai aur doping se control ki ja sakti hai."}
+{"prompt":"Tell me about Semiconductor.","response":"Semiconductor ki electrical conductivity conductor aur insulator ke beech hoti hai aur doping se control ki ja sakti hai."}
+{"prompt":"Diode kya hai?","response":"Diode semiconductor device hai jo forward direction mein current ko aasani se pass karta hai aur reverse direction mein normally block karta hai."}
+{"prompt":"Explain Diode in simple words.","response":"Diode semiconductor device hai jo forward direction mein current ko aasani se pass karta hai aur reverse direction mein normally block karta hai."}
+{"prompt":"Diode ko aasaan Hinglish mein samjhao.","response":"Diode semiconductor device hai jo forward direction mein current ko aasani se pass karta hai aur reverse direction mein normally block karta hai."}
+{"prompt":"Define Diode.","response":"Diode semiconductor device hai jo forward direction mein current ko aasani se pass karta hai aur reverse direction mein normally block karta hai."}
