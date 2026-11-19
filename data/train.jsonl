@@ -37,3 +37,91 @@
 {"prompt":"Kya tum hamesha sahi hote ho?","response":"Nahi. Main experimental AI hoon. Mere answers ko final truth nahi samajhna chahiye."}
 {"prompt":"Good morning","response":"Good morning! Aaj tum kis topic par baat karna chahte ho?"}
 {"prompt":"Bye","response":"Bye! Padhai aur projects ke liye best wishes."}
+{"prompt":"Hello","response":"Hello! Main AK-Byte-1 hoon. Main ek chhota experimental language model hoon."}
+{"prompt":"Hi, how are you?","response":"Main theek hoon! Tum kaise ho?"}
+{"prompt":"Tum kaise ho?","response":"Main badhiya hoon. Aaj tum kya seekhna chahte ho?"}
+{"prompt":"What can you do?","response":"Main basic science, technology, programming aur general knowledge ke sawalon ka jawab dene ki koshish kar sakta hoon."}
+{"prompt":"Can you browse the internet?","response":"Nahi. Mere paas abhi live internet browsing ki suvidha nahi hai."}
+{"prompt":"Are you ChatGPT?","response":"Nahi. Main AK-Byte-1 hoon, ek alag chhota model jo is project mein scratch se train kiya gaya hai."}
+{"prompt":"What is artificial intelligence?","response":"Artificial Intelligence computer systems ko aise tasks karne mein madad karta hai jinmein aam taur par human intelligence ki zarurat hoti hai, jaise language aur pattern recognition."}
+{"prompt":"What is machine learning?","response":"Machine learning mein computer examples aur data se patterns seekhta hai, phir un patterns ka use naye inputs par prediction karne ke liye karta hai."}
+{"prompt":"What is deep learning?","response":"Deep learning machine learning ka ek area hai jo multiple layers wale neural networks ka use karta hai."}
+{"prompt":"What is a neural network?","response":"Neural network connected mathematical units aur trainable weights se bana model hota hai. Training ke dauran weights adjust hote hain."}
+{"prompt":"What is a transformer model?","response":"Transformer ek neural-network architecture hai jo attention mechanism se sequence ke tokens ke beech sambandh seekhta hai."}
+{"prompt":"What is attention in AI?","response":"Attention mechanism model ko input ke alag-alag hisson ki importance calculate karne deta hai."}
+{"prompt":"What are model weights?","response":"Model weights numerical parameters hote hain. Training ke dauran inki values badalti hain taaki model data ke patterns seekh sake."}
+{"prompt":"What is training data?","response":"Training data woh examples hote hain jinse model patterns seekhta hai. Data ki quality aur variety model ke results ko prabhavit karti hai."}
+{"prompt":"What is a token?","response":"Token text ka chhota hissa hota hai. Alag models words, word-parts, characters ya bytes ko tokens ki tarah process kar sakte hain."}
+{"prompt":"What is a byte tokenizer?","response":"Byte tokenizer text ko bytes ke sequence mein badalta hai. UTF-8 mein har character ek ya zyada bytes le sakta hai."}
+{"prompt":"Why can a small AI give nonsense answers?","response":"Chhote model ke paas limited parameters, training examples aur compute hote hain. Isliye woh language patterns achhe se nahi seekh pata aur ajeeb text bana sakta hai."}
+{"prompt":"Why does AI hallucinate?","response":"Language model agla token predict karta hai; woh har statement ko database se verify nahi karta. Isliye kabhi confident lekin galat jawab de sakta hai."}
+{"prompt":"What is an API?","response":"API ek defined interface hai jiske through do software systems requests aur responses exchange karte hain."}
+{"prompt":"What is a REST API?","response":"REST API HTTP methods jaise GET aur POST ka use karke resources ke saath interaction provide karti hai."}
+{"prompt":"What is JSON?","response":"JSON ek lightweight text format hai jo structured data ko key-value pairs aur arrays mein represent karta hai."}
+{"prompt":"What does Unexpected token less-than mean in JavaScript?","response":"Aksar iska matlab hota hai ki code JSON parse kar raha hai lekin server ne JSON ke bajay HTML page bheja. Response status aur content-type check karo."}
+{"prompt":"What is frontend?","response":"Frontend website ka woh hissa hai jise user browser mein dekhta aur interact karta hai."}
+{"prompt":"What is backend?","response":"Backend server-side code hota hai jo requests handle karta hai, data process karta hai aur responses bhejta hai."}
+{"prompt":"What is Python?","response":"Python ek general-purpose programming language hai jiska syntax readable hai. Iska use web development, automation aur machine learning mein hota hai."}
+{"prompt":"What is HTML?","response":"HTML web page ka structure define karta hai, jaise headings, paragraphs, links, images aur forms."}
+{"prompt":"What is CSS?","response":"CSS web page ka presentation control karta hai, jaise colors, fonts, spacing aur layout."}
+{"prompt":"What is JavaScript?","response":"JavaScript web pages ko interactive banata hai aur browser mein dynamic behavior implement karta hai."}
+{"prompt":"What is Git?","response":"Git ek version-control system hai jo code changes ka history track karta hai."}
+{"prompt":"What is GitHub?","response":"GitHub Git repositories host karta hai aur collaboration, code review aur automation tools provide karta hai."}
+{"prompt":"What is a repository?","response":"Repository project files aur unki version history ka collection hota hai."}
+{"prompt":"What is a commit?","response":"Commit repository ke changes ka saved snapshot hota hai, jiske saath message bhi hota hai."}
+{"prompt":"What is CI?","response":"Continuous Integration ya CI mein code changes par automated checks aur tests chalaye jaate hain."}
+{"prompt":"What is deployment?","response":"Deployment ka matlab application ko aise environment par publish karna hai jahan users use access kar saken."}
+{"prompt":"What is cloud hosting?","response":"Cloud hosting mein application internet-connected provider ke servers par run hoti hai."}
+{"prompt":"What is a database?","response":"Database organized data ko store aur manage karta hai, taaki application zarurat par data read aur update kar sake."}
+{"prompt":"What is SQL?","response":"SQL relational databases mein data query aur manage karne ki language hai."}
+{"prompt":"What is overfitting?","response":"Overfitting tab hota hai jab model training examples ko bahut zyada memorize kar leta hai aur naye data par achha perform nahi karta."}
+{"prompt":"What is underfitting?","response":"Underfitting tab hota hai jab model training data ke basic patterns bhi theek se nahi seekh pata."}
+{"prompt":"What is an epoch?","response":"Ek epoch ka matlab training dataset ke sabhi examples par ek complete pass hota hai."}
+{"prompt":"What is a batch size?","response":"Batch size batata hai ki ek training step mein kitne examples process kiye jaate hain."}
+{"prompt":"What is a learning rate?","response":"Learning rate optimizer ke update ki size control karta hai. Bahut high ya bahut low learning rate training ko mushkil bana sakta hai."}
+{"prompt":"What is loss in machine learning?","response":"Loss ek numerical measure hai jo batata hai ki model ki prediction target se kitni alag hai."}
+{"prompt":"What is an optimizer?","response":"Optimizer loss ke basis par model weights update karta hai, taaki training ke saath error kam ho."}
+{"prompt":"What is PyTorch?","response":"PyTorch ek machine-learning framework hai jo tensors, automatic differentiation aur neural networks banane ke tools deta hai."}
+{"prompt":"What is CPU?","response":"CPU computer ka central processing unit hai jo general instructions execute karta hai."}
+{"prompt":"What is GPU?","response":"GPU parallel computations ke liye design kiya gaya processor hai. Deep learning training mein iska use aksar hota hai."}
+{"prompt":"What is RAM?","response":"RAM temporary working memory hai jisme running programs ka active data rakha jata hai."}
+{"prompt":"What is the internet?","response":"Internet duniya bhar ke networks ka interconnected system hai jo standard protocols ke through data exchange karta hai."}
+{"prompt":"What is Wi-Fi?","response":"Wi-Fi wireless networking technology hai jo compatible devices ko local network aur internet se connect kar sakti hai."}
+{"prompt":"What is Bluetooth?","response":"Bluetooth short-range wireless technology hai jo nearby devices ke beech data aur audio connections enable karti hai."}
+{"prompt":"What is GPS?","response":"GPS satellite-based navigation system hai jo receiver ko location aur time estimate karne mein madad karta hai."}
+{"prompt":"What is electric current?","response":"Electric current electric charge ke flow ki rate hai. Iski SI unit ampere hai."}
+{"prompt":"What is voltage?","response":"Voltage do points ke beech electric potential difference hai. Iski SI unit volt hai."}
+{"prompt":"What is resistance?","response":"Resistance electric current ke flow ka opposition hai. Iski SI unit ohm hai."}
+{"prompt":"What is Ohm's law?","response":"Ohm's law ke mutabik constant physical conditions par voltage current ke directly proportional hota hai. Formula V = I R hai."}
+{"prompt":"What is power in electricity?","response":"Electric power energy transfer ya use hone ki rate hai. Iski SI unit watt hai."}
+{"prompt":"What is a battery?","response":"Battery chemical energy ko electrical energy mein convert karne wala device hai."}
+{"prompt":"What is photosynthesis?","response":"Photosynthesis mein plants light energy ka use karke carbon dioxide aur water se sugars banate hain aur oxygen release karte hain."}
+{"prompt":"What is the chemical formula of water?","response":"Water ka chemical formula H2O hai."}
+{"prompt":"What is force?","response":"Force push ya pull hai jo object ki motion ya shape badal sakta hai. SI unit newton hai."}
+{"prompt":"What is speed?","response":"Speed distance cover karne ki rate hai. Formula speed = distance divided by time hai."}
+{"prompt":"What is acceleration?","response":"Acceleration velocity ke change ki rate hai. Iski SI unit metre per second squared hai."}
+{"prompt":"What is gravity?","response":"Gravity mass wali objects ke beech attractive interaction hai."}
+{"prompt":"What is energy?","response":"Energy work karne ya changes cause karne ki capacity hai. Iski SI unit joule hai."}
+{"prompt":"How can I improve English?","response":"Roz simple English sentences padho, likho aur bolo. Naye words ko example sentences ke saath practice karo."}
+{"prompt":"What does I understand mean?","response":"I understand ka matlab hai: main samajhta hoon ya mujhe samajh aa gaya."}
+{"prompt":"What does I didn't understand mean?","response":"I didn't understand ka matlab hai: mujhe samajh nahi aaya."}
+{"prompt":"What does perhaps mean?","response":"Perhaps ka matlab hai: shayad."}
+{"prompt":"What does curious mean?","response":"Curious ka matlab hai kisi cheez ko jaanne ya samajhne ki ichchha hona."}
+{"prompt":"What does reliable mean?","response":"Reliable ka matlab hai bharosemand ya jis par trust kiya ja sake."}
+{"prompt":"What is cybersecurity?","response":"Cybersecurity systems, networks aur data ko unauthorized access aur digital attacks se protect karne ki practice hai."}
+{"prompt":"What is phishing?","response":"Phishing ek scam technique hai jisme attacker fake message ya website se sensitive information lene ki koshish karta hai."}
+{"prompt":"Why is the sky blue?","response":"Atmosphere ke molecules sunlight ki chhoti wavelength wali blue light ko red light ke mukable zyada scatter karte hain."}
+{"prompt":"Why do we see lightning before thunder?","response":"Light sound se bahut tez travel karti hai, isliye lightning pehle dikhti hai aur thunder baad mein sunai deta hai."}
+{"prompt":"What is a black hole?","response":"Black hole space ka aisa region hai jahan gravity itni strong hoti hai ki event horizon ke andar se light bhi escape nahi kar sakti."}
+{"prompt":"What is the solar system?","response":"Solar system mein Sun, uske around orbit karne wale planets aur moons, asteroids, comets aur anya objects shamil hain."}
+{"prompt":"What is the capital of India?","response":"New Delhi Bharat ki rajdhani hai."}
+{"prompt":"What is the largest planet in our solar system?","response":"Jupiter hamare solar system ka sabse bada planet hai."}
+{"prompt":"How many sides does a triangle have?","response":"Triangle ki teen sides hoti hain."}
+{"prompt":"What is 5 times 6?","response":"5 times 6 equals 30."}
+{"prompt":"What is 100 divided by 4?","response":"100 divided by 4 equals 25."}
+{"prompt":"What is the square root of 81?","response":"81 ka square root 9 hai, kyunki 9 multiplied by 9 equals 81."}
+{"prompt":"What is the full form of CPU?","response":"CPU ka full form Central Processing Unit hai."}
+{"prompt":"What is the full form of URL?","response":"URL ka full form Uniform Resource Locator hai."}
+{"prompt":"What is the full form of HTML?","response":"HTML ka full form HyperText Markup Language hai."}
+{"prompt":"What is the full form of CSS?","response":"CSS ka full form Cascading Style Sheets hai."}
+{"prompt":"What is the full form of AI?","response":"AI ka full form Artificial Intelligence hai."}
