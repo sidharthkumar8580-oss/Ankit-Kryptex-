@@ -1,9 +1,9 @@
 VOCAB_SIZE = 256
 BLOCK_SIZE = 256
 
-# Practical small-model configuration for free CPU training.
-# 256 dimensions are divisible by 8 attention heads.
-D_MODEL = 256
+# Larger but still restrained profile for a free GitHub-hosted CPU runner.
+# 384 hidden dimensions / 8 heads = 48 dimensions per attention head.
+D_MODEL = 384
 N_HEADS = 8
-N_LAYERS = 4
+N_LAYERS = 6
 DROPOUT = 0.1
