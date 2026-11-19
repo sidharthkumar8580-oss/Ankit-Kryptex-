@@ -1,37 +1,33 @@
-# Ankit Kryptex AI — AK-Byte-1
+# Ankit Kryptex AI — AK-Byte-1 (scratch model)
 
-AK-Byte-1 is being upgraded from a tiny randomly initialized Transformer to a pretrained instruction model fine-tuned with QLoRA.
+AK-Byte-1 is an experimental language model trained from random initialization. The project does **not** load Qwen, Llama, GPT, Gemini, pretrained checkpoints, or a third-party model-generation API.
 
-## Selected base model
+## Architecture
+- Custom byte-level Transformer: 12 blocks, hidden size 512, 8 attention heads, 256-byte context.
+- Vocabulary: 256 UTF-8 byte values.
+- Approximate parameter count: about 40 million (verify printed count during training).
+- Randomly initialized weights; trained with next-token supervised learning on the repository's prompt/response dataset.
+- FastAPI inference service is separate from the model architecture.
 
-- Base: [Qwen/Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)
-- Parameters: approximately 0.49 billion
-- License: Apache-2.0 (retain upstream license and attribution)
-- Fine-tuning: 4-bit QLoRA on a Colab GPU
-- Adapter output: Google Drive folder `MyDrive/AK-Byte-1-Qwen-QLoRA/adapter`
+## Train on Google Colab
+Open `AK-Byte-1_GPU_Training.ipynb` in Colab, choose a GPU runtime, and run the cells. The notebook:
+1. Clones/pulls this repository.
+2. Checks for a GPU.
+3. Trains the scratch model with mixed precision and gradient accumulation.
+4. Evaluates validation loss periodically.
+5. Saves resumable checkpoints to Google Drive every 500 steps.
+6. Resumes from the last checkpoint after a runtime interruption.
 
-The base model already has instruction-following and multilingual abilities. Fine-tuning adapts it to Ankit Kryptex's preferred behavior and reviewed examples. This is not a ChatGPT-scale model and does not guarantee ChatGPT-level quality.
+The configured run is up to 20,000 optimizer steps, not a guarantee that free Colab will finish it in one session. Google states free GPU availability and usage limits vary; free sessions run for at most 12 hours and may end sooner. See the [official Colab FAQ](https://research.google.com/colaboratory/faq.html).
 
-## Training notebook
+## Dataset reality
+The current dataset is only a starter collection (about 1,000 rows and 378 distinct response texts based on the earlier audit). It is not a million high-quality examples. Repeating rows does not add knowledge. For a stronger model, add many diverse, accurate, original or properly licensed Hindi/Hinglish/English examples, then evaluate on a separate held-out test set. Never add private messages, passwords, API keys, or personal data.
 
-Open the updated Colab notebook:
+## Internet research capability
+Training a model does not automatically give it live internet access or current knowledge. A separate retrieval/search component must fetch web pages, extract relevant passages, and provide source links; the model then needs to synthesize those passages. That capability is not yet implemented in this scratch-training notebook or API. Do not claim AK-Byte-1 can browse the live web until a retrieval feature is built and tested.
 
-`AK-Byte-1_GPU_Training.ipynb`
+## API / deployment status
+`api.py` loads `model/weights.pt` on CPU and returns a 503 response when compatible trained weights are absent. The Colab notebook saves the checkpoint to Google Drive; it does not automatically publish it to GitHub or deploy it to Render. A roughly 40M-parameter FP32 checkpoint is around 160 MB before runtime overhead, so a free 512 MB Render service may not have enough memory. Verify hosting capacity and the exact checkpoint before claiming the live API is trained.
 
-It installs the training dependencies, loads the 4-bit base model, tokenizes `data/train.jsonl`, splits training/validation data, trains a LoRA adapter, evaluates it, saves the adapter to Google Drive, and tests a simple greeting.
-
-The notebook requires a Colab GPU. Free GPU availability and session duration are controlled by Colab. The assistant cannot start or monitor a training session inside the user's logged-in Colab account.
-
-## Dataset quality
-
-The repository currently contains 1,000 JSONL rows, but only 378 distinct response texts. It is a small starter dataset, not one million high-quality examples. Repeating or fabricating rows will not create intelligence. Add original, varied, reviewed, properly licensed prompt/response examples; do not add private messages, passwords, API keys, or personal data.
-
-## Current API status — important
-
-The existing Render API code still loads the old custom AK-Byte-1 scratch model from `model/weights.pt`. It has **not yet been switched** to the new Qwen base model plus fine-tuned adapter. The QLoRA notebook only creates the adapter in Google Drive; it does not automatically update the Render deployment.
-
-A 0.5B model may exceed the memory available on a free 512 MB web service. Before changing the live API, select an inference format and hosting plan that can actually hold the model. Do not claim the live API is using Qwen until that deployment is completed and tested.
-
-## Original scratch model
-
-The repository's earlier `model/network.py`, `model/config.py`, and `train.py` remain as the original educational scratch-training experiment. They are not the new QLoRA training path.
+## Honest limitations
+This is a learning-scale scratch model, not a ChatGPT-scale model. Byte-level tokenization is inefficient for Hindi and English compared with a carefully trained subword tokenizer. With the current small dataset, fluent open-ended conversation and reliable factual answers are not expected yet. Loss going down alone does not prove good answers; evaluate on unseen prompts and verify factual claims.
