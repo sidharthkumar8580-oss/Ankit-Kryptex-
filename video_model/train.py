@@ -34,8 +34,9 @@ def main():
         except StopIteration: iterator=iter(loader); clean,tokens=next(iterator)
         clean,tokens=clean.to(device),tokens.to(device)
         t=torch.randint(0,1000,(clean.shape[0],),device=device)
-        alpha=torch.linspace(0.9999,0.0001,1000,device=device)
-        abar=torch.cumprod(alpha,dim=0)
+        betas=torch.linspace(0.0001,0.02,1000,device=device)
+        alphas=1.0-betas
+        abar=torch.cumprod(alphas,dim=0)
         noise=torch.randn_like(clean)
         a_t=abar[t].view(-1,1,1,1,1)
         noisy=a_t.sqrt()*clean+(1-a_t).sqrt()*noise
