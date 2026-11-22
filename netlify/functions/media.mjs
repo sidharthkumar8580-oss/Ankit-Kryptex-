@@ -9,9 +9,10 @@ function json(data, status = 200) {
 
 function agnesKeys() {
   return [...new Set([
+    Netlify.env.get("AGNES_API_KEY"),
+    Netlify.env.get("AGNES_API_KEY1"),
     Netlify.env.get("AGNES_API_KEY2"),
     Netlify.env.get("AGNES_API_KEY3"),
-    Netlify.env.get("AGNES_API_KEY"),
     Netlify.env.get("AGNES_VIDEO_KEY")
   ].filter(Boolean))];
 }
@@ -19,34 +20,30 @@ function agnesKeys() {
 async function agnesFetch(path, options = {}) {
   const keys = agnesKeys();
   if (!keys.length) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
-  let response;
-  try {
-    for (const key of keys) {
-      response = await fetch(AGNES_BASE + path, {
+  const retryable = new Set([401, 402, 403, 408, 429, 500, 502, 503, 504]);
+  let lastResponse = null;
+  for (let index = 0; index < keys.length; index++) {
+    try {
+      const response = await fetch(AGNES_BASE + path, {
         ...options,
-        headers: { authorization: `Bearer ${key}`, "content-type": "application/json", ...(options.headers || {}) }
+        headers: { authorization: "Bearer " + keys[index], "content-type": "application/json", ...(options.headers || {}) }
       });
-      // Try the next configured key only when this key is rejected.
-      if (response.status !== 401 && response.status !== 403) break;
+      if (response.ok) {
+        const raw = await response.text().catch(() => "");
+        if (!raw.trim()) return json({ detail: "Agnes API ne empty response diya.", code: "empty_upstream_response" }, 502);
+        try { return JSON.parse(raw); } catch { return json({ detail: "Agnes API ne invalid response diya: " + raw.slice(0, 500), code: "invalid_upstream_response" }, 502); }
+      }
+      const raw = await response.text().catch(() => "");
+      let data = {};
+      try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 500) }; }
+      lastResponse = json({ detail: data.detail || data.message || data.error?.message || data.error?.detail || ("Agnes API HTTP " + response.status), code: data.code || data.error?.code || null, request_id: data.request_id || data.error?.request_id || null }, response.status);
+      if (!retryable.has(response.status) || index === keys.length - 1) return lastResponse;
+    } catch (error) {
+      lastResponse = json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
+      if (index === keys.length - 1) return lastResponse;
     }
-  } catch (error) {
-    return json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
   }
-  const raw = await response.text().catch(() => "");
-  if (!raw.trim()) return json({ detail: "Agnes API ne empty response diya. Server busy ho sakta hai; dobara try karein.", code: "empty_upstream_response" }, 502);
-  let data;
-  try { data = JSON.parse(raw); } catch {
-    return json({ detail: "Agnes API ne invalid response diya: " + raw.slice(0, 500), code: "invalid_upstream_response" }, 502);
-  }
-  if (!response.ok) {
-    const err = data.error || {};
-    return json({
-      detail: data.detail || data.message || err.message || err.detail || "Agnes API request failed.",
-      code: data.code || err.code || null,
-      request_id: data.request_id || err.request_id || null
-    }, response.status);
-  }
-  return data;
+  return lastResponse || json({ detail: "Agnes API request failed." }, 502);
 }
 
 async function withModelFallback(path, payload, candidates) {
