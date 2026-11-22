@@ -31,7 +31,9 @@ async function withModelFallback(path, payload, candidates) {
     const message = String(detail.detail || detail.message || detail.code || "").toLowerCase();
     const modelUnavailable = [400, 404, 422].includes(result.status) &&
       (message.includes("model") || message.includes("not found") || message.includes("unsupported") || message.includes("invalid"));
-    if (!modelUnavailable) return result;
+    const capacityIssue = [429, 503].includes(result.status) &&
+      (message.includes("queue") || message.includes("busy") || message.includes("rate") || message.includes("limit") || message.includes("capacity"));
+    if (!modelUnavailable && !capacityIssue) return result;
   }
   return lastResponse || json({ detail: "No compatible Agnes model is currently available." }, 503);
 }
