@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-app = FastAPI(title="Ankit Kryptex AI Studio", version="1.0.0")
+app = FastAPI(title="Ankit Kryptex AI Studio", version="1.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://kryptex-ai.netlify.app"],
@@ -18,31 +18,39 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
 )
-AGNES_API_KEY = os.getenv("AGNES_API_KEY", "")
+
 AGNES_BASE_URL = os.getenv("AGNES_BASE_URL", "https://apihub.agnes-ai.com").rstrip("/")
+RETRYABLE = {401, 402, 403, 408, 429, 500, 502, 503, 504}
+
+def get_api_keys():
+    # Keep secrets in Render environment variables; never store them in source code.
+    return list(dict.fromkeys(
+        value.strip() for value in (
+            os.getenv("AGNES_API_KEY", ""),
+            os.getenv("AGNES_API_KEY2", ""),
+            os.getenv("AGNES_API_KEY3", ""),
+        ) if value and value.strip()
+    ))
 
 class ImageRequest(BaseModel):
     prompt: str = Field(min_length=1, max_length=2000)
-    ratio: str = Field(default="1:1")
-    resolution: str = Field(default="1K")
+    model: str = "agnes-image-2.1-flash"
+    ratio: str = "1:1"
+    resolution: str = "1K"
     reference_image: str | None = None
 
 class VideoRequest(BaseModel):
     prompt: str = Field(min_length=1, max_length=2000)
-    ratio: str = Field(default="9:16")
+    model: str = "agnes-video-2.5-flash"
+    ratio: str = "9:16"
     duration: int = Field(default=5, ge=4, le=12)
-    resolution: str = Field(default="720P")
-    mode: str = Field(default="single")
+    resolution: str = "720P"
+    mode: str = "single"
     reference_image: str | None = None
 
-def agnes_headers():
-    if not AGNES_API_KEY:
-        raise HTTPException(status_code=503, detail="Agnes API key abhi Render ke AGNES_API_KEY environment variable mein add nahi hui hai.")
-    return {"Authorization": f"Bearer {AGNES_API_KEY}", "Content-Type": "application/json"}
-
-def ratio_size(ratio: str, resolution: str):
-    tier = resolution if resolution in {"1K", "2K", "3K", "4K"} else "1K"
-    return tier
+class ChatRequest(BaseModel):
+    model: str = "agnes-2.5-flash"
+    messages: list[dict] = Field(min_length=1, max_length=80)
 
 def validate_ratio(ratio: str):
     allowed = {"1:1", "16:9", "9:16", "4:3", "3:4", "21:9"}
@@ -50,100 +58,121 @@ def validate_ratio(ratio: str):
         raise HTTPException(status_code=400, detail="Unsupported aspect ratio.")
     return ratio
 
+async def agnes_request(method: str, path: str, payload=None, params=None, timeout=120):
+    keys = get_api_keys()
+    if not keys:
+        raise HTTPException(status_code=503, detail="Render environment mein AGNES_API_KEY, AGNES_API_KEY2 ya AGNES_API_KEY3 set nahi hai.")
+    last_status = 502
+    last_detail = "Agnes API request failed."
+    async with httpx.AsyncClient(timeout=timeout) as client:
+        for index, key in enumerate(keys):
+            try:
+                response = await client.request(
+                    method,
+                    f"{AGNES_BASE_URL}{path}",
+                    headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+                    json=payload,
+                    params=params,
+                )
+                if response.is_success:
+                    try:
+                        return response.json()
+                    except ValueError:
+                        raise HTTPException(status_code=502, detail="Agnes ne invalid JSON response diya.")
+                last_status = response.status_code
+                last_detail = response.text[:1200] or f"HTTP {response.status_code}"
+                # Try the next configured key only for auth, quota, rate-limit, or transient failures.
+                if response.status_code not in RETRYABLE or index == len(keys) - 1:
+                    break
+            except httpx.HTTPError as exc:
+                last_status, last_detail = 502, str(exc)
+                if index == len(keys) - 1:
+                    break
+    raise HTTPException(status_code=last_status, detail=f"Agnes API error ({last_status}): {last_detail}")
+
 @app.get("/health")
 def health():
-    return {"ok": True, "service": "Ankit Kryptex AI Studio", "agnes_configured": bool(AGNES_API_KEY)}
+    return {"ok": True, "service": "Ankit Kryptex AI Studio", "agnes_configured": bool(get_api_keys()), "configured_key_slots": len(get_api_keys())}
 
 @app.post("/api/media/image")
 async def generate_image(body: ImageRequest):
     validate_ratio(body.ratio)
     if body.resolution not in {"1K", "2K", "3K", "4K"}:
         raise HTTPException(status_code=400, detail="Choose a supported image resolution.")
-    payload = {
-        "model": "agnes-image-2.1-flash",
-        "prompt": body.prompt,
-        "size": body.resolution,
-        "n": 1,
-        "extra_body": {"ratio": body.ratio, "response_format": "url"}
-    }
+    model = body.model if body.model in {"agnes-image-2.0-flash", "agnes-image-2.1-flash", "agnes-image-2.5-flash", "agnes-image-2.0"} else "agnes-image-2.1-flash"
+    payload = {"model": model, "prompt": body.prompt, "size": body.resolution, "n": 1,
+               "extra_body": {"ratio": body.ratio, "response_format": "url"}}
     if body.reference_image:
         payload["extra_body"]["image"] = [body.reference_image]
-    async with httpx.AsyncClient(timeout=120) as client:
-        try:
-            response = await client.post(f"{AGNES_BASE_URL}/v1/images/generations", headers=agnes_headers(), json=payload)
-            response.raise_for_status()
-            data = response.json()
-        except HTTPException:
-            raise
-        except httpx.HTTPStatusError as exc:
-            detail = exc.response.text[:1200]
-            raise HTTPException(status_code=exc.response.status_code, detail=f"Agnes image error: {detail}")
-        except (httpx.HTTPError, ValueError) as exc:
-            raise HTTPException(status_code=502, detail=f"Agnes image service error: {exc}")
+    data = await agnes_request("POST", "/v1/images/generations", payload=payload, timeout=180)
     item = (data.get("data") or [{}])[0]
     result_url = item.get("url")
     if not result_url and item.get("b64_json"):
         result_url = "data:image/png;base64," + item["b64_json"]
     if not result_url:
         raise HTTPException(status_code=502, detail="Agnes response mein image URL nahi mila.")
-    return {"type": "image", "url": result_url, "model": "agnes-image-2.1-flash"}
+    return {"type": "image", "url": result_url, "model": model}
 
 @app.post("/api/media/video")
 async def generate_video(body: VideoRequest):
     validate_ratio(body.ratio)
-    model = "agnes-video-2.5" if body.resolution in {"1080P", "1K", "2K"} else "agnes-video-2.5-flash"
-    resolution = body.resolution if model == "agnes-video-2.5" else "720P"
-    prompt = body.prompt
+    allowed = {"agnes-video-2.5-flash", "agnes-video-2.5", "agnes-video-v2.0"}
+    requested = body.model if body.model in allowed else "agnes-video-2.5-flash"
+    model_order = [requested] + [m for m in ("agnes-video-2.5-flash", "agnes-video-2.5", "agnes-video-v2.0") if m != requested]
+    if requested == "agnes-video-2.5-flash" and body.resolution not in {"720P"}:
+        raise HTTPException(status_code=400, detail="Agnes Video 2.5 Flash supports 720P. Choose 720P or select Agnes Video 2.5.")
     if body.mode == "multi":
-        prompt = ("Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, "
-                  "clear shot transitions, consistent subjects and a beginning, middle and ending. " + prompt)
-    payload = {
-        "model": model,
-        "prompt": prompt,
-        "mode": "img2video" if body.reference_image else "text",
-        "seconds": str(body.duration),
-        "size": resolution,
-        "aspect_ratio": body.ratio
-    }
-    if body.reference_image:
-        payload["first_frame"] = body.reference_image
-    async with httpx.AsyncClient(timeout=120) as client:
+        prompt = "Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects, and a beginning, middle and ending. " + body.prompt
+    else:
+        prompt = body.prompt
+    last_error = None
+    for model in model_order:
+        resolution = body.resolution if model == "agnes-video-2.5" else "720P"
+        payload = {"model": model, "prompt": prompt,
+                   "mode": "img2video" if body.reference_image else "text",
+                   "seconds": str(body.duration), "size": resolution, "aspect_ratio": body.ratio}
+        if body.reference_image:
+            payload["first_frame"] = body.reference_image
         try:
-            response = await client.post(f"{AGNES_BASE_URL}/v1/videos", headers=agnes_headers(), json=payload)
-            response.raise_for_status()
-            data = response.json()
-        except HTTPException:
-            raise
-        except httpx.HTTPStatusError as exc:
-            detail = exc.response.text[:1200]
-            raise HTTPException(status_code=exc.response.status_code, detail=f"Agnes video error: {detail}")
-        except (httpx.HTTPError, ValueError) as exc:
-            raise HTTPException(status_code=502, detail=f"Agnes video service error: {exc}")
-    video_id = data.get("video_id") or data.get("id") or data.get("task_id")
-    if not video_id:
-        raise HTTPException(status_code=502, detail=f"Agnes response mein video task ID nahi mila: {data}")
-    return {"type": "video", "video_id": video_id, "model": model, "status": data.get("status", "processing"), "raw": data}
+            data = await agnes_request("POST", "/v1/videos", payload=payload, timeout=150)
+            video_id = data.get("video_id") or data.get("id")
+            if not video_id:
+                raise HTTPException(status_code=502, detail=f"Agnes response mein video_id nahi mila: {data}")
+            return {"type": "video", "video_id": video_id, "model": model,
+                    "status": data.get("status", "processing"), "raw": data}
+        except HTTPException as exc:
+            last_error = exc
+            # Model fallback is only appropriate for unsupported/unavailable model responses.
+            if exc.status_code not in {400, 404, 422}:
+                raise
+    raise last_error or HTTPException(status_code=502, detail="No supported Agnes video model responded.")
 
 @app.get("/api/media/video/{video_id}")
 async def poll_video(video_id: str, model_name: str = Query(default="agnes-video-2.5-flash")):
     if not video_id or len(video_id) > 300:
         raise HTTPException(status_code=400, detail="Invalid video ID.")
-    if model_name not in {"agnes-video-2.5", "agnes-video-2.5-flash"}:
+    if model_name not in {"agnes-video-2.5", "agnes-video-2.5-flash", "agnes-video-v2.0"}:
         raise HTTPException(status_code=400, detail="Unsupported video model.")
-    async with httpx.AsyncClient(timeout=45) as client:
+    return await agnes_request("GET", "/agnesapi", params={"video_id": video_id, "model_name": model_name}, timeout=45)
+
+@app.post("/api/media/chat")
+async def chat(body: ChatRequest):
+    model_order = [body.model] + [m for m in ("agnes-3.0-flash", "agnes-2.5-flash", "agnes-2.0-flash") if m != body.model]
+    last_error = None
+    for model in model_order:
         try:
-            response = await client.get(
-                f"{AGNES_BASE_URL}/agnesapi",
-                headers={"Authorization": f"Bearer {AGNES_API_KEY}"} if AGNES_API_KEY else {},
-                params={"video_id": video_id, "model_name": model_name}
-            )
-            response.raise_for_status()
-            data = response.json()
-        except httpx.HTTPStatusError as exc:
-            raise HTTPException(status_code=exc.response.status_code, detail=f"Agnes status error: {exc.response.text[:1000]}")
-        except (httpx.HTTPError, ValueError) as exc:
-            raise HTTPException(status_code=502, detail=f"Agnes status service error: {exc}")
-    return data
+            data = await agnes_request("POST", "/v1/chat/completions",
+                payload={"model": model, "messages": body.messages, "stream": False}, timeout=120)
+            choices = data.get("choices") or []
+            reply = (choices[0].get("message") or {}).get("content") if choices else None
+            if not reply:
+                raise HTTPException(status_code=502, detail="Agnes chat response empty tha.")
+            return {"reply": reply, "model": model}
+        except HTTPException as exc:
+            last_error = exc
+            if exc.status_code not in {400, 404, 422}:
+                raise
+    raise last_error or HTTPException(status_code=502, detail="No supported Agnes chat model responded.")
 
 @app.get("/api/media/download")
 async def download_media(url: str = Query(min_length=8, max_length=4000)):
@@ -165,7 +194,7 @@ async def download_media(url: str = Query(min_length=8, max_length=4000)):
     content_type = response.headers.get("content-type", "application/octet-stream").split(";")[0]
     filename = "ankit-kryptex-media" + (".mp4" if "video" in content_type else ".png" if "image" in content_type else ".bin")
     return StreamingResponse(iter([response.content]), media_type=content_type,
-                             headers={"Content-Disposition": f'attachment; filename="{filename}"'})
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'})
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
