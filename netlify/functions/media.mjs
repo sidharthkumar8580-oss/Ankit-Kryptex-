@@ -75,9 +75,11 @@ export default async (request) => {
   }
 
   const videoMatch = path.match(/\/api\/media\/video\/([^/]+)$/);
-  if (videoMatch && request.method === "GET") {
+  if ((action === "status" || videoMatch) && request.method === "GET") {
     const key = Netlify.env.get("AGNES_API_KEY") || "";
     if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
+    const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
+    if (!requestedVideoId || requestedVideoId.length > 300) return json({ detail: "Invalid video ID." }, 400);
     const model = url.searchParams.get("model_name") || "agnes-video-2.5-flash";
     if (!["agnes-video-2.5", "agnes-video-2.5-flash"].includes(model)) return json({ detail: "Unsupported video model." }, 400);
     const upstream = new URL(AGNES_BASE + "/agnesapi");
