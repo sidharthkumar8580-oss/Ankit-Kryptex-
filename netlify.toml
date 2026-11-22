@@ -1,0 +1,23 @@
+ [build]
+  publish = "static"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/media/image"
+  to = "/.netlify/functions/media"
+  status = 200
+
+[[redirects]]
+  from = "/api/media/video"
+  to = "/.netlify/functions/media"
+  status = 200
+
+[[redirects]]
+  from = "/api/media/video/*"
+  to = "/.netlify/functions/media"
+  status = 200
+
+[[redirects]]
+  from = "/api/media/download"
+  to = "/.netlify/functions/media"
+  status = 200
