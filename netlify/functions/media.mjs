@@ -10,14 +10,29 @@ function json(data, status = 200) {
 async function agnesFetch(path, options = {}) {
   const key = Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
   if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
-  const response = await fetch(AGNES_BASE + path, {
-    ...options,
-    headers: { authorization: `Bearer ${key}`, "content-type": "application/json", ...(options.headers || {}) }
-  });
-  const raw = await response.text();
+  let response;
+  try {
+    response = await fetch(AGNES_BASE + path, {
+      ...options,
+      headers: { authorization: `Bearer ${key}`, "content-type": "application/json", ...(options.headers || {}) }
+    });
+  } catch (error) {
+    return json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
+  }
+  const raw = await response.text().catch(() => "");
+  if (!raw.trim()) return json({ detail: "Agnes API ne empty response diya. Server busy ho sakta hai; dobara try karein.", code: "empty_upstream_response" }, 502);
   let data;
-  try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 1200) }; }
-  if (!response.ok) return json({ detail: data.detail || data.message || "Agnes API request failed.", code: data.code || null, request_id: data.request_id || null }, response.status);
+  try { data = JSON.parse(raw); } catch {
+    return json({ detail: "Agnes API ne invalid response diya: " + raw.slice(0, 500), code: "invalid_upstream_response" }, 502);
+  }
+  if (!response.ok) {
+    const err = data.error || {};
+    return json({
+      detail: data.detail || data.message || err.message || err.detail || "Agnes API request failed.",
+      code: data.code || err.code || null,
+      request_id: data.request_id || err.request_id || null
+    }, response.status);
+  }
   return data;
 }
 
@@ -28,12 +43,14 @@ async function withModelFallback(path, payload, candidates) {
     if (!(result instanceof Response)) return { data: result, model };
     lastResponse = result;
     const detail = await result.clone().json().catch(() => ({}));
-    const message = String(detail.detail || detail.message || detail.code || "").toLowerCase();
-    const modelUnavailable = [400, 404, 422].includes(result.status) &&
-      (message.includes("model") || message.includes("not found") || message.includes("unsupported") || message.includes("invalid"));
+    const message = String(detail.detail || detail.message || detail.error?.message || detail.code || detail.error?.code || "").toLowerCase();
+    const code = String(detail.code || detail.error?.code || "").toLowerCase();
+    const modelUnavailable = [400, 404, 410, 422].includes(result.status) &&
+      (message.includes("model") || message.includes("not found") || message.includes("unsupported") || message.includes("invalid") || code.includes("model"));
     const capacityIssue = [429, 503].includes(result.status) &&
       (message.includes("queue") || message.includes("busy") || message.includes("rate") || message.includes("limit") || message.includes("capacity"));
-    if (!modelUnavailable && !capacityIssue) return result;
+    const temporaryServerIssue = [500, 502, 504].includes(result.status);
+    if (!modelUnavailable && !capacityIssue && !temporaryServerIssue) return result;
   }
   return lastResponse || json({ detail: "No compatible Agnes model is currently available." }, 503);
 }
@@ -47,15 +64,19 @@ export default async (request) => {
     let body;
     try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!Array.isArray(body.messages) || !body.messages.length) return json({ detail: "Chat messages are required." }, 400);
-    const models = ["agnes-1.5-flash","agnes-2.0-flash","agnes-2.5-flash","agnes-2.5-pro-alpha","agnes-3.0-flash"];
+    const models = ["agnes-1.5-flash","agnes-2.0-flash","agnes-2.5-flash","agnes-3.0-flash"];
     const selected = models.includes(body.model) ? body.model : "agnes-2.5-flash";
-    const candidates = [selected, ...models.filter(m => m !== selected).reverse()];
+    const candidates = [selected, ...models.filter(m => m !== selected)];
     const result = await withModelFallback("/v1/chat/completions", {
-      messages: body.messages.slice(-30), temperature: 0.7, max_tokens: 2048
+      messages: body.messages.slice(-30), temperature: 0.7, max_tokens: 2048, stream: false
     }, candidates);
     if (result instanceof Response) return result;
-    const choice = result.data.choices?.[0]?.message;
-    return json({ reply: choice?.content || choice?.reasoning_content || "Agnes ne empty response diya.", model: result.model });
+    const choice = result.data?.choices?.[0]?.message;
+    const reply = choice?.content || choice?.reasoning_content;
+    if (!reply || (typeof reply === "string" && !reply.trim())) {
+      return json({ detail: "Agnes model ne reply return nahi kiya. Fallback models bhi try kiye gaye; thodi der baad dobara try karein.", code: "empty_chat_completion", model: result.model }, 502);
+    }
+    return json({ reply, model: result.model });
   }
 
   if ((action === "image" || path.endsWith("/api/media/image")) && request.method === "POST") {
