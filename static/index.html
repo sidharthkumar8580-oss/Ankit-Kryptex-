@@ -20,7 +20,7 @@ body{background:radial-gradient(ellipse at 50% -30%,#542b7d45,transparent 52%),#
 .promptlabel{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;font-size:12px;color:#d8d2e3;font-weight:700}.counter{color:#777386;font-weight:500}
 textarea{width:100%;height:112px;resize:vertical;min-height:85px;max-height:180px;border:1px solid #ffffff16;border-radius:15px;background:#0a0a12;color:white;padding:14px;outline:none;font-size:14px;line-height:1.55}textarea:focus,input:focus,select:focus{border-color:#b66bf2;box-shadow:0 0 0 3px #a855f71c}
 textarea::placeholder{color:#676477}
-.controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.field label{display:block;color:#9995a8;font-size:10px;margin:0 0 7px 2px}.field select{width:100%;height:42px;background:#0c0b14;border:1px solid var(--line);border-radius:11px;color:#f4efff;padding:0 9px;font-size:12px;outline:none}
+.controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:14px}.field label{display:block;color:#9995a8;font-size:10px;margin:0 0 7px 2px}.field select{width:100%;height:42px;background:#0c0b14;border:1px solid var(--line);border-radius:11px;color:#f4efff;padding:0 9px;font-size:12px;outline:none}
 .refrow{display:flex;align-items:center;gap:10px;margin-top:13px;flex-wrap:wrap}.upload{display:inline-flex;align-items:center;gap:8px;border:1px dashed #ffffff35;background:#ffffff06;border-radius:11px;padding:10px 13px;color:#d8d0e7;font-size:12px}.refname{color:#9d91ad;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}.hidden{display:none!important}
 .generate{width:100%;height:50px;border:0;border-radius:14px;margin-top:15px;background:linear-gradient(100deg,#9333ea,#c044c3,#ec4899);font-weight:800;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 25px #a13bd844;display:flex;align-items:center;justify-content:center;gap:9px}.generate:disabled{opacity:.55;cursor:wait}
 .note{font-size:10px;color:#777386;text-align:center;margin:10px 0 0;line-height:1.5}
@@ -48,6 +48,20 @@ textarea::placeholder{color:#676477}
 .genactions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
 .genreturn{position:fixed;right:16px;bottom:18px;z-index:19;border:1px solid #b66bf2;background:linear-gradient(110deg,#7e22ce,#be328c);border-radius:999px;padding:12px 16px;box-shadow:0 8px 30px #0009;font-size:12px;font-weight:800;display:none}
 .genreturn.show{display:block}
+.chatpanel{display:none;border:1px solid #ffffff18;background:linear-gradient(155deg,#171622f5,#10101af5);border-radius:20px;overflow:hidden;box-shadow:var(--glow)}
+.chatpanel.active{display:flex;flex-direction:column;min-height:55vh;height:calc(100dvh - 250px);max-height:720px}
+.chatbar{display:flex;align-items:center;gap:10px;padding:13px;border-bottom:1px solid var(--line)}
+.chatbar label{font-size:10px;color:#aaa}
+.chatbar select{flex:1;min-width:0;height:38px;background:#0c0b14;border:1px solid var(--line);border-radius:10px;color:#f4efff;padding:0 9px;font-size:11px}
+.chatmessages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.chatbubble{max-width:90%;padding:12px 14px;border-radius:15px;font-size:13px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.chatbubble.user{align-self:flex-end;background:linear-gradient(120deg,#7430b8,#a33b9c)}
+.chatbubble.assistant{align-self:flex-start;background:#211e2c;border:1px solid var(--line)}
+.chatcomposer{display:flex;gap:9px;padding:12px;border-top:1px solid var(--line)}
+.chatcomposer textarea{height:52px;min-height:52px;max-height:110px;resize:vertical;flex:1}
+.chatcomposer button{width:54px;border:0;border-radius:12px;background:linear-gradient(120deg,#9333ea,#ec4899);font-size:18px}
+.chatmodelnote{padding:0 14px 10px;color:#777386;font-size:10px}
+@media(max-width:620px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.chatpanel.active{height:calc(100dvh - 205px);min-height:55vh}.chatbubble{max-width:95%}}
 @media(max-width:620px){.genhead{height:60px;padding:0 12px}.gencontent{padding:16px 12px}.genstatuscard{border-radius:18px}}
 /* Drawer and history */
 .scrim{position:fixed;inset:0;background:#0009;z-index:9;opacity:0;pointer-events:none;transition:.22s}.scrim.open{opacity:1;pointer-events:auto}.drawer{position:fixed;z-index:10;left:0;top:0;bottom:0;width:min(310px,85vw);background:#10101a;border-right:1px solid var(--line);transform:translateX(-105%);transition:.24s;padding:20px;display:flex;flex-direction:column;box-shadow:var(--glow)}.drawer.open{transform:translateX(0)}.drawerhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}.drawerlink{width:100%;text-align:left;border:1px solid transparent;background:transparent;padding:14px;border-radius:12px;color:#d6d0e1;margin:3px 0;font-size:14px}.drawerlink.active,.drawerlink:hover{background:#a855f71b;border-color:#a855f733}.drawerfoot{margin-top:auto;color:#777386;font-size:11px;line-height:1.6}
@@ -59,7 +73,7 @@ textarea::placeholder{color:#676477}
 <header class="top">
 <button class="iconbtn" id="menuBtn" aria-label="Open menu">☰</button>
 <div class="brand"><div class="mark">AK</div><div><strong>ANKIT KRYPTEX</strong><small>CREATIVE AI STUDIO</small></div></div>
-<div class="topright"><span class="pill" id="apiBadge">● Agnes ready</span><div class="tabs"><button class="tab active" data-tab="video">▶ Video</button><button class="tab" data-tab="image">▧ Image</button></div></div>
+<div class="topright"><span class="pill" id="apiBadge">● Agnes ready</span><div class="tabs"><button class="tab active" data-tab="video">▶ Video</button><button class="tab" data-tab="image">▧ Image</button><button class="tab" data-tab="chat">✦ Chat</button></div></div>
 </header>
 <div class="workspace"><main class="screen">
 <section class="hero"><div class="eyebrow">CREATE WITHOUT LIMITS</div><h1>Imagine it. <span class="gradient">Create it.</span></h1><p>Turn your ideas into cinematic videos and beautiful images.</p></section>
@@ -71,12 +85,25 @@ textarea::placeholder{color:#676477}
 <div class="field" id="resolutionField"><label>RESOLUTION</label><select id="resolution"><option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option></select></div>
 <div class="field" id="durationField"><label>DURATION</label><select id="duration"><option value="4">4 seconds</option><option value="5" selected>5 seconds</option><option value="6">6 seconds</option><option value="8">8 seconds</option><option value="10">10 seconds</option><option value="12">12 seconds</option></select></div>
 <div class="field"><label>ASPECT RATIO</label><select id="ratio"><option value="9:16">9:16 Portrait</option><option value="16:9">16:9 Landscape</option><option value="1:1">1:1 Square</option><option value="4:3">4:3</option><option value="3:4">3:4</option><option value="21:9">21:9 Cinema</option></select></div>
+<div class="field" id="modelField"><label>AI MODEL · AUTO FALLBACK</label><select id="modelSelect"></select></div>
 <div class="field" id="qualityField"><label>STYLE</label><select id="style"><option value="cinematic">Cinematic</option><option value="realistic">Photorealistic</option><option value="anime">Anime</option><option value="3d">3D Render</option><option value="artistic">Artistic</option></select></div>
 </div>
 <div class="refrow"><label class="upload" for="reference">＋ Add reference image</label><input class="hidden" type="file" id="reference" accept="image/*"><span class="refname" id="refname">Optional · JPG / PNG / WEBP</span><button class="smallbtn hidden" id="clearRef">Remove</button></div>
 <button class="generate" id="generate"><span>✦</span><span id="generateText">Generate Video</span></button>
 <p class="note" id="disclaimer">Video generation uses Agnes AI. HD and higher resolutions may use a different model and have different plan costs.</p>
 <div class="result" id="result"><div class="resultbox"><div class="resulthead"><strong id="resultTitle">Your creation</strong><span id="resultState">Ready</span></div><div id="preview"></div><div class="resultactions"><button class="smallbtn" id="downloadCurrent">↓ Download</button><button class="smallbtn" id="saveCurrent">Save to History</button></div></div></div>
+</section>
+<section class="chatpanel" id="chatPanel">
+ <div class="chatbar"><strong>Agnes Chat</strong><label for="chatModel">MODEL</label><select id="chatModel">
+  <option value="agnes-1.5-flash">Agnes 1.5 Flash · Fast chatting</option>
+  <option value="agnes-2.0-flash">Agnes 2.0 Flash · Chat, coding, reasoning</option>
+  <option value="agnes-2.5-flash" selected>Agnes 2.5 Flash · Advanced coding & reasoning</option>
+  <option value="agnes-2.5-pro-alpha">Agnes 2.5 Pro Alpha</option>
+  <option value="agnes-3.0-flash">Agnes 3.0 Flash · Newer text model</option>
+ </select></div>
+ <div class="chatmessages" id="chatMessages"><div class="chatbubble assistant">Hi! Main Agnes AI hoon. Aap mujhse chat, coding aur reasoning ke questions pooch sakte ho.</div></div>
+ <div class="chatcomposer"><textarea id="chatInput" placeholder="Message Agnes..." maxlength="6000"></textarea><button id="chatSend" aria-label="Send message">➤</button></div>
+ <div class="chatmodelnote" id="chatModelNote">Selected model unavailable hua to supported fallback model automatically try hoga.</div>
 </section>
 </main></div>
 </div>
@@ -114,7 +141,18 @@ function showPage(name){['history','subscription','settings'].forEach(p=>$('#'+p
 function home(){['history','subscription','settings'].forEach(p=>$('#'+p+'Page').classList.remove('open'));drawer(false)}
 $('#menuBtn').onclick=()=>drawer(true);$('#closeDrawer').onclick=()=>drawer(false);$('#scrim').onclick=()=>drawer(false);all('.backHome').forEach(b=>b.onclick=home);
 all('.drawerlink').forEach(b=>b.onclick=()=>{const p=b.dataset.page;if(p==='home')home();else showPage(p)});
-function switchTab(tab){activeTab=tab;all('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$('#videoModes').classList.toggle('hidden',tab!=='video');$('#durationField').classList.toggle('hidden',tab!=='video');$('#resolution').innerHTML=tab==='video'?'<option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option>':'<option value="1K">1K</option><option value="2K">2K</option><option value="3K">3K</option><option value="4K">4K</option>';$('#promptTitle').textContent=tab==='video'?'Describe your video':'Describe your image';$('#prompt').placeholder=tab==='video'?'Describe the scene, subject, movement, camera angle, lighting and mood...':'Describe the image you want to create...';$('#generateText').textContent=tab==='video'?'Generate Video':'Generate Image';$('#disclaimer').textContent=tab==='video'?'Video generation uses Agnes AI. HD and higher resolutions may use a different model and have different plan costs.':'Image generation uses Agnes Image 2.1 Flash.';$('#durationField').classList.toggle('hidden',tab!=='video');$('#result').classList.remove('show');currentResult=null}
+function switchTab(tab){
+ activeTab=tab;all('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ const chat=tab==='chat';$('#videoModes').classList.toggle('hidden',tab!=='video');$('.card').classList.toggle('hidden',chat);$('#chatPanel').classList.toggle('active',chat);
+ $('#durationField').classList.toggle('hidden',tab!=='video');$('#resolutionField').classList.toggle('hidden',chat);$('#qualityField').classList.toggle('hidden',tab!=='video');$('#refrow')?.classList.toggle('hidden',chat);
+ $('#modelField').classList.toggle('hidden',chat);
+ $('#resolution').innerHTML=tab==='video'?'<option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option>':'<option value="1K">1K</option><option value="2K">2K</option><option value="3K">3K</option><option value="4K">4K</option>';
+ const opts=tab==='video'?[['agnes-video-2.5-flash','Agnes Video 2.5 Flash · Fast'],['agnes-video-2.5','Agnes Video 2.5 · Advanced'],['agnes-video-v2.0','Agnes Video 2.0 · Legacy'],['agnes-video-h3-moe','Agnes Video H3-MoE · Research']]:[['agnes-image-2.0-flash','Agnes Image 2.0 Flash'],['agnes-image-2.1-flash','Agnes Image 2.1 Flash · Editing'],['agnes-image-2.0','Agnes-Image-2.0 · Advanced']];
+ $('#modelSelect').innerHTML=opts.map((o,i)=>'<option value="'+o[0]+'" '+(i===0?'selected':'')+'>'+o[1]+'</option>').join('');
+ $('#promptTitle').textContent=tab==='video'?'Describe your video':'Describe your image';$('#prompt').placeholder=tab==='video'?'Describe the scene, subject, movement, camera angle, lighting and mood...':'Describe the image you want to create...';
+ $('#generateText').textContent=tab==='video'?'Generate Video':'Generate Image';$('#disclaimer').textContent=tab==='video'?'Video models try the selected option first, then automatically switch when Agnes reports the model unavailable.':'Image models try the selected option first, then automatically switch when Agnes reports the model unavailable.';
+ $('#result').classList.remove('show');currentResult=null;
+}
 all('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
 all('.mode').forEach(b=>b.onclick=()=>{videoMode=b.dataset.mode;all('.mode').forEach(x=>x.classList.toggle('active',x===b))});
 $('#prompt').addEventListener('input',()=>$('#counter').textContent=$('#prompt').value.length+' / 2000');
@@ -188,7 +226,7 @@ async function generate(){
   setGenProgress('Sending image request…',null,'Agnes is creating your image. You can close this screen with × and reopen it using the purple Return button.');
   openGeneration();
   try{
-   const r=await fetch(API_BASE+'/api/media/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,resolution:$('#resolution').value,reference_image:referenceData||null})});
+   const r=await fetch(API_BASE+'/api/media/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,model:$('#modelSelect').value,ratio:$('#ratio').value,resolution:$('#resolution').value,reference_image:referenceData||null})});
    const d=await readJson(r);if(!r.ok)throw new Error((d.detail||'Image generation failed')+(d.code?' ['+d.code+']':''));
    if(!d.url)throw new Error('Agnes response mein image URL nahi mila.');
    const item={id:crypto.randomUUID(),type:'image',url:d.url,prompt,created:Date.now(),model:d.model};addHistory(item);displayResult(item);
@@ -214,7 +252,7 @@ async function generate(){
   let createResponse,d;
   const retryDelays=[30000,60000,120000];
   for(let attempt=0;;attempt++){
-   createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
+   createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,model:$('#modelSelect').value,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
    d=await readJson(createResponse);
    const busy=createResponse.status===503||createResponse.status===429||String(d.code||'').toLowerCase()==='video_queue_full'||String(d.detail||'').toLowerCase().includes('video queue is full');
    if(createResponse.ok)break;
@@ -256,6 +294,26 @@ async function generate(){
  finally{btn.disabled=false;$('#generateText').textContent='Generate Video'}
 }
 $('#generate').onclick=generate;
+
+let chatMessages=[];
+function addChatBubble(role,content){const el=document.createElement('div');el.className='chatbubble '+role;el.textContent=content;$('#chatMessages').append(el);$('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;return el}
+async function sendChat(){
+ const input=$('#chatInput'),message=input.value.trim();if(!message)return;
+ input.value='';addChatBubble('user',message);chatMessages.push({role:'user',content:message});
+ const send=$('#chatSend');send.disabled=true;send.textContent='…';
+ const wait=addChatBubble('assistant','Agnes is thinking…');
+ try{
+  const r=await fetch(API_BASE+'/api/media/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:$('#chatModel').value,messages:chatMessages})});
+  const d=await readJson(r);if(!r.ok)throw new Error(d.detail||'Chat request failed.');
+  wait.textContent=typeof d.reply==='string'?d.reply:JSON.stringify(d.reply);
+  chatMessages.push({role:'assistant',content:wait.textContent});
+  $('#chatModelNote').textContent='Responded with '+(d.model||'Agnes model')+'. Fallback automatic hai.';
+ }catch(e){wait.textContent='Error: '+e.message;chatMessages.pop();}
+ finally{send.disabled=false;send.textContent='➤';input.focus()}
+}
+$('#chatSend').onclick=sendChat;
+$('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat()}});
+
 function renderHistory(){const items=cleanHistory().filter(x=>x.type===historyType);selected.clear();$('#historyCount').textContent=items.length+' items';$('#historyGrid').innerHTML='';if(!items.length){$('#historyGrid').innerHTML='<div class="empty">No '+historyType+' creations yet.<br>Generated results will appear here.</div>';return}items.forEach(item=>{const card=document.createElement('article');card.className='historyitem';const media=document.createElement(item.type==='video'?'video':'img');media.src=item.url;if(item.type==='video'){media.muted=true;media.preload='metadata'}else media.alt='Generated image';const check=document.createElement('input');check.type='checkbox';check.className='selectbox';check.onchange=()=>{if(check.checked)selected.add(item.id);else selected.delete(item.id)};const dots=document.createElement('button');dots.className='dots';dots.textContent='⋮';dots.onclick=()=>{const old=card.querySelector('.itemmenu');if(old){old.remove();return}const menu=document.createElement('div');menu.className='itemmenu';const dl=document.createElement('button');dl.textContent='↓ Download';dl.onclick=()=>downloadItem(item);const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{setHistory(getHistory().filter(x=>x.id!==item.id));renderHistory()};menu.append(dl,del);card.append(menu)};const meta=document.createElement('div');meta.className='historymeta';const p=document.createElement('p');p.textContent=item.prompt;const small=document.createElement('small');small.textContent=new Date(item.created).toLocaleString();meta.append(p,small);card.append(media,check,dots,meta);$('#historyGrid').append(card)})}
 all('.historytab').forEach(b=>b.onclick=()=>{historyType=b.dataset.history;all('.historytab').forEach(x=>x.classList.toggle('active',x===b));renderHistory()});
 $('#selectAll').onclick=()=>{all('#historyGrid .selectbox').forEach(c=>{c.checked=true;c.onchange();})};
