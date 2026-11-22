@@ -319,5 +319,6 @@ all('.historytab').forEach(b=>b.onclick=()=>{historyType=b.dataset.history;all('
 $('#selectAll').onclick=()=>{all('#historyGrid .selectbox').forEach(c=>{c.checked=true;c.onchange();})};
 $('#deleteSelected').onclick=()=>{if(!selected.size){alert('Pehle items select karo.');return}setHistory(getHistory().filter(x=>!selected.has(x.id)));renderHistory()};
 $('#clearHistoryAll').onclick=()=>{if(confirm('Is browser ki saari saved history clear kar dein?')){setHistory([]);alert('History cleared.')}};
+switchTab('video');
 cleanHistory();
 </script></body></html>
