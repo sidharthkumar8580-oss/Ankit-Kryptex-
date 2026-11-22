@@ -17,7 +17,7 @@ async function agnesFetch(path, options = {}) {
   const raw = await response.text();
   let data;
   try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 1200) }; }
-  if (!response.ok) return json({ detail: data.detail || data.message || "Agnes API request failed." }, response.status);
+  if (!response.ok) return json({ detail: data.detail || data.message || "Agnes API request failed.", code: data.code || null, request_id: data.request_id || null }, response.status);
   return data;
 }
 
@@ -31,21 +31,22 @@ export default async (request) => {
     try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
     if (!["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"].includes(body.ratio || "1:1")) return json({ detail: "Unsupported aspect ratio." }, 400);
-    if (!["1K", "2K", "3K", "4K"].includes(body.resolution || "1K")) return json({ detail: "Choose a supported image resolution." }, 400);
+    
     const payload = {
-      model: "agnes-image-2.1-flash",
+      model: "agnes-image-2.5-flash",
       prompt: body.prompt,
-      size: body.resolution || "1K",
+      size: ({ "1K": "1024x1024", "2K": "2048x2048", "3K": "3072x3072", "4K": "4096x4096" })[body.resolution || "1K"] || "1024x1024",
       n: 1,
-      extra_body: { ratio: body.ratio || "1:1", response_format: "url" }
+      extra_body: { response_format: "url" }
     };
     if (body.reference_image) payload.extra_body.image = [body.reference_image];
     const data = await agnesFetch("/v1/images/generations", { method: "POST", body: JSON.stringify(payload) });
     if (data instanceof Response) return data;
+    if (data.error || data.code) return json({ detail: data.error?.message || data.message || data.code || "Agnes image generation failed.", code: data.code || null }, 502);
     const item = (data.data || [{}])[0];
     const resultUrl = item.url || (item.b64_json ? "data:image/png;base64," + item.b64_json : null);
     if (!resultUrl) return json({ detail: "Agnes response mein image URL nahi mila." }, 502);
-    return json({ type: "image", url: resultUrl, model: "agnes-image-2.1-flash" });
+    return json({ type: "image", url: resultUrl, model: "agnes-image-2.5-flash" });
   }
 
   if ((action === "video" || path.endsWith("/api/media/video")) && request.method === "POST") {
