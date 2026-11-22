@@ -251,17 +251,29 @@ async function generate(){
  openGeneration();
  try{
   let createResponse,d;
-  const retryDelays=[30000,60000,120000];
+  // Retry only temporary failures. Permanent errors such as exhausted quota (402),
+  // invalid keys (401/403), or invalid prompts are shown immediately.
+  const retryDelays=[10000,20000,30000,45000,60000];
+  const retryableStatuses=[408,429,500,502,503,504];
   for(let attempt=0;;attempt++){
-   createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,model:$('#modelSelect').value,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
-   d=await readJson(createResponse);
-   const busy=createResponse.status===503||createResponse.status===429||String(d.code||'').toLowerCase()==='video_queue_full'||String(d.detail||'').toLowerCase().includes('video queue is full');
-   if(createResponse.ok)break;
-   if(!busy||attempt>=retryDelays.length)throw new Error((d.detail||'Agnes video request failed.')+(d.code?' ['+d.code+']':''));
+   let networkError=null;
+   try{
+    createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,model:$('#modelSelect').value,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
+    d=await readJson(createResponse);
+   }catch(error){
+    networkError=error;
+    d={detail:'Temporary network error. Retrying automatically…'};
+   }
+   if(createResponse?.ok)break;
+   const temporaryFailure=networkError||retryableStatuses.includes(createResponse?.status)||String(d.code||'').toLowerCase()==='video_queue_full';
+   if(!temporaryFailure||attempt>=retryDelays.length){
+    const detail=networkError?'Network connection failed after automatic retries.':(d.detail||'Agnes video request failed.');
+    throw new Error(detail+(d.code?' ['+d.code+']':''));
+   }
    const delay=retryDelays[attempt];
-   $('#genBadgeText').textContent='Agnes queue is busy';
+   $('#genBadgeText').textContent='Temporary issue — retrying';
    for(let left=Math.ceil(delay/1000);left>0;left--){
-    setGenProgress('Queue full — retry '+(attempt+1)+'/'+retryDelays.length+' in '+left+'s',null,'Agnes server par abhi load zyada hai. Request accept nahi hui, isliye video task abhi create nahi hua. Queue khulte hi website automatically dobara try karegi.');
+    setGenProgress('Request failed temporarily — retry '+(attempt+1)+'/'+retryDelays.length+' in '+left+'s',null,'Video request accept nahi hui. Website automatically dobara try kar rahi hai. Permanent quota/key errors par retry nahi hoga.');
     await new Promise(resolve=>setTimeout(resolve,1000));
    }
   }
