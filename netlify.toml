@@ -21,3 +21,8 @@
   from = "/api/media/download"
   to = "/.netlify/functions/media?action=download"
   status = 200
+
+[[redirects]]
+  from = "/api/media/chat"
+  to = "/.netlify/functions/media?action=chat"
+  status = 200
