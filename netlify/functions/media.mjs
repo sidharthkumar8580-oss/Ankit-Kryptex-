@@ -24,8 +24,9 @@ async function agnesFetch(path, options = {}) {
 export default async (request) => {
   const url = new URL(request.url);
   const path = url.pathname;
+  const action = url.searchParams.get("action") || "";
 
-  if (path.endsWith("/api/media/image") && request.method === "POST") {
+  if ((action === "image" || path.endsWith("/api/media/image")) && request.method === "POST") {
     let body;
     try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
@@ -47,7 +48,7 @@ export default async (request) => {
     return json({ type: "image", url: resultUrl, model: "agnes-image-2.1-flash" });
   }
 
-  if (path.endsWith("/api/media/video") && request.method === "POST") {
+  if ((action === "video" || path.endsWith("/api/media/video")) && request.method === "POST") {
     let body;
     try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
@@ -80,7 +81,7 @@ export default async (request) => {
     const model = url.searchParams.get("model_name") || "agnes-video-2.5-flash";
     if (!["agnes-video-2.5", "agnes-video-2.5-flash"].includes(model)) return json({ detail: "Unsupported video model." }, 400);
     const upstream = new URL(AGNES_BASE + "/agnesapi");
-    upstream.searchParams.set("video_id", decodeURIComponent(videoMatch[1]));
+    upstream.searchParams.set("video_id", requestedVideoId);
     upstream.searchParams.set("model_name", model);
     const response = await fetch(upstream, { headers: { authorization: `Bearer ${key}` } });
     const raw = await response.text();
@@ -89,7 +90,7 @@ export default async (request) => {
     return json(response.ok ? data : { detail: data.detail || data.message || "Agnes status check failed." }, response.status);
   }
 
-  if (path.endsWith("/api/media/download") && request.method === "GET") {
+  if ((action === "download" || path.endsWith("/api/media/download")) && request.method === "GET") {
     const target = url.searchParams.get("url");
     try {
       const parsed = new URL(target);
