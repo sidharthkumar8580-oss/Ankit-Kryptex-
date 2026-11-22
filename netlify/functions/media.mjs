@@ -13,6 +13,8 @@ function agnesKeys() {
     Netlify.env.get("AGNES_API_KEY1"),
     Netlify.env.get("AGNES_API_KEY2"),
     Netlify.env.get("AGNES_API_KEY3"),
+    Netlify.env.get("AGNES_KEY1"),
+    Netlify.env.get("AGNES_KEY2"),
     Netlify.env.get("AGNES_VIDEO_KEY")
   ].filter(Boolean))];
 }
