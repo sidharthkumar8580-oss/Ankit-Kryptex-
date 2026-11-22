@@ -131,7 +131,7 @@ textarea::placeholder{color:#676477}
 <script>
 const $=s=>document.querySelector(s);
 const all=s=>Array.from(document.querySelectorAll(s));
-const API_BASE='';
+const API_BASE='https://ankit-kryptex-ai.onrender.com';
 let activeTab='video',videoMode='single',historyType='video',referenceData='',currentResult=null,selected=new Set();
 const HISTORY_KEY='akStudioHistoryV1',THREE_DAYS=3*24*60*60*1000;
 function getHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]')}catch{return []}}
