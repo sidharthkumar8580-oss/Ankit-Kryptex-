@@ -53,6 +53,7 @@ textarea::placeholder{color:#676477}
 .chatbar{display:flex;align-items:center;gap:10px;padding:13px;border-bottom:1px solid var(--line)}
 .chatbar label{font-size:10px;color:#aaa}
 .chatbar select{flex:1;min-width:0;height:38px;background:#0c0b14;border:1px solid var(--line);border-radius:10px;color:#f4efff;padding:0 9px;font-size:11px}
+.chatclose{flex:none;width:36px;height:36px;border:1px solid var(--line);border-radius:11px;background:#ffffff09;font-size:23px;line-height:1}
 .chatmessages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
 .chatbubble{max-width:90%;padding:12px 14px;border-radius:15px;font-size:13px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 .chatbubble.user{align-self:flex-end;background:linear-gradient(120deg,#7430b8,#a33b9c)}
@@ -98,9 +99,9 @@ textarea::placeholder{color:#676477}
   <option value="agnes-1.5-flash">Agnes 1.5 Flash · Fast chatting</option>
   <option value="agnes-2.0-flash">Agnes 2.0 Flash · Chat, coding, reasoning</option>
   <option value="agnes-2.5-flash" selected>Agnes 2.5 Flash · Advanced coding & reasoning</option>
-  <option value="agnes-2.5-pro-alpha">Agnes 2.5 Pro Alpha</option>
+  <option value="agnes-2.5-pro-alpha">Agnes 2.5 Pro Alpha · Auto fallback</option>
   <option value="agnes-3.0-flash">Agnes 3.0 Flash · Newer text model</option>
- </select></div>
+ </select><button class="chatclose" id="closeChat" aria-label="Back to video and image">×</button></div>
  <div class="chatmessages" id="chatMessages"><div class="chatbubble assistant">Hi! Main Agnes AI hoon. Aap mujhse chat, coding aur reasoning ke questions pooch sakte ho.</div></div>
  <div class="chatcomposer"><textarea id="chatInput" placeholder="Message Agnes..." maxlength="6000"></textarea><button id="chatSend" aria-label="Send message">➤</button></div>
  <div class="chatmodelnote" id="chatModelNote">Selected model unavailable hua to supported fallback model automatically try hoga.</div>
@@ -312,6 +313,7 @@ async function sendChat(){
  finally{send.disabled=false;send.textContent='➤';input.focus()}
 }
 $('#chatSend').onclick=sendChat;
+$('#closeChat').onclick=()=>switchTab('video');
 $('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat()}});
 
 function renderHistory(){const items=cleanHistory().filter(x=>x.type===historyType);selected.clear();$('#historyCount').textContent=items.length+' items';$('#historyGrid').innerHTML='';if(!items.length){$('#historyGrid').innerHTML='<div class="empty">No '+historyType+' creations yet.<br>Generated results will appear here.</div>';return}items.forEach(item=>{const card=document.createElement('article');card.className='historyitem';const media=document.createElement(item.type==='video'?'video':'img');media.src=item.url;if(item.type==='video'){media.muted=true;media.preload='metadata'}else media.alt='Generated image';const check=document.createElement('input');check.type='checkbox';check.className='selectbox';check.onchange=()=>{if(check.checked)selected.add(item.id);else selected.delete(item.id)};const dots=document.createElement('button');dots.className='dots';dots.textContent='⋮';dots.onclick=()=>{const old=card.querySelector('.itemmenu');if(old){old.remove();return}const menu=document.createElement('div');menu.className='itemmenu';const dl=document.createElement('button');dl.textContent='↓ Download';dl.onclick=()=>downloadItem(item);const del=document.createElement('button');del.textContent='Delete';del.onclick=()=>{setHistory(getHistory().filter(x=>x.id!==item.id));renderHistory()};menu.append(dl,del);card.append(menu)};const meta=document.createElement('div');meta.className='historymeta';const p=document.createElement('p');p.textContent=item.prompt;const small=document.createElement('small');small.textContent=new Date(item.created).toLocaleString();meta.append(p,small);card.append(media,check,dots,meta);$('#historyGrid').append(card)})}
