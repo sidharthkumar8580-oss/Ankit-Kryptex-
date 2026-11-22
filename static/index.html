@@ -148,7 +148,7 @@ function switchTab(tab){
  $('#durationField').classList.toggle('hidden',tab!=='video');$('#resolutionField').classList.toggle('hidden',chat);$('#qualityField').classList.toggle('hidden',tab!=='video');$('#refrow')?.classList.toggle('hidden',chat);
  $('#modelField').classList.add('hidden');
  $('#resolution').innerHTML=tab==='video'?'<option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option>':'<option value="1K">1K</option><option value="2K">2K</option><option value="3K">3K</option><option value="4K">4K</option>';
- const opts=tab==='video'?[['agnes-video-2.5-flash','Agnes Video 2.5 Flash · Fast'],['agnes-video-2.5','Agnes Video 2.5 · Advanced'],['agnes-video-v2.0','Agnes Video 2.0 · Legacy'],['agnes-video-h3-moe','Agnes Video H3-MoE · Research']]:[['agnes-image-2.0-flash','Agnes Image 2.0 Flash'],['agnes-image-2.1-flash','Agnes Image 2.1 Flash · Editing'],['agnes-image-2.0','Agnes-Image-2.0 · Advanced']];
+ const opts=tab==='video'?[['agnes-video-2.5-flash','Agnes Video 2.5 Flash']]:[['agnes-image-2.0-flash','Agnes Image 2.0 Flash'],['agnes-image-2.1-flash','Agnes Image 2.1 Flash · Editing'],['agnes-image-2.0','Agnes-Image-2.0 · Advanced']];
  $('#modelSelect').innerHTML=opts.map((o,i)=>'<option value="'+o[0]+'" '+(i===0?'selected':'')+'>'+o[1]+'</option>').join('');
  $('#promptTitle').textContent=tab==='video'?'Describe your video':'Describe your image';$('#prompt').placeholder=tab==='video'?'Describe the scene, subject, movement, camera angle, lighting and mood...':'Describe the image you want to create...';
  $('#generateText').textContent=tab==='video'?'Generate Video':'Generate Image';$('#disclaimer').textContent=tab==='video'?'Agnes automatically selects an available video model and switches to a supported fallback if needed.':'Agnes automatically selects an available image model and switches to a supported fallback if needed.';
@@ -253,7 +253,7 @@ async function generate(){
   let createResponse,d;
   // Retry only temporary failures. Permanent errors such as exhausted quota (402),
   // invalid keys (401/403), or invalid prompts are shown immediately.
-  const retryDelays=[10000,20000,30000,45000,60000];
+  const retryDelays=[10000,15000,20000,30000,45000,60000,60000,60000,60000,60000];
   const retryableStatuses=[408,429,500,502,503,504];
   for(let attempt=0;;attempt++){
    let networkError=null;
@@ -273,7 +273,7 @@ async function generate(){
    const delay=retryDelays[attempt];
    $('#genBadgeText').textContent='Temporary issue — retrying';
    for(let left=Math.ceil(delay/1000);left>0;left--){
-    setGenProgress('Request failed temporarily — retry '+(attempt+1)+'/'+retryDelays.length+' in '+left+'s',null,'Video request accept nahi hui. Website automatically dobara try kar rahi hai. Permanent quota/key errors par retry nahi hoga.');
+    setGenProgress('Request failed temporarily — retry '+(attempt+1)+'/'+retryDelays.length+' in '+left+'s',null,'Video request accept nahi hui. Website automatically dobara try kar rahi hai. API keys backend mein rotate hoti hain; quota/key errors par retry nahi hoga.');
     await new Promise(resolve=>setTimeout(resolve,1000));
    }
   }
