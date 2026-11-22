@@ -30,11 +30,24 @@ async function agnesFetch(path, options = {}) {
         ...options,
         headers: { authorization: "Bearer " + keys[index], "content-type": "application/json", ...(options.headers || {}) }
       });
-      if (response.ok) {
-        const raw = await response.text().catch(() => "");
+      const raw = await response.text().catch(() => "");
+      let data = {};
+      try { data = raw.trim() ? JSON.parse(raw) : {}; } catch { data = { detail: raw.slice(0, 500) }; }
+      // Some Agnes endpoints return model/quota errors inside HTTP 200 JSON.
+      const embeddedError = Boolean(data.error || data.code || data.success === false || data.status === "failed");
+      if (response.ok && !embeddedError) {
         if (!raw.trim()) return json({ detail: "Agnes API ne empty response diya.", code: "empty_upstream_response" }, 502);
-        try { return JSON.parse(raw); } catch { return json({ detail: "Agnes API ne invalid response diya: " + raw.slice(0, 500), code: "invalid_upstream_response" }, 502); }
+        return data;
       }
+      const errorObject = data.error || {};
+      const status = response.ok ? (Number(data.status_code || errorObject.status || 400) || 400) : response.status;
+      lastResponse = json({
+        detail: data.detail || data.message || errorObject.message || errorObject.detail || ("Agnes API HTTP " + status),
+        code: data.code || errorObject.code || null,
+        request_id: data.request_id || errorObject.request_id || null
+      }, status);
+      if (index === keys.length - 1) return lastResponse;
+      continue;
       const raw = await response.text().catch(() => "");
       let data = {};
       try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 500) }; }
@@ -58,10 +71,11 @@ async function withModelFallback(path, payload, candidates) {
     const message = String(detail.detail || detail.message || detail.error?.message || detail.code || detail.error?.code || "").toLowerCase();
     const code = String(detail.code || detail.error?.code || "").toLowerCase();
     const modelUnavailable = [400, 404, 410, 422].includes(result.status) &&
-      (message.includes("model") || message.includes("not found") || message.includes("unsupported") || message.includes("invalid") || code.includes("model"));
+      (message.includes("model") || message.includes("not found") || message.includes("unsupported") || message.includes("invalid") || message.includes("not available") || code.includes("model"));
     const capacityIssue = [429, 503].includes(result.status) &&
-      (message.includes("queue") || message.includes("busy") || message.includes("rate") || message.includes("limit") || message.includes("capacity"));
+      (message.includes("queue") || message.includes("busy") || message.includes("rate") || message.includes("limit") || message.includes("capacity") || message.includes("temporar"));
     const temporaryServerIssue = [500, 502, 504].includes(result.status);
+    // Never rotate models to hide exhausted quota or invalid credentials.
     if (!modelUnavailable && !capacityIssue && !temporaryServerIssue) return result;
   }
   return lastResponse || json({ detail: "No compatible Agnes model is currently available." }, 503);
@@ -123,8 +137,10 @@ export default async (request) => {
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
     if (!["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"].includes(body.ratio || "9:16")) return json({ detail: "Unsupported aspect ratio." }, 400);
     const resolution = body.resolution || "720P";
+    // Server owns model selection: do not trust a stale/hidden frontend model value.
+    // Try the fast model first, then automatically move through compatible fallbacks.
     const videoModels = ["agnes-video-2.5-flash","agnes-video-2.5","agnes-video-v2.0","agnes-video-h3-moe"];
-    const selectedVideoModel = videoModels.includes(body.model) ? body.model : (["1080P","1K","2K"].includes(resolution) ? "agnes-video-2.5" : "agnes-video-2.5-flash");
+    const selectedVideoModel = ["1080P","1K","2K"].includes(resolution) ? "agnes-video-2.5" : "agnes-video-2.5-flash";
     const size = selectedVideoModel === "agnes-video-2.5" ? resolution : "720P";
     let prompt = body.prompt;
     if (body.mode === "multi") prompt = "Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects and a beginning, middle and ending. " + prompt;
@@ -137,7 +153,19 @@ export default async (request) => {
       aspect_ratio: body.ratio || "9:16"
     };
     if (body.reference_image) payload.first_frame = body.reference_image;
-    const videoResult = await withModelFallback("/v1/videos", payload, [selectedVideoModel, ...videoModels.filter(m=>m!==selectedVideoModel)]);
+    // Each fallback receives a fresh model-specific payload. Lower-resolution fallbacks
+    // use 720P; the standard 2.5 model can retain the requested resolution.
+    let videoResult = null;
+    for (const candidate of [selectedVideoModel, ...videoModels.filter(m => m !== selectedVideoModel)]) {
+      const candidatePayload = { ...payload, model: candidate, size: candidate === "agnes-video-2.5" ? resolution : "720P" };
+      videoResult = await withModelFallback("/v1/videos", candidatePayload, [candidate]);
+      if (!(videoResult instanceof Response)) break;
+      const err = await videoResult.clone().json().catch(() => ({}));
+      const msg = String(err.detail || err.message || err.code || "").toLowerCase();
+      const canSwitch = [400,404,410,422,429,500,502,503,504].includes(videoResult.status) &&
+        (videoResult.status >= 500 || videoResult.status === 429 || msg.includes("model") || msg.includes("unsupported") || msg.includes("not found") || msg.includes("busy") || msg.includes("queue") || msg.includes("capacity") || msg.includes("temporar"));
+      if (!canSwitch) break;
+    }
     if (videoResult instanceof Response) return videoResult;
     const data = videoResult.data;
     const model = videoResult.model;
