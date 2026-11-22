@@ -5,15 +5,15 @@
 <meta name="theme-color" content="#09090f"><title>Ankit Kryptex Studio</title>
 <style>
 :root{color-scheme:dark;--bg:#09090f;--panel:#11111b;--panel2:#171725;--line:#ffffff14;--muted:#9694a8;--text:#f8f7ff;--purple:#a855f7;--pink:#ec4899;--glow:0 18px 70px #0008;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text)}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto;background:var(--bg);color:var(--text)}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}
 body{background:radial-gradient(ellipse at 50% -30%,#542b7d45,transparent 52%),#09090f}
-.app{height:100dvh;display:flex;flex-direction:column;max-width:100%;overflow:hidden}
+.app{min-height:100dvh;display:flex;flex-direction:column;max-width:100%;overflow:visible}
 .top{height:66px;flex:none;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--line);background:#0d0d16eF;backdrop-filter:blur(20px);z-index:5}
 .iconbtn{width:40px;height:40px;border:1px solid var(--line);border-radius:13px;background:#ffffff08;display:grid;place-items:center;font-size:20px}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}.mark{width:37px;height:37px;border-radius:12px;background:linear-gradient(135deg,#9333ea,#ec4899);display:grid;place-items:center;font-weight:900;box-shadow:0 5px 22px #a855f744}.brand strong{font-size:14px;letter-spacing:1.5px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;margin-top:2px}
 .topright{margin-left:auto;display:flex;align-items:center;gap:8px}.pill{border:1px solid var(--line);background:#ffffff08;border-radius:999px;padding:8px 12px;font-size:12px;color:#d6cde4}
 .tabs{display:flex;gap:4px;background:#171522;padding:4px;border-radius:14px;border:1px solid var(--line)}.tab{border:0;background:transparent;padding:8px 15px;border-radius:10px;color:#aaa5b7;font-size:13px}.tab.active{background:linear-gradient(120deg,#8b35d6,#b33c9b);color:white;box-shadow:0 5px 18px #8b35d644}
-.workspace{flex:1;min-height:0;display:flex;justify-content:center;overflow:hidden}.screen{width:min(100%,850px);height:100%;overflow-y:auto;padding:clamp(16px,4vw,38px) 18px 26px;scrollbar-width:thin;scrollbar-color:#383044 transparent}
+.workspace{flex:1;min-height:0;display:flex;justify-content:center;overflow:visible}.screen{width:min(100%,850px);height:auto;min-height:calc(100dvh - 66px);overflow:visible;padding:clamp(16px,4vw,38px) 18px 40px;scrollbar-width:thin;scrollbar-color:#383044 transparent}
 .hero{text-align:center;padding:clamp(12px,4vh,38px) 8px 22px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:3px;color:#d7a3ff}.hero h1{font-size:clamp(29px,6vw,48px);line-height:1.08;margin:12px 0 9px;letter-spacing:-1.6px}.gradient{background:linear-gradient(100deg,#c084fc,#f0abfc,#fb7185);background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{margin:0;color:var(--muted);font-size:13px}
 .modebar{display:flex;justify-content:center;gap:8px;margin:0 auto 15px}.mode{padding:9px 15px;border:1px solid var(--line);border-radius:12px;background:#ffffff06;color:#aaa5b7;font-size:12px}.mode.active{border-color:#bd75ef88;background:#a855f71c;color:#efd8ff}
 .card{border:1px solid #ffffff17;background:linear-gradient(155deg,#171622f5,#10101af5);border-radius:22px;padding:17px;box-shadow:var(--glow)}
@@ -86,11 +86,11 @@ textarea::placeholder{color:#676477}
 <div class="field" id="resolutionField"><label>RESOLUTION</label><select id="resolution"><option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option></select></div>
 <div class="field" id="durationField"><label>DURATION</label><select id="duration"><option value="4">4 seconds</option><option value="5" selected>5 seconds</option><option value="6">6 seconds</option><option value="8">8 seconds</option><option value="10">10 seconds</option><option value="12">12 seconds</option></select></div>
 <div class="field"><label>ASPECT RATIO</label><select id="ratio"><option value="9:16">9:16 Portrait</option><option value="16:9">16:9 Landscape</option><option value="1:1">1:1 Square</option><option value="4:3">4:3</option><option value="3:4">3:4</option><option value="21:9">21:9 Cinema</option></select></div>
-<div class="field" id="modelField"><label>AI MODEL · AUTO FALLBACK</label><select id="modelSelect"></select></div>
+<div class="field hidden" id="modelField" aria-hidden="true"><select id="modelSelect" tabindex="-1"></select></div>
 <div class="field" id="qualityField"><label>STYLE</label><select id="style"><option value="cinematic">Cinematic</option><option value="realistic">Photorealistic</option><option value="anime">Anime</option><option value="3d">3D Render</option><option value="artistic">Artistic</option></select></div>
 </div>
 <div class="refrow"><label class="upload" for="reference">＋ Add reference image</label><input class="hidden" type="file" id="reference" accept="image/*"><span class="refname" id="refname">Optional · JPG / PNG / WEBP</span><button class="smallbtn hidden" id="clearRef">Remove</button></div>
-<button class="generate" id="generate"><span>✦</span><span id="generateText">Generate Video</span></button>
+<button class="generate" id="generate" type="button"><span>✦</span><span id="generateText">Generate Video</span></button>
 <p class="note" id="disclaimer">Video generation uses Agnes AI. HD and higher resolutions may use a different model and have different plan costs.</p>
 <div class="result" id="result"><div class="resultbox"><div class="resulthead"><strong id="resultTitle">Your creation</strong><span id="resultState">Ready</span></div><div id="preview"></div><div class="resultactions"><button class="smallbtn" id="downloadCurrent">↓ Download</button><button class="smallbtn" id="saveCurrent">Save to History</button></div></div></div>
 </section>
@@ -146,12 +146,12 @@ function switchTab(tab){
  activeTab=tab;all('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
  const chat=tab==='chat';$('#videoModes').classList.toggle('hidden',tab!=='video');$('.card').classList.toggle('hidden',chat);$('#chatPanel').classList.toggle('active',chat);
  $('#durationField').classList.toggle('hidden',tab!=='video');$('#resolutionField').classList.toggle('hidden',chat);$('#qualityField').classList.toggle('hidden',tab!=='video');$('#refrow')?.classList.toggle('hidden',chat);
- $('#modelField').classList.toggle('hidden',chat);
+ $('#modelField').classList.add('hidden');
  $('#resolution').innerHTML=tab==='video'?'<option value="720P">HD · 720P</option><option value="1080P">Full HD · 1080P</option><option value="1K">1K</option><option value="2K">2K</option>':'<option value="1K">1K</option><option value="2K">2K</option><option value="3K">3K</option><option value="4K">4K</option>';
  const opts=tab==='video'?[['agnes-video-2.5-flash','Agnes Video 2.5 Flash · Fast'],['agnes-video-2.5','Agnes Video 2.5 · Advanced'],['agnes-video-v2.0','Agnes Video 2.0 · Legacy'],['agnes-video-h3-moe','Agnes Video H3-MoE · Research']]:[['agnes-image-2.0-flash','Agnes Image 2.0 Flash'],['agnes-image-2.1-flash','Agnes Image 2.1 Flash · Editing'],['agnes-image-2.0','Agnes-Image-2.0 · Advanced']];
  $('#modelSelect').innerHTML=opts.map((o,i)=>'<option value="'+o[0]+'" '+(i===0?'selected':'')+'>'+o[1]+'</option>').join('');
  $('#promptTitle').textContent=tab==='video'?'Describe your video':'Describe your image';$('#prompt').placeholder=tab==='video'?'Describe the scene, subject, movement, camera angle, lighting and mood...':'Describe the image you want to create...';
- $('#generateText').textContent=tab==='video'?'Generate Video':'Generate Image';$('#disclaimer').textContent=tab==='video'?'Video models try the selected option first, then automatically switch when Agnes reports the model unavailable.':'Image models try the selected option first, then automatically switch when Agnes reports the model unavailable.';
+ $('#generateText').textContent=tab==='video'?'Generate Video':'Generate Image';$('#disclaimer').textContent=tab==='video'?'Agnes automatically selects an available video model and switches to a supported fallback if needed.':'Agnes automatically selects an available image model and switches to a supported fallback if needed.';
  $('#result').classList.remove('show');currentResult=null;
 }
 all('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
