@@ -147,7 +147,7 @@ function setGenProgress(status,progress=null,detail=''){
 function showGenError(message){
  $('#genBadgeText').textContent='Generation failed';
  $('#genPulse').style.display='none';
- $('#genTitle').textContent='Video could not be created';
+ $('#genTitle').textContent='Generation could not be completed';
  $('#genStatus').textContent='Error';
  $('#genPercent').textContent='—';
  $('#genBar').classList.remove('indeterminate');
@@ -181,7 +181,7 @@ async function generate(){
  const btn=$('#generate');btn.disabled=true;$('#generateText').textContent='Creating…';
  if(activeTab==='image'){
   $('#result').classList.add('show');$('#resultState').textContent='Generating';$('#preview').innerHTML='<div style="padding:30px 8px;text-align:center;color:#aaa">Creating image…<div class="progress"><i></i></div></div>';
-  try{const r=await fetch(API_BASE+'/api/media/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,resolution:$('#resolution').value,reference_image:referenceData||null})});const d=await readJson(r);if(!r.ok)throw new Error(d.detail||'Image generation failed');if(!d.url)throw new Error('Agnes response mein image URL nahi mila.');const item={id:crypto.randomUUID(),type:'image',url:d.url,prompt,created:Date.now(),model:d.model};addHistory(item);displayResult(item)}
+  try{const r=await fetch(API_BASE+'/api/media/image',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,resolution:$('#resolution').value,reference_image:referenceData||null})});const d=await readJson(r);if(!r.ok)throw new Error((d.detail||'Image generation failed')+(d.code?' ['+d.code+']':''));if(!d.url)throw new Error('Agnes response mein image URL nahi mila.');const item={id:crypto.randomUUID(),type:'image',url:d.url,prompt,created:Date.now(),model:d.model};addHistory(item);displayResult(item)}
   catch(e){$('#resultState').textContent='Error';$('#preview').textContent=e.message||'Image generation failed.'}
   finally{btn.disabled=false;$('#generateText').textContent='Generate Image'}
   return;
@@ -195,9 +195,19 @@ async function generate(){
  setGenProgress('Submitting your request…',null,'Agnes will create the video in the background. You can close this screen with × and return using the purple button.');
  openGeneration();
  try{
-  const createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
-  const d=await readJson(createResponse);
-  if(!createResponse.ok)throw new Error(d.detail||'Agnes video request failed.');
+  let createResponse,d;
+  const retryDelays=[30000,60000,120000];
+  for(let attempt=0;;attempt++){
+   createResponse=await fetch(API_BASE+'/api/media/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,ratio:$('#ratio').value,duration:Number($('#duration').value),resolution:$('#resolution').value,mode:videoMode,reference_image:referenceData||null})});
+   d=await readJson(createResponse);
+   const busy=createResponse.status===503||createResponse.status===429||String(d.code||'').toLowerCase()==='video_queue_full'||String(d.detail||'').toLowerCase().includes('video queue is full');
+   if(createResponse.ok)break;
+   if(!busy||attempt>=retryDelays.length)throw new Error((d.detail||'Agnes video request failed.')+(d.code?' ['+d.code+']':''));
+   const delay=retryDelays[attempt];
+   $('#genBadgeText').textContent='Agnes queue is busy';
+   setGenProgress('Queue full — automatic retry '+(attempt+1)+'/'+retryDelays.length, null, 'Agnes server ka video queue full hai. Request reject hui hai; '+Math.round(delay/1000)+' seconds baad safe retry hoga. Koi video task abhi create nahi hua.');
+   await new Promise(resolve=>setTimeout(resolve,delay));
+  }
   const videoId=d.video_id||d.id;
   const model=d.model||'agnes-video-2.5-flash';
   if(!videoId)throw new Error('Agnes ne video task ID return nahi kiya. Response: '+JSON.stringify(d).slice(0,300));
