@@ -1,23 +1,23 @@
- [build]
+[build]
   publish = "static"
   functions = "netlify/functions"
 
 [[redirects]]
   from = "/api/media/image"
-  to = "/.netlify/functions/media"
+  to = "/.netlify/functions/media?action=image"
   status = 200
 
 [[redirects]]
   from = "/api/media/video"
-  to = "/.netlify/functions/media"
+  to = "/.netlify/functions/media?action=video"
   status = 200
 
 [[redirects]]
   from = "/api/media/video/*"
-  to = "/.netlify/functions/media"
+  to = "/.netlify/functions/media?action=status&video_id=:splat"
   status = 200
 
 [[redirects]]
   from = "/api/media/download"
-  to = "/.netlify/functions/media"
+  to = "/.netlify/functions/media?action=download"
   status = 200
