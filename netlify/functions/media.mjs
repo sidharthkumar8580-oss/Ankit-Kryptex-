@@ -8,7 +8,7 @@ function json(data, status = 200) {
 }
 
 async function agnesFetch(path, options = {}) {
-  const key = Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
+  const key = Netlify.env.get("AGNES_API_KEY2") || Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
   if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
   let response;
   try {
@@ -136,7 +136,7 @@ export default async (request) => {
 
   const videoMatch = path.match(/\/api\/media\/video\/([^/]+)$/);
   if ((action === "status" || videoMatch) && request.method === "GET") {
-    const key = Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
+    const key = Netlify.env.get("AGNES_API_KEY2") || Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
     if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
     const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
     if (!requestedVideoId || requestedVideoId.length > 300) return json({ detail: "Invalid video ID." }, 400);
