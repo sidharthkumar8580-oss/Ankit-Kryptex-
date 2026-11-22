@@ -47,12 +47,7 @@ async function agnesFetch(path, options = {}) {
         request_id: data.request_id || errorObject.request_id || null
       }, status);
       if (index === keys.length - 1) return lastResponse;
-      continue;
-      const raw = await response.text().catch(() => "");
-      let data = {};
-      try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 500) }; }
-      lastResponse = json({ detail: data.detail || data.message || data.error?.message || data.error?.detail || ("Agnes API HTTP " + response.status), code: data.code || data.error?.code || null, request_id: data.request_id || data.error?.request_id || null }, response.status);
-      if (!retryable.has(response.status) || index === keys.length - 1) return lastResponse;
+      if (![401, 402, 403, 408, 429, 500, 502, 503, 504].includes(status) || index === keys.length - 1) return lastResponse;
     } catch (error) {
       lastResponse = json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
       if (index === keys.length - 1) return lastResponse;
