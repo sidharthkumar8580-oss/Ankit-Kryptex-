@@ -4,29 +4,14 @@ import socket
 from urllib.parse import urlparse
 
 import httpx
-import torch
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
-from model.network import AKByteModel
-from model.config import BLOCK_SIZE
 
 app = FastAPI(title="Ankit Kryptex AI Studio", version="1.0.0")
-DEVICE = torch.device("cpu")
-MODEL = None
-WEIGHTS_PATH = os.getenv("AK_WEIGHTS", "model/weights.pt")
 AGNES_API_KEY = os.getenv("AGNES_API_KEY", "")
 AGNES_BASE_URL = os.getenv("AGNES_BASE_URL", "https://apihub.agnes-ai.com").rstrip("/")
-
-class ChatRequest(BaseModel):
-    message: str = Field(min_length=1, max_length=2000)
-    max_new_tokens: int = Field(default=100, ge=1, le=180)
-
-class ChatResponse(BaseModel):
-    reply: str
-    model: str = "AK-Byte-1"
-    trained: bool
 
 class ImageRequest(BaseModel):
     prompt: str = Field(min_length=1, max_length=2000)
@@ -57,44 +42,9 @@ def validate_ratio(ratio: str):
         raise HTTPException(status_code=400, detail="Unsupported aspect ratio.")
     return ratio
 
-def load_model():
-    global MODEL
-    if MODEL is not None:
-        return MODEL
-    if not os.path.exists(WEIGHTS_PATH):
-        return None
-    try:
-        checkpoint = torch.load(WEIGHTS_PATH, map_location=DEVICE, weights_only=True)
-        model = AKByteModel()
-        model.load_state_dict(checkpoint["state_dict"])
-        model.eval()
-        MODEL = model
-        return MODEL
-    except (RuntimeError, KeyError, OSError, ValueError) as error:
-        print(f"AK-Byte-1 weights are not compatible: {error}", flush=True)
-        return None
-
 @app.get("/health")
 def health():
     return {"ok": True, "service": "Ankit Kryptex AI Studio", "agnes_configured": bool(AGNES_API_KEY)}
-
-@app.get("/api/status")
-def status():
-    return {"name": "Ankit Kryptex AI Studio", "model": "AK-Byte-1", "trained": load_model() is not None,
-            "uses_external_model_api": False, "agnes_configured": bool(AGNES_API_KEY)}
-
-@app.post("/api/chat", response_model=ChatResponse)
-def chat(body: ChatRequest):
-    model = load_model()
-    if model is None:
-        raise HTTPException(status_code=503, detail="AK-Byte-1 ke trained weights available nahi hain.")
-    prompt = ("User: " + body.message.strip() + "\nAnkit Kryptex: ").encode("utf-8")
-    tokens = torch.tensor(list(prompt), dtype=torch.long, device=DEVICE)[None, :]
-    with torch.no_grad():
-        output = model.generate(tokens, max_new_tokens=body.max_new_tokens)
-    generated = bytes(output[0, tokens.shape[1]:].tolist()).decode("utf-8", errors="replace")
-    reply = generated.split("\nUser:", 1)[0].split("\n\n", 1)[0].strip()
-    return ChatResponse(reply=reply or "Mujhe abhi iska jawab generate karna nahi aaya.", trained=True)
 
 @app.post("/api/media/image")
 async def generate_image(body: ImageRequest):
