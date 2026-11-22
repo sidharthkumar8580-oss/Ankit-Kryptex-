@@ -47,7 +47,7 @@ async function agnesFetch(path, options = {}) {
         request_id: data.request_id || errorObject.request_id || null
       }, status);
       if (index === keys.length - 1) return lastResponse;
-      if (![401, 402, 403, 408, 429, 500, 502, 503, 504].includes(status) || index === keys.length - 1) return lastResponse;
+      if (![400, 401, 402, 403, 408, 409, 429, 500, 502, 503, 504].includes(status) || index === keys.length - 1) return lastResponse;
     } catch (error) {
       lastResponse = json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
       if (index === keys.length - 1) return lastResponse;
@@ -131,12 +131,9 @@ export default async (request) => {
     try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
     if (!["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"].includes(body.ratio || "9:16")) return json({ detail: "Unsupported aspect ratio." }, 400);
-    const resolution = body.resolution || "720P";
-    // Server owns model selection: do not trust a stale/hidden frontend model value.
-    // Try the fast model first, then automatically move through compatible fallbacks.
-    const videoModels = ["agnes-video-2.5-flash","agnes-video-2.5","agnes-video-v2.0","agnes-video-h3-moe"];
-    const selectedVideoModel = ["1080P","1K","2K"].includes(resolution) ? "agnes-video-2.5" : "agnes-video-2.5-flash";
-    const size = selectedVideoModel === "agnes-video-2.5" ? resolution : "720P";
+    const selectedVideoModel = "agnes-video-2.5-flash";
+    const resolution = "720P";
+    const size = "720P";
     let prompt = body.prompt;
     if (body.mode === "multi") prompt = "Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects and a beginning, middle and ending. " + prompt;
     const payload = {
@@ -148,22 +145,14 @@ export default async (request) => {
       aspect_ratio: body.ratio || "9:16"
     };
     if (body.reference_image) payload.first_frame = body.reference_image;
-    // Each fallback receives a fresh model-specific payload. Lower-resolution fallbacks
-    // use 720P; the standard 2.5 model can retain the requested resolution.
-    let videoResult = null;
-    for (const candidate of [selectedVideoModel, ...videoModels.filter(m => m !== selectedVideoModel)]) {
-      const candidatePayload = { ...payload, model: candidate, size: candidate === "agnes-video-2.5" ? resolution : "720P" };
-      videoResult = await withModelFallback("/v1/videos", candidatePayload, [candidate]);
-      if (!(videoResult instanceof Response)) break;
-      const err = await videoResult.clone().json().catch(() => ({}));
-      const msg = String(err.detail || err.message || err.code || "").toLowerCase();
-      const canSwitch = [400,404,410,422,429,500,502,503,504].includes(videoResult.status) &&
-        (videoResult.status >= 500 || videoResult.status === 429 || msg.includes("model") || msg.includes("unsupported") || msg.includes("not found") || msg.includes("busy") || msg.includes("queue") || msg.includes("capacity") || msg.includes("temporar"));
-      if (!canSwitch) break;
-    }
+    // Keep the model fixed. agnesFetch rotates through configured API keys
+    // (including quota/authorization errors) and returns the first accepted task.
+    const videoResult = await agnesFetch("/v1/videos", { method: "POST", body: JSON.stringify(payload) });
     if (videoResult instanceof Response) return videoResult;
-    const data = videoResult.data;
-    const model = videoResult.model;
+    const resultModel = selectedVideoModel;
+    if (videoResult instanceof Response) return videoResult;
+    const data = videoResult;
+    const model = resultModel;
     const videoId = data.video_id || data.id || data.task_id;
     if (!videoId) return json({ detail: "Agnes response mein video task ID nahi mila." }, 502);
     return json({ type: "video", video_id: videoId, model, status: data.status || "processing", raw: data });
