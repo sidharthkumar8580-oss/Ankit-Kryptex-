@@ -7,15 +7,28 @@ function json(data, status = 200) {
   });
 }
 
+function agnesKeys() {
+  return [...new Set([
+    Netlify.env.get("AGNES_API_KEY2"),
+    Netlify.env.get("AGNES_API_KEY3"),
+    Netlify.env.get("AGNES_API_KEY"),
+    Netlify.env.get("AGNES_VIDEO_KEY")
+  ].filter(Boolean))];
+}
+
 async function agnesFetch(path, options = {}) {
-  const key = Netlify.env.get("AGNES_API_KEY2") || Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
-  if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
+  const keys = agnesKeys();
+  if (!keys.length) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
   let response;
   try {
-    response = await fetch(AGNES_BASE + path, {
-      ...options,
-      headers: { authorization: `Bearer ${key}`, "content-type": "application/json", ...(options.headers || {}) }
-    });
+    for (const key of keys) {
+      response = await fetch(AGNES_BASE + path, {
+        ...options,
+        headers: { authorization: `Bearer ${key}`, "content-type": "application/json", ...(options.headers || {}) }
+      });
+      // Try the next configured key only when this key is rejected.
+      if (response.status !== 401 && response.status !== 403) break;
+    }
   } catch (error) {
     return json({ detail: "Agnes server se connection nahi ho paya: " + (error?.message || "network error") }, 502);
   }
@@ -136,8 +149,8 @@ export default async (request) => {
 
   const videoMatch = path.match(/\/api\/media\/video\/([^/]+)$/);
   if ((action === "status" || videoMatch) && request.method === "GET") {
-    const key = Netlify.env.get("AGNES_API_KEY2") || Netlify.env.get("AGNES_API_KEY") || Netlify.env.get("AGNES_VIDEO_KEY") || "";
-    if (!key) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
+    const keys = agnesKeys();
+    if (!keys.length) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
     const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
     if (!requestedVideoId || requestedVideoId.length > 300) return json({ detail: "Invalid video ID." }, 400);
     const model = url.searchParams.get("model_name") || "agnes-video-2.5-flash";
@@ -145,7 +158,11 @@ export default async (request) => {
     const upstream = new URL(AGNES_BASE + "/agnesapi");
     upstream.searchParams.set("video_id", requestedVideoId);
     upstream.searchParams.set("model_name", model);
-    const response = await fetch(upstream, { headers: { authorization: `Bearer ${key}` } });
+    let response;
+    for (const key of keys) {
+      response = await fetch(upstream, { headers: { authorization: `Bearer ${key}` } });
+      if (response.status !== 401 && response.status !== 403) break;
+    }
     const raw = await response.text();
     let data;
     try { data = JSON.parse(raw); } catch { data = { detail: raw.slice(0, 1200) }; }
