@@ -5,11 +5,19 @@ from urllib.parse import urlparse
 
 import httpx
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 app = FastAPI(title="Ankit Kryptex AI Studio", version="1.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://kryptex-ai.netlify.app"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
+)
 AGNES_API_KEY = os.getenv("AGNES_API_KEY", "")
 AGNES_BASE_URL = os.getenv("AGNES_BASE_URL", "https://apihub.agnes-ai.com").rstrip("/")
 
