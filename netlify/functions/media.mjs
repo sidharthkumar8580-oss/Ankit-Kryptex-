@@ -104,71 +104,71 @@ async function discoverHfVideoCandidates(prompt, duration, ratio) {
   const token = hfToken();
   if (!token) throw new Error("Hugging Face token is not configured.");
   const queries = ["text to video generation", "AI video generator prompt to video"];
-  const found = new Map();
-  for (const query of queries) {
+  const searchResults = await Promise.all(queries.map(async query => {
     try {
       const url = "https://huggingface.co/api/spaces/semantic-search?q=" + encodeURIComponent(query) + "&sdk=gradio";
-      const response = await fetch(url, { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(9000) });
-      if (!response.ok) continue;
+      const response = await fetch(url, { headers:{authorization:"Bearer "+token}, signal:AbortSignal.timeout(7000) });
+      if (!response.ok) return [];
       const items = await response.json();
-      for (const item of (Array.isArray(items) ? items : items.spaces || items.items || [])) {
-        if (!item?.id || item.private || (item.sdk && item.sdk !== "gradio")) continue;
-        const stage = item.runtime?.stage;
-        if (stage && stage !== "RUNNING") continue;
-        const description = [item.title, item.ai_short_description, ...(item.tags || [])].join(" ").toLowerCase();
-        if (!/video|text.to.video|image.to.video|text2video|t2v/.test(description)) continue;
-        found.set(item.id, item);
-      }
-    } catch {}
+      return Array.isArray(items) ? items : (items.spaces || items.items || []);
+    } catch { return []; }
+  }));
+  const found = new Map();
+  for (const item of searchResults.flat()) {
+    if (!item?.id || item.private || (item.sdk && item.sdk !== "gradio")) continue;
+    const stage = item.runtime?.stage;
+    if (stage && stage !== "RUNNING") continue;
+    const description = [item.title,item.ai_short_description,...(Array.isArray(item.tags)?item.tags:[])].join(" ").toLowerCase();
+    if (!/video|text.to.video|image.to.video|text2video|t2v/.test(description)) continue;
+    found.set(item.id,item);
   }
-  const spaces = [...found.values()].sort((a,b) =>
-    (Number(b.semantic_relevancy_score)||0) - (Number(a.semantic_relevancy_score)||0) ||
-    (Number(b.likes)||0) - (Number(a.likes)||0)
-  ).slice(0, 12);
-  const candidates = [];
-  for (const item of spaces) {
-    const domain = item.runtime?.domains?.find(x => x?.domain)?.domain;
-    const host = domain ? (String(domain).startsWith("http") ? String(domain).replace(/\/$/,"") : "https://" + domain.replace(/\/$/,"")) :
-      "https://" + item.id.replace("/", "-").toLowerCase() + ".hf.space";
-    try {
-      let infoResponse = await fetch(host + "/gradio_api/info", { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(7000) });
-      if (!infoResponse.ok) infoResponse = await fetch(host + "/info", { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(7000) });
-      if (!infoResponse.ok) continue;
-      const info = await infoResponse.json();
-      const endpoints = info.named_endpoints || {};
-      let best = null, bestScore = -1;
-      for (const [apiName, ep] of Object.entries(endpoints)) {
-        const params = ep.parameters || [];
-        const returns = ep.returns || [];
-        const parameterText = params.map(p => [p.label,p.parameter_name,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
-        const outputText = returns.map(p => [p.label,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
-        const nameText = apiName.toLowerCase();
-        const hasPrompt = /prompt|text|description|caption/.test(parameterText);
-        const videoOutput = /video|filepath|filedata/.test(outputText);
-        const videoName = /video|generate|text2video|t2v/.test(nameText);
-        const score = (hasPrompt ? 4 : 0) + (videoOutput ? 5 : 0) + (videoName ? 2 : 0);
-        if (hasPrompt && score > bestScore) { best = { apiName, parameters: params, returns }; bestScore = score; }
+  const spaces=[...found.values()].sort((a,b)=>
+    (Number(b.semantic_relevancy_score)||0)-(Number(a.semantic_relevancy_score)||0) ||
+    (Number(b.likes)||0)-(Number(a.likes)||0)
+  ).slice(0,10);
+  const inspected=await Promise.all(spaces.map(async item=>{
+    const domains=Array.isArray(item.runtime?.domains)?item.runtime.domains:[];
+    const domain=domains.find(x=>x?.domain)?.domain;
+    const host=domain?(String(domain).startsWith("http")?String(domain).replace(/\/$/,""):"https://"+String(domain).replace(/\/$/,"")):
+      "https://"+item.id.replace("/","-").toLowerCase()+".hf.space";
+    try{
+      let response=await fetch(host+"/gradio_api/info",{headers:{authorization:"Bearer "+token},signal:AbortSignal.timeout(6000)});
+      if(!response.ok)response=await fetch(host+"/info",{headers:{authorization:"Bearer "+token},signal:AbortSignal.timeout(6000)});
+      if(!response.ok)return null;
+      const info=await response.json();
+      const endpoints=info.named_endpoints||{};
+      let best=null,bestScore=-1;
+      for(const [apiName,ep] of Object.entries(endpoints)){
+        const params=ep.parameters||[],returns=ep.returns||[];
+        const parameterText=params.map(p=>[p.label,p.parameter_name,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
+        const outputText=returns.map(p=>[p.label,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
+        const nameText=apiName.toLowerCase();
+        const hasPrompt=/prompt|text|description|caption/.test(parameterText);
+        const videoOutput=/video|filepath|filedata/.test(outputText);
+        const videoName=/video|generate|text2video|t2v/.test(nameText);
+        const score=(hasPrompt?4:0)+(videoOutput?5:0)+(videoName?2:0);
+        if(hasPrompt&&score>bestScore){best={apiName,parameters:params};bestScore=score;}
       }
-      if (!best || bestScore < 6) continue;
-      const data = best.parameters.map(p => {
-        const label = [p.label,p.parameter_name,p.component].join(" ").toLowerCase();
-        const sample = Object.prototype.hasOwnProperty.call(p,"example_input") ? p.example_input : null;
-        if (/negative.?prompt/.test(label)) return "";
-        if (/prompt|description|caption|(^| )text( |$)/.test(label)) return prompt;
-        if (/duration|seconds|length/.test(label)) return Math.max(4,Math.min(15,Number(duration)||5));
-        if (/aspect.?ratio|(^| )ratio( |$)/.test(label)) return ratio || "9:16";
-        if (/\bwidth\b/.test(label)) return 576;
-        if (/\bheight\b/.test(label)) return 1024;
-        if (/seed/.test(label)) return -1;
-        if (/fps|frame.?rate/.test(label)) return 8;
-        if (/frames/.test(label)) return Math.max(24,Math.min(120,(Number(duration)||5)*8));
-        if (/image|file|upload/.test(label)) return null;
+      if(!best||bestScore<6)return null;
+      const data=best.parameters.map(p=>{
+        const label=[p.label,p.parameter_name,p.component].join(" ").toLowerCase();
+        const sample=Object.prototype.hasOwnProperty.call(p,"example_input")?p.example_input:null;
+        if(/negative.?prompt/.test(label))return "";
+        if(/prompt|description|caption|(^| )text( |$)/.test(label))return prompt;
+        if(/duration|seconds|length/.test(label))return Math.max(4,Math.min(15,Number(duration)||5));
+        if(/aspect.?ratio|(^| )ratio( |$)/.test(label))return ratio||"9:16";
+        if(/\bwidth\b/.test(label))return 576;
+        if(/\bheight\b/.test(label))return 1024;
+        if(/seed/.test(label))return -1;
+        if(/fps|frame.?rate/.test(label))return 8;
+        if(/frames/.test(label))return Math.max(24,Math.min(120,(Number(duration)||5)*8));
+        if(/image|file|upload/.test(label))return null;
         return sample;
       });
-      candidates.push({ space: item.id, host, apiName: best.apiName, data, model: "huggingface:" + item.id });
-    } catch {}
-  }
-  return candidates;
+      return {space:item.id,host,apiName:best.apiName,data,model:"huggingface:"+item.id};
+    }catch{return null;}
+  }));
+  return inspected.filter(Boolean);
 }
 
 function encodeHfTask(task) {
