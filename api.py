@@ -24,7 +24,10 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 
-AGNES_BASE_URL = os.getenv("AGNES_BASE_URL", "https://apihub.agnes-ai.com").rstrip("/")
+# Accept either host-only or full /v1 base URLs. Some dashboards show the
+# OpenAI-compatible URL with /v1 already appended; our request paths include /v1.
+_raw_agnes_base = (os.getenv("AGNES_BASE_URL") or os.getenv("AGNES_API_BASE") or "https://apihub.agnes-ai.com").strip().rstrip("/")
+AGNES_BASE_URL = _raw_agnes_base[:-3] if _raw_agnes_base.endswith("/v1") else _raw_agnes_base
 RETRYABLE = {401, 402, 403, 408, 429, 500, 502, 503, 504}
 HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACEHUB_API_TOKEN") or os.getenv("HUGGING_FACE_HUB_TOKEN")
 # Format: owner/space|/api_name,owner2/space2|/api_name
@@ -137,6 +140,9 @@ def get_api_keys():
             os.getenv("AGNES_API_KEY", ""),
             os.getenv("AGNES_API_KEY2", ""),
             os.getenv("AGNES_API_KEY3", ""),
+            os.getenv("AGNES_API_KEY_2", ""),
+            os.getenv("AGNES_API_KEY_3", ""),
+            os.getenv("AGNES_ELITE_API_KEY", ""),
         ) if value and value.strip()
     ))
 
