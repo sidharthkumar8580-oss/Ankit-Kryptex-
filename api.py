@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 app = FastAPI(title="Ankit Kryptex AI Studio", version="1.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://kryptex-ai.netlify.app"],
+    allow_origins=["https://kryptexai.netlify.app", "https://main--kryptexai.netlify.app", "https://kryptex-ai.netlify.app"],
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
