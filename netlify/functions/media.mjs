@@ -201,7 +201,7 @@ async function submitHfVideo(prompt, requestedDuration, ratio) {
   for (let index = 0; index < candidates.length; index++) {
     try {
       const eventId = await submitHfCandidate(candidates[index], token);
-      return { type:"video", video_id:encodeHfTask({ index, eventId, candidates }), model:candidates[index].model, status:"processing", provider:"huggingface" };
+      return { type:"video", video_id:encodeHfTask({ index, eventId, candidates, meta:{prompt,duration:Number(requestedDuration)||5,ratio:ratio||"9:16"} }), model:candidates[index].model, status:"processing", provider:"huggingface" };
     } catch (error) { errors.push(error?.message || String(error)); }
   }
   throw new Error("All discovered Hugging Face video Spaces rejected the request: " + errors.slice(0,4).join("; "));
@@ -213,7 +213,24 @@ async function advanceHfTask(task, token) {
       return { status:"processing", detail:"Previous Hugging Face Space failed; trying the next available video model…", video_id:encodeHfTask({ index, eventId, candidates:task.candidates }), model:task.candidates[index].model };
     } catch {}
   }
-  return { status:"failed", error:"All available Hugging Face video Spaces failed. Agnes fallback will be used on a new request." };
+  const meta=task.meta||{};
+  const prompt=meta.prompt||"";
+  if(prompt){
+    let agnesPrompt=prompt;
+    if(meta.mode==="multi") agnesPrompt="Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects and a beginning, middle and ending. "+prompt;
+    const fallback=await agnesFetch("/v1/videos",{method:"POST",body:JSON.stringify({
+      model:"agnes-video-2.5-flash",prompt:agnesPrompt,mode:"text",
+      seconds:String(Math.max(4,Math.min(12,Number(meta.duration)||5))),
+      size:"720P",aspect_ratio:meta.ratio||"9:16"
+    })});
+    if(!(fallback instanceof Response)){
+      const videoId=fallback.video_id||fallback.id||fallback.task_id;
+      if(videoId)return {status:"processing",video_id:videoId,model:"agnes-video-2.5-flash",provider:"agnes",detail:"All Hugging Face video models failed. Switching to Agnes as the final fallback…"};
+    }
+    const error=fallback instanceof Response ? (await fallback.clone().json().catch(()=>({}))).detail : "Agnes did not return a video task ID.";
+    return {status:"failed",error:"Hugging Face models exhausted; final Agnes fallback also failed: "+(error||"unknown error")};
+  }
+  return {status:"failed",error:"All available Hugging Face video Spaces failed; Agnes fallback could not be started."};
 }
 
 async function pollHfVideo(videoId) {
