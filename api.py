@@ -32,7 +32,9 @@ RETRYABLE = {401, 402, 403, 408, 429, 500, 502, 503, 504}
 HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACEHUB_API_TOKEN") or os.getenv("HUGGING_FACE_HUB_TOKEN")
 # Format: owner/space|/api_name,owner2/space2|/api_name
 # The default candidate exposes a single prompt-to-video function named infer.
-HF_VIDEO_SPACES = os.getenv("HF_VIDEO_SPACES", "K00B404/Wan2.1|/infer")
+# Do not default to the currently broken K00B404/Wan2.1 Space (BUILD_ERROR).
+# Configure HF_VIDEO_SPACES only with a Space that is currently RUNNING.
+HF_VIDEO_SPACES = os.getenv("HF_VIDEO_SPACES", "")
 HF_VIDEO_TASKS = {}
 HF_VIDEO_DIR = Path(tempfile.gettempdir()) / "ankit_kryptex_hf_videos"
 HF_VIDEO_DIR.mkdir(parents=True, exist_ok=True)
@@ -47,6 +49,9 @@ def parse_hf_spaces():
             space_id, api_name = item.split("|", 1)
         else:
             space_id, api_name = item, ""
+        # Skip the known broken Space even if it remains in Render env vars.
+        if space_id.strip().lower() == "k00b404/wan2.1":
+            continue
         spaces.append((space_id.strip(), api_name.strip() or None))
     return spaces
 
