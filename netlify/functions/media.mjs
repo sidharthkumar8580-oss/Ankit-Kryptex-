@@ -100,55 +100,186 @@ async function hfImageFallback(prompt, ratio) {
   throw new Error(last);
 }
 
-const HF_VIDEO_SPACES = [
-  { id: "Wan-AI/Wan2.1-T2V-1.3B", seconds: false },
-  { id: "genmo/mochi-1-preview", seconds: false },
-  { id: "Lightricks/LTX-Video", seconds: true },
-  { id: "THUDM/CogVideoX-5b", seconds: false },
-  { id: "Tencent/HunyuanVideo", seconds: false },
-  { id: "Wan-AI/Wan2.2-T2V-A14B", seconds: false },
-  { id: "Skywork/SkyReels-V2", seconds: true }
-];
-
-async function submitHfVideo(prompt, requestedDuration) {
-  const token = hfToken(); if (!token) throw new Error("Hugging Face token is not configured.");
-  const duration = Math.max(4, Math.min(15, Number(requestedDuration) || 5));
-  const errors = [];
-  for (const item of HF_VIDEO_SPACES) {
+async function discoverHfVideoCandidates(prompt, duration, ratio) {
+  const token = hfToken();
+  if (!token) throw new Error("Hugging Face token is not configured.");
+  const queries = ["text to video generation", "AI video generator prompt to video"];
+  const found = new Map();
+  for (const query of queries) {
     try {
-      const endpoint = "https://" + item.id.replace("/", "-") + ".hf.space/gradio_api/call/generate";
-      const data = item.seconds ? [prompt, duration] : [prompt];
-      let response = await fetch(endpoint, { method: "POST", headers: { authorization: "Bearer " + token, "content-type": "application/json" }, body: JSON.stringify({ data }) });
-      if (!response.ok) { errors.push(item.id + " HTTP " + response.status); continue; }
-      const accepted = await response.json();
-      if (!accepted.event_id) { errors.push(item.id + " did not return an event id"); continue; }
-      return { type: "video", video_id: "hf:" + encodeURIComponent(item.id) + ":" + encodeURIComponent(accepted.event_id), model: "huggingface:" + item.id, status: "processing", provider: "huggingface" };
-    } catch (error) { errors.push(item.id + ": " + (error?.message || "request failed")); }
+      const url = "https://huggingface.co/api/spaces/semantic-search?q=" + encodeURIComponent(query) + "&sdk=gradio";
+      const response = await fetch(url, { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(9000) });
+      if (!response.ok) continue;
+      const items = await response.json();
+      for (const item of (Array.isArray(items) ? items : items.spaces || items.items || [])) {
+        if (!item?.id || item.private || (item.sdk && item.sdk !== "gradio")) continue;
+        const stage = item.runtime?.stage;
+        if (stage && stage !== "RUNNING") continue;
+        const description = [item.title, item.ai_short_description, ...(item.tags || [])].join(" ").toLowerCase();
+        if (!/video|text.to.video|image.to.video|text2video|t2v/.test(description)) continue;
+        found.set(item.id, item);
+      }
+    } catch {}
   }
-  throw new Error("Hugging Face Spaces fallback failed: " + errors.slice(0, 3).join("; "));
+  const spaces = [...found.values()].sort((a,b) =>
+    (Number(b.semantic_relevancy_score)||0) - (Number(a.semantic_relevancy_score)||0) ||
+    (Number(b.likes)||0) - (Number(a.likes)||0)
+  ).slice(0, 12);
+  const candidates = [];
+  for (const item of spaces) {
+    const domain = item.runtime?.domains?.find(x => x?.domain)?.domain;
+    const host = domain ? (String(domain).startsWith("http") ? String(domain).replace(/\/$/,"") : "https://" + domain.replace(/\/$/,"")) :
+      "https://" + item.id.replace("/", "-").toLowerCase() + ".hf.space";
+    try {
+      let infoResponse = await fetch(host + "/gradio_api/info", { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(7000) });
+      if (!infoResponse.ok) infoResponse = await fetch(host + "/info", { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(7000) });
+      if (!infoResponse.ok) continue;
+      const info = await infoResponse.json();
+      const endpoints = info.named_endpoints || {};
+      let best = null, bestScore = -1;
+      for (const [apiName, ep] of Object.entries(endpoints)) {
+        const params = ep.parameters || [];
+        const returns = ep.returns || [];
+        const parameterText = params.map(p => [p.label,p.parameter_name,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
+        const outputText = returns.map(p => [p.label,p.component,p.python_type,p.type_description].join(" ")).join(" ").toLowerCase();
+        const nameText = apiName.toLowerCase();
+        const hasPrompt = /prompt|text|description|caption/.test(parameterText);
+        const videoOutput = /video|filepath|filedata/.test(outputText);
+        const videoName = /video|generate|text2video|t2v/.test(nameText);
+        const score = (hasPrompt ? 4 : 0) + (videoOutput ? 5 : 0) + (videoName ? 2 : 0);
+        if (hasPrompt && score > bestScore) { best = { apiName, parameters: params, returns }; bestScore = score; }
+      }
+      if (!best || bestScore < 6) continue;
+      const data = best.parameters.map(p => {
+        const label = [p.label,p.parameter_name,p.component].join(" ").toLowerCase();
+        const sample = Object.prototype.hasOwnProperty.call(p,"example_input") ? p.example_input : null;
+        if (/negative.?prompt/.test(label)) return "";
+        if (/prompt|description|caption|(^| )text( |$)/.test(label)) return prompt;
+        if (/duration|seconds|length/.test(label)) return Math.max(4,Math.min(15,Number(duration)||5));
+        if (/aspect.?ratio|(^| )ratio( |$)/.test(label)) return ratio || "9:16";
+        if (/\bwidth\b/.test(label)) return 576;
+        if (/\bheight\b/.test(label)) return 1024;
+        if (/seed/.test(label)) return -1;
+        if (/fps|frame.?rate/.test(label)) return 8;
+        if (/frames/.test(label)) return Math.max(24,Math.min(120,(Number(duration)||5)*8));
+        if (/image|file|upload/.test(label)) return null;
+        return sample;
+      });
+      candidates.push({ space: item.id, host, apiName: best.apiName, data, model: "huggingface:" + item.id });
+    } catch {}
+  }
+  return candidates;
+}
+
+function encodeHfTask(task) {
+  const raw = btoa(unescape(encodeURIComponent(JSON.stringify(task))));
+  return "hf2:" + raw.replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+}
+function decodeHfTask(id) {
+  const raw = String(id).slice(4).replace(/-/g,"+").replace(/_/g,"/");
+  return JSON.parse(decodeURIComponent(escape(atob(raw))));
+}
+async function submitHfCandidate(candidate, token) {
+  const endpointName = String(candidate.apiName).replace(/^\/+/,"");
+  const response = await fetch(candidate.host + "/gradio_api/call/" + encodeURIComponent(endpointName), {
+    method: "POST",
+    headers: { authorization: "Bearer " + token, "content-type": "application/json" },
+    body: JSON.stringify({ data: candidate.data }),
+    signal: AbortSignal.timeout(15000)
+  });
+  const raw = await response.text();
+  let accepted = {};
+  try { accepted = raw ? JSON.parse(raw) : {}; } catch {}
+  if (!response.ok || !accepted.event_id) throw new Error(candidate.space + " submit failed (HTTP " + response.status + "): " + raw.slice(0,180));
+  return accepted.event_id;
+}
+async function submitHfVideo(prompt, requestedDuration, ratio) {
+  const token = hfToken();
+  const candidates = await discoverHfVideoCandidates(prompt, requestedDuration, ratio);
+  if (!candidates.length) throw new Error("No running Hugging Face Gradio video Space with a compatible prompt-to-video API was found.");
+  const errors = [];
+  for (let index = 0; index < candidates.length; index++) {
+    try {
+      const eventId = await submitHfCandidate(candidates[index], token);
+      return { type:"video", video_id:encodeHfTask({ index, eventId, candidates }), model:candidates[index].model, status:"processing", provider:"huggingface" };
+    } catch (error) { errors.push(error?.message || String(error)); }
+  }
+  throw new Error("All discovered Hugging Face video Spaces rejected the request: " + errors.slice(0,4).join("; "));
+}
+async function advanceHfTask(task, token) {
+  for (let index = task.index + 1; index < task.candidates.length; index++) {
+    try {
+      const eventId = await submitHfCandidate(task.candidates[index], token);
+      return { status:"processing", detail:"Previous Hugging Face Space failed; trying the next available video model…", video_id:encodeHfTask({ index, eventId, candidates:task.candidates }), model:task.candidates[index].model };
+    } catch {}
+  }
+  return { status:"failed", error:"All available Hugging Face video Spaces failed. Agnes fallback will be used on a new request." };
 }
 
 async function pollHfVideo(videoId) {
   const token = hfToken();
-  const parts = String(videoId).split(":");
-  if (parts.length < 3 || !token) return json({ detail: "Invalid Hugging Face video task." }, 400);
-  const space = decodeURIComponent(parts[1]); const eventId = decodeURIComponent(parts.slice(2).join(":"));
-  const endpoint = "https://" + space.replace("/", "-") + ".hf.space/gradio_api/call/generate/" + encodeURIComponent(eventId);
-  try {
-    const response = await fetch(endpoint, { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(12000) });
-    if (!response.ok) return json({ status: "processing", detail: "Hugging Face Space is still processing (HTTP " + response.status + ")." });
-    const raw = await response.text();
-    const lines = raw.split("\n");
-    let event = "", payload = null;
-    for (const line of lines) { if (line.startsWith("event:")) event = line.slice(6).trim(); if (line.startsWith("data:")) { try { payload = JSON.parse(line.slice(5).trim()); } catch {} } }
-    if (event === "complete" && payload) {
-      const walk = (value) => { if (!value) return null; if (typeof value === "string" && (value.startsWith("https://") || value.startsWith("http://")) && /\.(mp4|webm|mov)(\?|$)/i.test(value)) return value; if (Array.isArray(value)) { for (const v of value) { const found = walk(v); if (found) return found; } } if (typeof value === "object") { for (const k of ["url", "video", "path", "name"]) { const found = walk(value[k]); if (found) return found; } for (const v of Object.values(value)) { const found = walk(v); if (found) return found; } } return null; };
-      const videoUrl = walk(payload);
-      return json(videoUrl ? { status: "completed", url: videoUrl, model: "huggingface:" + space } : { status: "failed", error: "Space completed but did not return a public video URL." });
+  if (!token) return json({ detail:"Hugging Face token is not configured." },503);
+  if (String(videoId).startsWith("hf2:")) {
+    let task;
+    try { task = decodeHfTask(videoId); } catch { return json({status:"failed",error:"Invalid Hugging Face task ID."},400); }
+    const candidate = task.candidates?.[task.index];
+    if (!candidate || !task.eventId) return json({status:"failed",error:"Invalid Hugging Face task state."},400);
+    try {
+      const endpoint = candidate.host + "/gradio_api/call/" + encodeURIComponent(String(candidate.apiName).replace(/^\/+/,"")) + "/" + encodeURIComponent(task.eventId);
+      const response = await fetch(endpoint,{headers:{authorization:"Bearer "+token},signal:AbortSignal.timeout(12000)});
+      const raw = await response.text();
+      if (!response.ok) {
+        const next = await advanceHfTask(task,token);
+        return json(next);
+      }
+      let event = "", payload = null;
+      for (const line of raw.split("\n")) {
+        if (line.startsWith("event:")) event=line.slice(6).trim();
+        if (line.startsWith("data:")) { try { payload=JSON.parse(line.slice(5).trim()); } catch {} }
+      }
+      if (event==="complete" && payload!==null) {
+        const walk=(value,key="")=>{
+          if (value==null) return null;
+          if (typeof value==="string") {
+            if (/^https?:\/\//i.test(value) && (/(\.mp4|\.webm|\.mov)(\?|$)/i.test(value) || /\/file=/.test(value))) return value;
+            if (value.startsWith("/") && /file=/.test(value)) return candidate.host + value;
+            return null;
+          }
+          if (Array.isArray(value)) { for (const v of value) { const found=walk(v,key); if(found)return found; } }
+          if (typeof value==="object") {
+            for (const k of ["url","video","path","name"]) { const found=walk(value[k],k); if(found)return found; }
+            for (const [k,v] of Object.entries(value)) { const found=walk(v,k); if(found)return found; }
+          }
+          return null;
+        };
+        const videoUrl=walk(payload);
+        if (videoUrl) return json({status:"completed",url:videoUrl,model:candidate.model,provider:"huggingface"});
+        const next=await advanceHfTask(task,token);
+        return json(next.status==="failed" ? {status:"failed",error:"Space completed but returned no usable video URL. "+next.error} : next);
+      }
+      if (event==="error") return json(await advanceHfTask(task,token));
+      return json({status:"processing",detail:"Hugging Face is generating your video…",model:candidate.model});
+    } catch (error) {
+      return json({status:"processing",detail:"Hugging Face status check is retrying…",model:candidate.model});
     }
-    if (event === "error") return json({ status: "failed", error: typeof payload === "string" ? payload : "Hugging Face generation failed." });
-    return json({ status: "processing", progress: null, detail: "Hugging Face is generating your video…" });
-  } catch (error) { return json({ status: "processing", detail: "Hugging Face generation is still running." }); }
+  }
+  // Backward compatibility with tasks created by the earlier fixed Space list.
+  const parts=String(videoId).split(":");
+  if(parts.length<3)return json({detail:"Invalid Hugging Face video task."},400);
+  const space=decodeURIComponent(parts[1]),eventId=decodeURIComponent(parts.slice(2).join(":"));
+  const endpoint="https://"+space.replace("/","-")+".hf.space/gradio_api/call/generate/"+encodeURIComponent(eventId);
+  try {
+    const response=await fetch(endpoint,{headers:{authorization:"Bearer "+token},signal:AbortSignal.timeout(12000)});
+    if(!response.ok)return json({status:"processing",detail:"Hugging Face Space is still processing."});
+    const raw=await response.text();let event="",payload=null;
+    for(const line of raw.split("\n")){if(line.startsWith("event:"))event=line.slice(6).trim();if(line.startsWith("data:")){try{payload=JSON.parse(line.slice(5).trim())}catch{}}}
+    if(event==="complete"&&payload){
+      const walk=v=>{if(!v)return null;if(typeof v==="string"&&/^https?:\/\//.test(v)&&/(\.mp4|\.webm|\.mov)(\?|$)/i.test(v))return v;if(Array.isArray(v)){for(const x of v){const f=walk(x);if(f)return f}}if(typeof v==="object"){for(const k of ["url","video","path","name"]){const f=walk(v[k]);if(f)return f}for(const x of Object.values(v)){const f=walk(x);if(f)return f}}return null};
+      const videoUrl=walk(payload);return json(videoUrl?{status:"completed",url:videoUrl,model:"huggingface:"+space}:{status:"failed",error:"Space completed but did not return a public video URL."});
+    }
+    if(event==="error")return json({status:"failed",error:"Hugging Face generation failed."});
+    return json({status:"processing",detail:"Hugging Face is generating your video…"});
+  } catch { return json({status:"processing",detail:"Hugging Face generation is still running."}); }
 }
 
 export default async (request) => {
@@ -210,7 +341,7 @@ export default async (request) => {
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
     if (!["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"].includes(body.ratio || "9:16")) return json({ detail: "Unsupported aspect ratio." }, 400);
     try {
-      const hfTask = await submitHfVideo(body.prompt, body.duration);
+      const hfTask = await submitHfVideo(body.prompt, body.duration, body.ratio || "9:16");
       return json(hfTask);
     } catch (hfError) {
       const selectedVideoModel = "agnes-video-2.5-flash";
