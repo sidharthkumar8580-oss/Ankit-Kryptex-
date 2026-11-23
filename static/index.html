@@ -277,8 +277,8 @@ async function generate(){
     await new Promise(resolve=>setTimeout(resolve,1000));
    }
   }
-  const videoId=d.video_id||d.id;
-  const model=d.model||'agnes-video-2.5-flash';
+  let videoId=d.video_id||d.id;
+  let model=d.model||'huggingface';
   if(!videoId)throw new Error('Agnes ne video task ID return nahi kiya. Response: '+JSON.stringify(d).slice(0,300));
   $('#genBadgeText').textContent='Generating';
   $('#genFoot').textContent='Your task has been accepted. Generation continues even if you close this screen. Use the purple Return button to reopen it.';
@@ -287,6 +287,9 @@ async function generate(){
    if(i>0)await new Promise(res=>setTimeout(res,wait));
    const poll=await fetch(API_BASE+'/api/media/video/'+encodeURIComponent(videoId)+'?model_name='+encodeURIComponent(model));
    result=await readJson(poll);
+   if(result.video_id && result.video_id!==videoId) videoId=result.video_id;
+   if(result.model) model=result.model;
+   if(result.detail) $('#genFoot').textContent=result.detail;
    if(!poll.ok){
     if([408,429,500,502,503,504].includes(poll.status)&&i<149){wait=Math.min(15000,wait+3000);setGenProgress('Agnes is busy — retrying…',null,result.detail||'Retrying status check.');continue}
     throw new Error(result.detail||'Could not check video status.');
