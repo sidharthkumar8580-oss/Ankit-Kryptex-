@@ -72,7 +72,7 @@ def find_video_output(value):
 
 def call_hf_space(space_id, api_name, prompt, token):
     from gradio_client import Client
-    client = Client(space_id, token=token or None, verbose=False)
+    client = Client(space_id, hf_token=token or None, verbose=False)
     if api_name:
         return client.predict(prompt, api_name=api_name)
     # Only use the implicit endpoint when the Space exposes a single endpoint.
