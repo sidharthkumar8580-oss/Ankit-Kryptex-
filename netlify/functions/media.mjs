@@ -76,6 +76,81 @@ async function withModelFallback(path, payload, candidates) {
   return lastResponse || json({ detail: "No compatible Agnes model is currently available." }, 503);
 }
 
+function hfToken() { return Netlify.env.get("HUGGINGFACE_VIDEOANDIMAGE_API_KEY") || Netlify.env.get("HF_TOKEN") || ""; }
+
+async function hfImageFallback(prompt, ratio) {
+  const token = hfToken();
+  if (!token) return null;
+  const models = ["stabilityai/stable-diffusion-xl-base-1.0", "black-forest-labs/FLUX.1-dev"];
+  let last = "Hugging Face image fallback unavailable.";
+  for (const model of models) {
+    try {
+      const response = await fetch("https://router.huggingface.co/hf-inference/models/" + model, {
+        method: "POST", headers: { authorization: "Bearer " + token, "content-type": "application/json", accept: "image/*" },
+        body: JSON.stringify({ inputs: prompt + " . Aspect ratio: " + (ratio || "1:1") })
+      });
+      if (!response.ok) { last = "HF " + model + " returned HTTP " + response.status + ": " + (await response.text()).slice(0, 250); continue; }
+      const type = response.headers.get("content-type") || "image/png";
+      if (!type.startsWith("image/")) { last = "HF image endpoint did not return an image."; continue; }
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      let binary = ""; for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+      return { type: "image", url: "data:" + type + ";base64," + btoa(binary), model: "huggingface:" + model };
+    } catch (error) { last = error?.message || String(error); }
+  }
+  throw new Error(last);
+}
+
+const HF_VIDEO_SPACES = [
+  { id: "Wan-AI/Wan2.1-T2V-1.3B", seconds: false },
+  { id: "genmo/mochi-1-preview", seconds: false },
+  { id: "Lightricks/LTX-Video", seconds: true },
+  { id: "THUDM/CogVideoX-5b", seconds: false },
+  { id: "Tencent/HunyuanVideo", seconds: false },
+  { id: "Wan-AI/Wan2.2-T2V-A14B", seconds: false },
+  { id: "Skywork/SkyReels-V2", seconds: true }
+];
+
+async function submitHfVideo(prompt, requestedDuration) {
+  const token = hfToken(); if (!token) throw new Error("Hugging Face token is not configured.");
+  const duration = Math.max(4, Math.min(15, Number(requestedDuration) || 5));
+  const errors = [];
+  for (const item of HF_VIDEO_SPACES) {
+    try {
+      const endpoint = "https://" + item.id.replace("/", "-") + ".hf.space/gradio_api/call/generate";
+      const data = item.seconds ? [prompt, duration] : [prompt];
+      let response = await fetch(endpoint, { method: "POST", headers: { authorization: "Bearer " + token, "content-type": "application/json" }, body: JSON.stringify({ data }) });
+      if (!response.ok) { errors.push(item.id + " HTTP " + response.status); continue; }
+      const accepted = await response.json();
+      if (!accepted.event_id) { errors.push(item.id + " did not return an event id"); continue; }
+      return { type: "video", video_id: "hf:" + encodeURIComponent(item.id) + ":" + encodeURIComponent(accepted.event_id), model: "huggingface:" + item.id, status: "processing", provider: "huggingface" };
+    } catch (error) { errors.push(item.id + ": " + (error?.message || "request failed")); }
+  }
+  throw new Error("Hugging Face Spaces fallback failed: " + errors.slice(0, 3).join("; "));
+}
+
+async function pollHfVideo(videoId) {
+  const token = hfToken();
+  const parts = String(videoId).split(":");
+  if (parts.length < 3 || !token) return json({ detail: "Invalid Hugging Face video task." }, 400);
+  const space = decodeURIComponent(parts[1]); const eventId = decodeURIComponent(parts.slice(2).join(":"));
+  const endpoint = "https://" + space.replace("/", "-") + ".hf.space/gradio_api/call/generate/" + encodeURIComponent(eventId);
+  try {
+    const response = await fetch(endpoint, { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(12000) });
+    if (!response.ok) return json({ status: "processing", detail: "Hugging Face Space is still processing (HTTP " + response.status + ")." });
+    const raw = await response.text();
+    const lines = raw.split(/\\r?\\n/);
+    let event = "", payload = null;
+    for (const line of lines) { if (line.startsWith("event:")) event = line.slice(6).trim(); if (line.startsWith("data:")) { try { payload = JSON.parse(line.slice(5).trim()); } catch {} } }
+    if (event === "complete" && payload) {
+      const walk = (value) => { if (!value) return null; if (typeof value === "string" && /^https?:\\/\\//.test(value) && /\\.(mp4|webm|mov)(\\?|$)/i.test(value)) return value; if (Array.isArray(value)) { for (const v of value) { const found = walk(v); if (found) return found; } } if (typeof value === "object") { for (const k of ["url", "video", "path", "name"]) { const found = walk(value[k]); if (found) return found; } for (const v of Object.values(value)) { const found = walk(v); if (found) return found; } } return null; };
+      const videoUrl = walk(payload);
+      return json(videoUrl ? { status: "completed", url: videoUrl, model: "huggingface:" + space } : { status: "failed", error: "Space completed but did not return a public video URL." });
+    }
+    if (event === "error") return json({ status: "failed", error: typeof payload === "string" ? payload : "Hugging Face generation failed." });
+    return json({ status: "processing", progress: null, detail: "Hugging Face is generating your video…" });
+  } catch (error) { return json({ status: "processing", detail: "Hugging Face generation is still running." }); }
+}
+
 export default async (request) => {
   const url = new URL(request.url);
   const path = url.pathname;
@@ -117,7 +192,11 @@ export default async (request) => {
     const imageModels = ["agnes-image-2.0-flash","agnes-image-2.1-flash","agnes-image-2.5-flash","agnes-image-2.0"];
     const selectedImageModel = imageModels.includes(payload.model) ? payload.model : imageModels[0];
     const imageResult = await withModelFallback("/v1/images/generations", payload, [selectedImageModel, ...imageModels.filter(m=>m!==selectedImageModel)]);
-    if (imageResult instanceof Response) return imageResult;
+    if (imageResult instanceof Response) {
+      const fallback = await hfImageFallback(body.prompt, body.ratio).catch(() => null);
+      if (fallback) return json(fallback);
+      return imageResult;
+    }
     const data = imageResult.data;
     if (data.error || data.code) return json({ detail: data.error?.message || data.message || data.code || "Agnes image generation failed.", code: data.code || null }, 502);
     const item = (data.data || [{}])[0];
@@ -127,42 +206,31 @@ export default async (request) => {
   }
 
   if ((action === "video" || path.endsWith("/api/media/video")) && request.method === "POST") {
-    let body;
-    try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
+    let body; try { body = await request.json(); } catch { return json({ detail: "Invalid JSON body." }, 400); }
     if (!body.prompt || typeof body.prompt !== "string" || body.prompt.length > 2000) return json({ detail: "Prompt is required (max 2000 characters)." }, 400);
     if (!["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"].includes(body.ratio || "9:16")) return json({ detail: "Unsupported aspect ratio." }, 400);
-    const selectedVideoModel = "agnes-video-2.5-flash";
-    const resolution = "720P";
-    const size = "720P";
-    let prompt = body.prompt;
-    if (body.mode === "multi") prompt = "Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects and a beginning, middle and ending. " + prompt;
-    const payload = {
-      model: selectedVideoModel,
-      prompt,
-      mode: body.reference_image ? "img2video" : "text",
-      seconds: String(Math.max(4, Math.min(12, Number(body.duration) || 5))),
-      size,
-      aspect_ratio: body.ratio || "9:16"
-    };
-    if (body.reference_image) payload.first_frame = body.reference_image;
-    // Keep the model fixed. agnesFetch rotates through configured API keys
-    // (including quota/authorization errors) and returns the first accepted task.
-    const videoResult = await agnesFetch("/v1/videos", { method: "POST", body: JSON.stringify(payload) });
-    if (videoResult instanceof Response) return videoResult;
-    const resultModel = selectedVideoModel;
-    if (videoResult instanceof Response) return videoResult;
-    const data = videoResult;
-    const model = resultModel;
-    const videoId = data.video_id || data.id || data.task_id;
-    if (!videoId) return json({ detail: "Agnes response mein video task ID nahi mila." }, 502);
-    return json({ type: "video", video_id: videoId, model, status: data.status || "processing", raw: data });
+    try {
+      const hfTask = await submitHfVideo(body.prompt, body.duration);
+      return json(hfTask);
+    } catch (hfError) {
+      const selectedVideoModel = "agnes-video-2.5-flash";
+      let prompt = body.prompt;
+      if (body.mode === "multi") prompt = "Create a coherent multi-shot story with 2 to 5 visually distinct cinematic shots, clear shot transitions, consistent subjects and a beginning, middle and ending. " + prompt;
+      const payload = { model: selectedVideoModel, prompt, mode: body.reference_image ? "img2video" : "text", seconds: String(Math.max(4, Math.min(12, Number(body.duration) || 5))), size: "720P", aspect_ratio: body.ratio || "9:16" };
+      if (body.reference_image) payload.first_frame = body.reference_image;
+      const videoResult = await agnesFetch("/v1/videos", { method: "POST", body: JSON.stringify(payload) });
+      if (videoResult instanceof Response) return json({ detail: "Hugging Face fallback unavailable (" + hfError.message + "). Agnes fallback: " + (await videoResult.clone().json().catch(() => ({}))).detail }, videoResult.status);
+      const videoId = videoResult.video_id || videoResult.id || videoResult.task_id;
+      if (!videoId) return json({ detail: "Neither Hugging Face nor Agnes returned a video task ID." }, 502);
+      return json({ type: "video", video_id: videoId, model: selectedVideoModel, status: videoResult.status || "processing", provider: "agnes", fallback_reason: hfError.message });
+    }
   }
-
   const videoMatch = path.match(/\/api\/media\/video\/([^/]+)$/);
   if ((action === "status" || videoMatch) && request.method === "GET") {
+    const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
+    if (requestedVideoId.startsWith("hf:")) return await pollHfVideo(requestedVideoId);
     const keys = agnesKeys();
     if (!keys.length) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
-    const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
     if (!requestedVideoId || requestedVideoId.length > 300) return json({ detail: "Invalid video ID." }, 400);
     const model = url.searchParams.get("model_name") || "agnes-video-2.5-flash";
     if (!["agnes-video-2.5", "agnes-video-2.5-flash", "agnes-video-v2.0", "agnes-video-h3-moe"].includes(model)) return json({ detail: "Unsupported video model." }, 400);
