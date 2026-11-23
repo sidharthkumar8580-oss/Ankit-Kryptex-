@@ -376,7 +376,7 @@ export default async (request) => {
   const videoMatch = path.match(/\/api\/media\/video\/([^/]+)$/);
   if ((action === "status" || videoMatch) && request.method === "GET") {
     const requestedVideoId = url.searchParams.get("video_id") || (videoMatch ? decodeURIComponent(videoMatch[1]) : "");
-    if (requestedVideoId.startsWith("hf:")) return await pollHfVideo(requestedVideoId);
+    if (requestedVideoId.startsWith("hf:") || requestedVideoId.startsWith("hf2:")) return await pollHfVideo(requestedVideoId);
     const keys = agnesKeys();
     if (!keys.length) return json({ detail: "Agnes API key Netlify ke Environment variables mein set nahi hai." }, 503);
     if (!requestedVideoId || requestedVideoId.length > 300) return json({ detail: "Invalid video ID." }, 400);
