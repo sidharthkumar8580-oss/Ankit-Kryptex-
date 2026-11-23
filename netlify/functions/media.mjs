@@ -210,7 +210,7 @@ async function advanceHfTask(task, token) {
   for (let index = task.index + 1; index < task.candidates.length; index++) {
     try {
       const eventId = await submitHfCandidate(task.candidates[index], token);
-      return { status:"processing", detail:"Previous Hugging Face Space failed; trying the next available video model…", video_id:encodeHfTask({ index, eventId, candidates:task.candidates }), model:task.candidates[index].model };
+      return { status:"processing", detail:"Previous Hugging Face Space failed; trying the next available video model…", video_id:encodeHfTask({ index, eventId, candidates:task.candidates, meta:task.meta }), model:task.candidates[index].model };
     } catch {}
   }
   const meta=task.meta||{};
