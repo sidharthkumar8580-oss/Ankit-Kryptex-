@@ -138,11 +138,11 @@ async function pollHfVideo(videoId) {
     const response = await fetch(endpoint, { headers: { authorization: "Bearer " + token }, signal: AbortSignal.timeout(12000) });
     if (!response.ok) return json({ status: "processing", detail: "Hugging Face Space is still processing (HTTP " + response.status + ")." });
     const raw = await response.text();
-    const lines = raw.split(/\\r?\\n/);
+    const lines = raw.split("\n");
     let event = "", payload = null;
     for (const line of lines) { if (line.startsWith("event:")) event = line.slice(6).trim(); if (line.startsWith("data:")) { try { payload = JSON.parse(line.slice(5).trim()); } catch {} } }
     if (event === "complete" && payload) {
-      const walk = (value) => { if (!value) return null; if (typeof value === "string" && /^https?:\\/\\//.test(value) && /\\.(mp4|webm|mov)(\\?|$)/i.test(value)) return value; if (Array.isArray(value)) { for (const v of value) { const found = walk(v); if (found) return found; } } if (typeof value === "object") { for (const k of ["url", "video", "path", "name"]) { const found = walk(value[k]); if (found) return found; } for (const v of Object.values(value)) { const found = walk(v); if (found) return found; } } return null; };
+      const walk = (value) => { if (!value) return null; if (typeof value === "string" && (value.startsWith("https://") || value.startsWith("http://")) && /\.(mp4|webm|mov)(\?|$)/i.test(value)) return value; if (Array.isArray(value)) { for (const v of value) { const found = walk(v); if (found) return found; } } if (typeof value === "object") { for (const k of ["url", "video", "path", "name"]) { const found = walk(value[k]); if (found) return found; } for (const v of Object.values(value)) { const found = walk(v); if (found) return found; } } return null; };
       const videoUrl = walk(payload);
       return json(videoUrl ? { status: "completed", url: videoUrl, model: "huggingface:" + space } : { status: "failed", error: "Space completed but did not return a public video URL." });
     }
