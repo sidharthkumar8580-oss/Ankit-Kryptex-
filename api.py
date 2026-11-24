@@ -30,10 +30,17 @@ _raw_agnes_base = (os.getenv("AGNES_BASE_URL") or os.getenv("AGNES_API_BASE") or
 AGNES_BASE_URL = _raw_agnes_base[:-3] if _raw_agnes_base.endswith("/v1") else _raw_agnes_base
 RETRYABLE = {401, 402, 403, 408, 429, 500, 502, 503, 504}
 HF_TOKEN = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACEHUB_API_TOKEN") or os.getenv("HUGGING_FACE_HUB_TOKEN")
-# Format: owner/space|/api_name,owner2/space2|/api_name
-# The default candidate exposes a single prompt-to-video function named infer.
-# Do not default to the currently broken K00B404/Wan2.1 Space (BUILD_ERROR).
-# Configure HF_VIDEO_SPACES only with a Space that is currently RUNNING.
+# Public community Spaces are best-effort shared demos, not unlimited services.
+# These candidates expose text-to-video Gradio endpoints; image-only/video-edit Spaces
+# are deliberately excluded because this app's normal video form sends a text prompt.
+DEFAULT_HF_VIDEO_SPACES = (
+    "zerogpu-aoti/wan2-2-fp8da-aoti|/generate_video,"
+    "Daankular/H3EROS|/generate,"
+    "mastaP/wan22-remix-sfw-t2v|/generate_video,"
+    "Lakonik/pi-H3|/generate,"
+    "prithivMLmods/Wan2.2-Fast|/generate_video"
+)
+# Optional extra Spaces can still be supplied through Render's HF_VIDEO_SPACES variable.
 HF_VIDEO_SPACES = os.getenv("HF_VIDEO_SPACES", "")
 HF_VIDEO_TASKS = {}
 HF_VIDEO_DIR = Path(tempfile.gettempdir()) / "ankit_kryptex_hf_videos"
@@ -41,7 +48,9 @@ HF_VIDEO_DIR.mkdir(parents=True, exist_ok=True)
 
 def parse_hf_spaces():
     spaces = []
-    for item in HF_VIDEO_SPACES.split(","):
+    seen = set()
+    # Try curated defaults first, then any user-configured extras.
+    for item in (DEFAULT_HF_VIDEO_SPACES + "," + HF_VIDEO_SPACES).split(","):
         item = item.strip()
         if not item:
             continue
@@ -49,10 +58,13 @@ def parse_hf_spaces():
             space_id, api_name = item.split("|", 1)
         else:
             space_id, api_name = item, ""
+        space_id = space_id.strip()
+        api_name = api_name.strip() or None
         # Skip the known broken Space even if it remains in Render env vars.
-        if space_id.strip().lower() == "k00b404/wan2.1":
+        if space_id.lower() == "k00b404/wan2.1" or space_id in seen:
             continue
-        spaces.append((space_id.strip(), api_name.strip() or None))
+        seen.add(space_id)
+        spaces.append((space_id, api_name))
     return spaces
 
 def find_video_output(value):
@@ -81,6 +93,29 @@ def find_video_output(value):
 def call_hf_space(space_id, api_name, prompt, token):
     from gradio_client import Client
     client = Client(space_id, hf_token=token or None, verbose=False)
+
+    # Known endpoint adapters: public Spaces have different input schemas.
+    if space_id == "zerogpu-aoti/wan2-2-fp8da-aoti":
+        return client.predict(
+            prompt=prompt,
+            negative_prompt="low quality, blurry, distorted, watermark, text",
+            duration_seconds=2.0,
+            guidance_scale=1.0,
+            guidance_scale_2=3.0,
+            steps=4,
+            seed=42,
+            randomize_seed=True,
+            api_name=api_name or "/generate_video",
+        )
+    if space_id == "Daankular/H3EROS":
+        return client.predict(prompt=prompt, api_name=api_name or "/generate")
+    if space_id == "mastaP/wan22-remix-sfw-t2v":
+        return client.predict(prompt, api_name=api_name or "/generate_video")
+    if space_id == "Lakonik/pi-H3":
+        return client.predict(prompt=prompt, api_name=api_name or "/generate")
+    if space_id == "prithivMLmods/Wan2.2-Fast":
+        return client.predict(prompt, api_name=api_name or "/generate_video")
+
     if api_name:
         return client.predict(prompt, api_name=api_name)
     # Only use the implicit endpoint when the Space exposes a single endpoint.
