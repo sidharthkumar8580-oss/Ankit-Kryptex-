@@ -114,7 +114,9 @@ def call_hf_space(space_id, api_name, prompt, token):
     if space_id == "Lakonik/pi-H3":
         return client.predict(prompt=prompt, api_name=api_name or "/generate")
     if space_id == "prithivMLmods/Wan2.2-Fast":
-        return client.predict(prompt, api_name=api_name or "/generate_video")
+        # This Space exposes a named prompt input; use keyword binding so Gradio
+        # cannot mis-map the value when its API schema changes.
+        return client.predict(prompt=prompt, api_name=api_name or "/generate_video")
 
     if api_name:
         return client.predict(prompt, api_name=api_name)
