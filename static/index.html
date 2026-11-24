@@ -110,9 +110,28 @@ textarea::placeholder{color:#676477}
 </div>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer"><div class="drawerhead"><div class="brand"><div class="mark">AK</div><div><strong>ANKIT KRYPTEX</strong><small>STUDIO MENU</small></div></div><button class="iconbtn" id="closeDrawer">×</button></div>
-<button class="drawerlink active" data-page="home">⌂　 Home</button><button class="drawerlink" data-page="history">◷　 History</button><button class="drawerlink" data-page="subscription">✧　 Subscription</button><button class="drawerlink" data-page="settings">⚙　 Settings</button><div class="drawerfoot">Your creations are saved in this browser. History auto-clears after 3 days.</div></aside>
+<button class="drawerlink active" data-page="home">⌂　 Home</button><button class="drawerlink" data-page="history">◷　 History</button><button class="drawerlink" data-page="subscription">✧　 Subscription</button><button class="drawerlink" data-page="settings">⚙　 Settings</button><button class="drawerlink" data-page="arena">⚔　 LMArena</button><div class="drawerfoot">Your creations are saved in this browser. History auto-clears after 3 days.</div></aside>
 <section class="overlay" id="historyPage"><div class="subtop"><button class="iconbtn backHome">‹</button><h2>Creation History</h2><span class="pill" style="margin-left:auto">Auto-delete · 3 days</span></div><div class="subbody"><div class="historytabs"><button class="historytab active" data-history="video">Video History</button><button class="historytab" data-history="image">Image History</button></div><div class="historytools"><button id="selectAll">Select all</button><button id="deleteSelected" class="danger">Delete selected</button><span id="historyCount" style="color:#898397;font-size:11px;margin-left:auto"></span></div><div class="historygrid" id="historyGrid"></div></div></section>
 <section class="overlay" id="subscriptionPage"><div class="subtop"><button class="iconbtn backHome">‹</button><h2>Subscription</h2></div><div class="subbody"><div class="card"><div class="eyebrow">YOUR PLAN</div><h2 style="font-size:28px;margin:10px 0">Agnes API Plan</h2><p style="color:#aaa;font-size:13px;line-height:1.7">Generation availability, credits and charges are controlled by the Agnes API key connected to the backend. Ankit Kryptex does not currently sell or charge for a subscription here.</p><a href="https://platform.agnes-ai.com" target="_blank" rel="noopener" style="color:#d9a7ff;font-size:13px">Manage Agnes API access ↗</a></div></div></section>
+<section class="overlay" id="arenaPage">
+ <div class="subtop"><button class="iconbtn backHome">‹</button><h2>LMArena</h2><span class="pill" style="margin-left:auto">External service</span></div>
+ <div class="subbody">
+  <div class="card" style="margin-bottom:14px">
+   <div class="eyebrow">AI MODEL ARENA</div>
+   <h2 style="font-size:25px;margin:10px 0">Compare AI models</h2>
+   <p style="color:#aaa;font-size:13px;line-height:1.7">LMArena is an independent service. If its website allows embedding, it will appear below. Otherwise use the Open LMArena button.</p>
+   <a href="https://lmarena.ai/" target="_blank" rel="noopener noreferrer" class="smallbtn" style="display:inline-flex;text-decoration:none">↗ Open LMArena</a>
+  </div>
+  <div class="card" style="padding:8px">
+   <iframe title="LMArena" src="https://lmarena.ai/" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="clipboard-read; clipboard-write" style="display:block;width:100%;height:70vh;min-height:520px;border:0;border-radius:14px;background:#fff" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+  </div>
+  <div class="card" style="margin-top:14px">
+   <strong>API integration</strong>
+   <p style="color:#aaa;font-size:13px;line-height:1.7">Disabled — LMArena has no verified public developer API for this integration. We will only enable this after an official supported API becomes available. Private endpoints or account-session workarounds will not be used.</p>
+  </div>
+  <p class="note">LMArena usage happens on LMArena. Showing it here does not make its ads or views your ad revenue.</p>
+ </div>
+</section>
 <section class="overlay" id="settingsPage"><div class="subtop"><button class="iconbtn backHome">‹</button><h2>Settings</h2></div><div class="subbody"><div class="card"><strong>Storage & privacy</strong><p style="color:#aaa;font-size:13px;line-height:1.7">History is stored only in this browser on this device. Entries are automatically removed after 3 days. Clearing browser data also clears history. Your Agnes API key stays on the server and is never sent to this page.</p><button class="smallbtn" id="clearHistoryAll">Clear all history</button></div></div></section>
 <section class="genmodal" id="generationModal" aria-live="polite">
  <header class="genhead"><div class="mark">AK</div><div><strong id="genHeadTitle">VIDEO GENERATION</strong><small>ANKIT KRYPTEX AI STUDIO</small></div><button class="genclose" id="closeGeneration" aria-label="Close generation interface">×</button></header>
@@ -138,8 +157,8 @@ function getHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||'
 function setHistory(items){localStorage.setItem(HISTORY_KEY,JSON.stringify(items))}
 function cleanHistory(){const now=Date.now();const items=getHistory().filter(x=>now-x.created<THREE_DAYS);setHistory(items);return items}
 function drawer(open){$('#drawer').classList.toggle('open',open);$('#scrim').classList.toggle('open',open)}
-function showPage(name){['history','subscription','settings'].forEach(p=>$('#'+p+'Page').classList.toggle('open',p===name));drawer(false);if(name==='history')renderHistory()}
-function home(){['history','subscription','settings'].forEach(p=>$('#'+p+'Page').classList.remove('open'));drawer(false)}
+function showPage(name){['history','subscription','settings','arena'].forEach(p=>$('#'+p+'Page').classList.toggle('open',p===name));drawer(false);if(name==='history')renderHistory()}
+function home(){['history','subscription','settings','arena'].forEach(p=>$('#'+p+'Page').classList.remove('open'));drawer(false)}
 $('#menuBtn').onclick=()=>drawer(true);$('#closeDrawer').onclick=()=>drawer(false);$('#scrim').onclick=()=>drawer(false);all('.backHome').forEach(b=>b.onclick=home);
 all('.drawerlink').forEach(b=>b.onclick=()=>{const p=b.dataset.page;if(p==='home')home();else showPage(p)});
 function switchTab(tab){
